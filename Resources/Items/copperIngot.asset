@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92a1ec2208e401b4a9f33f1eb4bca114, type: 3}
+  m_Name: copperIngot
+  m_EditorClassIdentifier: 
+  itemName: copperIngot
+  icon: {fileID: 4450037531155264976, guid: a800562cb3b2de64390d5bfbf16f3116, type: 3}
+  description: 
+  color: {r: 0.6415094, g: 0.28267357, b: 0, a: 0}
+  maxStackSize: 999
+  value: 0
+  Rarity: 0
+  componentSlot: 3
+  itemType: 4
+  projectileType: 4
+  tier: 0
+  flatDamage: 1
+  damageMult: 0
+  flatDefense: 1
+  defenseMult: 0
+  flatMaxHP: 10
+  HPMult: 0
+  flatPureDamage: 0
+  pureDamageMult: 0
+  flatProjectileSpeed: 0
+  projectileSpeedMult: 0
+  flatMaxMana: 0
+  maxManaMult: 0
+  dropRateIncrease: 0
+  xpGainIncrease: 0
+  goldGainIncrease: 0
+  flatKnockbackIncrease: 0
+  knockbackMult: 0
+  knockbackResistanceMult: 0
+  flatKnockbackResistance: 0
+  attackSpeedFlat: 0
+  attackSpeedMult: 0
+  dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
+  tags:
+  - copperIngot
+  - copper
+  ID: copperIngot
+  coreTier: 0
+  coreSize: 0
+  enhancedNum: 0
+  bonusStats: []

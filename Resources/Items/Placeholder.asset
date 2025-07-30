@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92a1ec2208e401b4a9f33f1eb4bca114, type: 3}
-  m_Name: Placeholder
+  m_Name: placeholder
   m_EditorClassIdentifier: 
   itemName: placeholder
   icon: {fileID: -3730300019221377472, guid: a7a9b1c4ca5109047ad381e6f79d6aae, type: 3}

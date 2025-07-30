@@ -11,19 +11,13 @@ public enum ItemRarity
     Mythical,
     Gauranteed
 }
-public enum ComponentSlot
-{
-    Core,
-    Material,
-    Augment,
-    None
-}
 public enum ItemType
 {
     Scrap,
     Drop,
     Ore,
-    Token
+    Token,
+    Material
 }
 [CreateAssetMenu(fileName = "Items", menuName = "Scriptable Objects/Items")]
 public class Items : ScriptableObject
@@ -47,6 +41,8 @@ public class Items : ScriptableObject
     public ComponentSlot componentSlot;
     [Header("ItemType")]
     public ItemType itemType;
+    [Header("ProjectileType")]
+    public ProjectileType projectileType;
     [Header("ItemTier")]
     public float tier;
 
@@ -76,6 +72,7 @@ public class Items : ScriptableObject
     [Header("FlatProjectileSpeed")]
     public float flatProjectileSpeed;
     [Header("ProjectileSpeedMult")]
+    public float projectileSpeedMult;
     [Header("FlatMaxMana")]
     public float flatMaxMana;
 
@@ -113,7 +110,6 @@ public class Items : ScriptableObject
     public float dashDistance;
     [Header("Dash Number")]
     public int dashNumber;
-    public float projectileSpeedMult;
     [Header("Tags")]
     public string[] tags;
     [Header("Internal ID")]
@@ -123,5 +119,4 @@ public class Items : ScriptableObject
     public int coreSize;
     [Header("Times enhanced")]
     public int enhancedNum;
-    public List<StatModifier> bonusStats = new();
 }

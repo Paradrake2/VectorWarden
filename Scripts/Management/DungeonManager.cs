@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class DungeonManager : MonoBehaviour
 {
     public static DungeonManager Instance;
+    public UIManager uiManager;
     public MapGenerator mapGenerator;
     public GameObject playerPrefab;
     public int totalEnemies = 0;
@@ -30,6 +31,7 @@ public class DungeonManager : MonoBehaviour
             GameObject player = Instantiate(playerPrefab, mapGenerator.playerSpawnPosition, Quaternion.identity);
             Camera.main.GetComponent<CameraFollow>().target = player.transform;
             mapGenerator.GenerateRoom();
+            uiManager.UpdateHealthText();
         }
     }
     public int getFloor()

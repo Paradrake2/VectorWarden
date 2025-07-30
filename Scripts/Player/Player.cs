@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
+        Debug.Log("Player took damage: " + damage);
         if (Time.time - lastDamageTime < damageCooldown) return;
         if (stats.isDashing == true) return;
         lastDamageTime = Time.time;
@@ -25,6 +26,8 @@ public class Player : MonoBehaviour
         float finalDamage = Mathf.Max(0, damage - stats.CurrentDefense);
         stats.CurrentHealth -= finalDamage;
 
+        UIManager.Instance.UpdateHealthText();
+
         if (stats.CurrentHealth <= 0)
         {
             Die();
@@ -34,7 +37,7 @@ public class Player : MonoBehaviour
     void Die()
     {
         Debug.Log("Player has died");
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Refine");
     }
 
 }
