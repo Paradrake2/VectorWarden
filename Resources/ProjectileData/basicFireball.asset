@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9d9038d9ac8ce4d880ff2cfd462884, type: 3}
+  m_Name: basicFireball
+  m_EditorClassIdentifier: 
+  projectileName: basicFireball
+  prefab: {fileID: 6670500428637364174, guid: d1f613c8c03908442a4093eade85eed8, type: 3}
+  baseSpeed: 0
+  baseDamage: 0
+  icon: {fileID: 2768555999611999483, guid: 46323c318a7252c42a525f0fadd5b3b2, type: 3}
+  projectileType: 0
+  spriteRotationOffset: -90
+  lifetime: 5
+  speedMultiplier: 1
+  isHoming: 0
+  homingSpeed: 0
+  homingRange: 0
+  explosionRadius: 0
+  pierceAmount: 0
+  knockbackForce: 0
+  projectileSize: 1

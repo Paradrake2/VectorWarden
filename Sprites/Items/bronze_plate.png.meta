@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bronze_plate_0: -2424883173864900698
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

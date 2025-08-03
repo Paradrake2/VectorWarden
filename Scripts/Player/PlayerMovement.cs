@@ -3,13 +3,16 @@ using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public PlayerStats playerStats;
+    public float moveSpeed;
     [SerializeField] private Rigidbody2D rb;
     private Vector2 movement;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerStats = FindFirstObjectByType<PlayerStats>();
+        moveSpeed = playerStats.CurrentPlayerMoveSpeed;
     }
 
     // Update is called once per frame
@@ -25,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
+        moveSpeed = playerStats.CurrentPlayerMoveSpeed;
         rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
     }
 }

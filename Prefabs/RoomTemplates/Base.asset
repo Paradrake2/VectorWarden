@@ -27,7 +27,7 @@ MonoBehaviour:
   maxOreDensity: 0.005
   maxChestDensity: 0.0001
   maxObstacleWeight: 0.04
-  minEnemyDensity: 0
+  minEnemyDensity: 0.01
   minOreDensity: 0
   minChestDensity: 0
   minObstacleWeight: 0

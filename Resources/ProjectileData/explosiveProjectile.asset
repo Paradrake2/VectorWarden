@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9d9038d9ac8ce4d880ff2cfd462884, type: 3}
+  m_Name: explosiveProjectile
+  m_EditorClassIdentifier: 
+  projectileName: explosiveProjectile
+  prefab: {fileID: 4556626976445569952, guid: a8e79d26396bbaf4f896fd808e6889cc, type: 3}
+  baseSpeed: 0
+  baseDamage: 10
+  icon: {fileID: 2768555999611999483, guid: 46323c318a7252c42a525f0fadd5b3b2, type: 3}
+  projectileType: 1
+  spriteRotationOffset: -90
+  lifetime: 5
+  speedMultiplier: 0
+  damageMultiplier: 0.5
+  attackSpeedModifier: -0.5
+  isHoming: 0
+  homingSpeed: 0
+  homingRange: 0
+  explosionRadius: 1
+  pierceAmount: 0
+  knockbackForce: 0
+  projectileSize: 1

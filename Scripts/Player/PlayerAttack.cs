@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -25,41 +26,63 @@ public class PlayerAttack : MonoBehaviour
         {
             Debug.LogError("Player GameObject not found in the scene.");
         }
-        attackCooldown = playerStats.CurrentAttackSpeed;
+        attackCooldown = playerStats.CurrentAttackCooldown;
         Debug.LogWarning(attackCooldown);
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetMouseButtonDown(0) && Time.time >= lastAttackTime + attackCooldown)
+        ProjectileData data = projectilePrefab.GetComponent<PlayerProjectile>()?.projectileData;
+        float attackSpeedModifier = data.attackSpeedModifier;
+        float effectiveCooldown = attackCooldown *(1f - attackSpeedModifier);
+        if (Input.GetMouseButtonDown(0) && Time.time >= lastAttackTime + effectiveCooldown)
         {
+            Debug.Log("Attack cooldown: " + effectiveCooldown + " attackSpeedModifier: " + attackSpeedModifier);
             firePoint.position = player.transform.position;
-            FireProjectile();
+            StartCoroutine(FireProjectile());
             lastAttackTime = Time.time;
         }
     }
 
-    void FireProjectile()
+    IEnumerator FireProjectile()
     {
-        if (projectilePrefab != null && firePoint != null)
+        var projectilePrefabs = playerStats.GetActiveProjectiles();
+        if (projectilePrefabs.Count == 0 && projectilePrefab != null)
         {
-            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorldPosition.z = 0; // Ensure the z position is zero for 2D space
-            Vector2 direction = (mouseWorldPosition - firePoint.position).normalized;
-
-            GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-            projectile.GetComponent<PlayerProjectile>().InitializeProjectile(direction, playerStats.CurrentProjectileSpeed, playerStats.CurrentDamage, playerStats.CurrentProjectileType);
-            Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.linearVelocity = direction * playerStats.CurrentProjectileSpeed;
-            }
+            projectilePrefabs.Add(projectilePrefab);
         }
-        else
+
+        foreach (var prefab in projectilePrefabs)
         {
-            Debug.LogError("Projectile prefab or fire point is not set.");
+            if (prefab != null && firePoint != null)
+            {
+                Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mouseWorldPosition.z = 0;
+                Vector2 direction = (mouseWorldPosition - firePoint.position).normalized;
+
+                GameObject projectile = Instantiate(prefab, firePoint.position, Quaternion.identity);
+
+                // Set rotation based on direction and spriteRotationOffset
+                PlayerProjectile projScript = projectile.GetComponent<PlayerProjectile>();
+                if (projScript != null)
+                {
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    projectile.transform.rotation = Quaternion.Euler(0, 0, angle + projScript.spriteRotationOffset);
+
+                    // Optionally, use InitializeProjectile for consistency
+                    projScript.InitializeProjectile(direction, playerStats.CurrentProjectileSpeed, playerStats.CurrentDamage, projScript.projectileType);
+                }
+                else
+                {
+                    Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+                    if (rb != null)
+                    {
+                        rb.linearVelocity = direction * playerStats.CurrentProjectileSpeed;
+                    }
+                }
+            }
+            yield return new WaitForSeconds(0.05f); // delay between each projectile (adjust as needed)
         }
     }
 }

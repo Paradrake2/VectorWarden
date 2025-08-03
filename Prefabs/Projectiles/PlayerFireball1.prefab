@@ -166,7 +166,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 0}
+  projectileData: {fileID: 11400000, guid: 2f6bf72408c42944fa0d2fd5cf8518b1, type: 2}
   projectileSpeed: 0
   damage: 0
   projectileType: 0
   spriteRotationOffset: -90
+  pierceAmount: 0
+  explosionRadius: 0
+  homingRange: 0
+  lifetime: 5

@@ -142,8 +142,8 @@ MonoBehaviour:
   wasHitByPlayer: 0
   colliderHeight: 1
   colliderWidth: 1
-  minXP: 0
-  maxXP: 0
+  minXP: 200
+  maxXP: 500
   minGold: 0
   maxGold: 0
   dropPool:

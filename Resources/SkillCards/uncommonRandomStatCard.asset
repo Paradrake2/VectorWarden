@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: uncommonRandomStatCard
+  m_EditorClassIdentifier: 
+  skillName: Uncommon Random Stat
+  description: Who knows what you'll get?
+  skillIcon: {fileID: 6510710865780934179, guid: fd666b12b3c644d4a81f1c3939953344, type: 3}
+  cardPicture: {fileID: 4607009787955810536, guid: bbe23959eac1f27469e70d49bd2eb590, type: 3}
+  skillType: 3
+  skillCardRarity: 1
+  statModifiers: []
+  projectilePrefab: {fileID: 0}
+  minimumLevelRequired: 1
+  specialEffects: []
+  projectileData: {fileID: 0}
+  maxValue: 2
+  minValue: 4

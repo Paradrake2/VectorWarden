@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      mythril_plate_0: 2253736475855190126
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

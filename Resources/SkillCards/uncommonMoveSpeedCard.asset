@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: uncommonMoveSpeedCard
+  m_EditorClassIdentifier: 
+  skillName: Uncommon Move Speed
+  description: Moderately increases move speed
+  skillIcon: {fileID: 6406470635852008369, guid: 65c41496b44f6e44890931a54adbfdb4, type: 3}
+  cardPicture: {fileID: 4119813347759814797, guid: 87cc31fadbe121142b593f77ffdd3c3d, type: 3}
+  skillType: 1
+  skillCardRarity: 1
+  statModifiers:
+  - statType: 18
+    flatAmount: 1
+    percentAmount: 0
+  projectilePrefab: {fileID: 0}
+  minimumLevelRequired: 1
+  specialEffects: []
+  projectileData: {fileID: 0}
+  maxValue: 0
+  minValue: 0

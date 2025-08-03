@@ -1,5 +1,6 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Rendering.Universal.Internal;
 public enum ProjectileType
 {
     Normal,
@@ -8,15 +9,27 @@ public enum ProjectileType
     Homing,
     None
 }
+
 public class PlayerProjectile : MonoBehaviour
 {
     public PlayerStats playerStats;
+    public ProjectileData projectileData; // Reference to the projectile data
     public float projectileSpeed;
     public float damage;
     public ProjectileType projectileType;
     public float spriteRotationOffset = 0f; // Offset to align the sprite correctly
 
     private Vector2 moveDirection;
+
+    public int pierceAmount;
+    public float explosionRadius;
+    public float homingRange;
+    public float projectileSize = 1f;
+    public float damageMultiplier = 1f; // Multiplier for damage based on player stats
+    public float lifetime = 2f;
+
+    [SerializeField] private float homingTimer = 0f;
+    [SerializeField] private const float homingInterval = 0.05f; // How often to check for homing targets
     void Start()
     {
         if (playerStats == null)
@@ -27,30 +40,115 @@ public class PlayerProjectile : MonoBehaviour
                 Debug.LogError("PlayerStats not found in the scene.");
             }
         }
-        projectileSpeed = playerStats.CurrentProjectileSpeed;
-        damage = playerStats.CurrentDamage;
-        projectileType = playerStats.CurrentProjectileType;
+        if (projectileData != null)
+        {
+            projectileSpeed = projectileData.baseSpeed + (playerStats.CurrentProjectileSpeed * projectileData.speedMultiplier);
+            damage = projectileData.baseDamage + playerStats.CurrentDamage;
+            projectileType = projectileData.projectileType;
+            spriteRotationOffset = projectileData.spriteRotationOffset;
+            lifetime = projectileData.lifetime;
+            damageMultiplier = projectileData.damageMultiplier;
+            pierceAmount = (int)(projectileData.pierceAmount + playerStats.CurrentPiercingAmount);
+            explosionRadius = projectileData.explosionRadius + playerStats.CurrentExplosionRadius;
+            
+        }
+        else
+        {
+            Debug.LogError("ProjectileData not assigned in PlayerProjectile.");
+        }
+
+        Destroy(gameObject, lifetime);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (projectileData != null && projectileData.isHoming)
+        {
+            homingTimer += Time.deltaTime;
+            if (homingTimer >= homingInterval)
+            {
+                homingTimer = 0f;
+                // Implement homing behavior here
+                Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, homingRange);
+                Transform closestTarget = null;
+                float closestDistance = Mathf.Infinity;
 
+                foreach (var hit in targets)
+                {
+                    float dist = Vector2.Distance(transform.position, hit.transform.position);
+                    if (hit.CompareTag("Enemy") && dist < closestDistance)
+                    {
+                        closestDistance = dist;
+                        closestTarget = hit.transform;
+                    }
+                }
+                if (closestTarget != null)
+                {
+                    // Move towards the closest target
+                    Vector2 direction = (closestTarget.position - transform.position).normalized;
+                    Rigidbody2D rb = GetComponent<Rigidbody2D>();
+                    if (rb != null)
+                    {
+                        rb.linearVelocity = direction * projectileSpeed;
+                        //Debug.Log("playerStats.CurrentProjectileSpeed)" + playerStats.CurrentProjectileSpeed);
+                        //Debug.Log("projectileData.baseSpeed)" + projectileData.baseSpeed);
+                        //Debug.Log("projectileData.speedMultiplier)" + projectileData.speedMultiplier);
+                        //Debug.Log("Final speed: " + speed);
+                    }
+                    
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + spriteRotationOffset));
+                }
+            }
+        }
     }
 
-    public void InitializeProjectile(Vector2 direction, float speed, float damageAmount, ProjectileType type)
+    public void InitializeProjectile(Vector2 direction, float speed, float damageAmount, ProjectileType type, ProjectileData data = null)
     {
         moveDirection = direction.normalized;
-        projectileSpeed = speed;
+        if (data != null)
+        {
+            projectileData = data;
+            spriteRotationOffset = projectileData.spriteRotationOffset;
+            projectileSpeed = data.baseSpeed * data.speedMultiplier;
+        }
+        else
+        {
+            projectileSpeed = speed;
+        }
         damage = damageAmount;
         projectileType = type;
 
+        if (playerStats != null)
+        {
+            pierceAmount = playerStats.CurrentPiercingAmount;
+            explosionRadius = playerStats.CurrentExplosionRadius;
+            homingRange = playerStats.CurrentHomingRange;
+            projectileSize = playerStats.CurrentProjectileSize;
+        }
+        else
+        {
+            pierceAmount = projectileData != null ? (int)projectileData.pierceAmount : 0;
+            explosionRadius = projectileData != null ? projectileData.explosionRadius : 0f;
+            homingRange = projectileData != null ? projectileData.homingRange : 0f;
+            projectileSize = projectileData != null ? projectileData.projectileSize : 1f;
+        }
+        /*
+        if (projectileData.isHoming && homingRange > 0f)
+        {
+            CircleCollider2D homingCollider = gameObject.AddComponent<CircleCollider2D>();
+            homingCollider.radius = homingRange;
+            homingCollider.isTrigger = true; // Make it a trigger to detect targets without physical collision
+        }
+        */
+        gameObject.transform.localScale = new Vector3(projectileSize, projectileSize, 1f);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
             rb.linearVelocity = moveDirection * projectileSpeed; // Assuming the projectile moves in the direction it's facing
         }
-        
+
         float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + spriteRotationOffset));
     }
@@ -69,11 +167,53 @@ public class PlayerProjectile : MonoBehaviour
                     collision.GetComponent<Enemy>().Die();
                 }
             }
-            Destroy(gameObject);
+            pierceAmount--;
+            if (projectileData.projectileType == ProjectileType.Explosive || projectileData.explosionRadius > 0f) Explode();
+            if (pierceAmount < 0) Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Wall"))
         {
             Destroy(gameObject);
         }
     }
+    void Explode()
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+        // Graphics, scale is proportional to explosionRadius
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            if (enemy.CompareTag("Enemy"))
+            {
+                EnemyStats enemyStats = enemy.GetComponent<EnemyStats>();
+                if (enemyStats != null)
+                {
+                    enemyStats.currentHealth -= damage;
+                    Debug.LogWarning($"Enemy hit by explosion! Remaining Health: {enemyStats.currentHealth}");
+                    if (enemyStats.currentHealth <= 0)
+                    {
+                        enemy.GetComponent<Enemy>().Die();
+                    }
+                }
+            }
+        }
+        Destroy(gameObject);
+    }
+
+    public void SetHomingTarget(Transform target)
+    {
+        if (projectileData != null && projectileData.isHoming)
+        {
+            // Implement homing logic here
+            Vector2 direction = (target.position - transform.position).normalized;
+            moveDirection = direction;
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = moveDirection * projectileSpeed;
+                Debug.Log($"Homing towards target: {target.name} with speed: {projectileSpeed}");
+            }
+        }
+    }
+
+    
 }

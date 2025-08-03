@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      mythril_ingot_0: -7169007393592998233
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

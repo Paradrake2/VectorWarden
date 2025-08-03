@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      craftingMenuBG_0: 2232307061510032770
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bronze_ingot_0: 8608255882788020853
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

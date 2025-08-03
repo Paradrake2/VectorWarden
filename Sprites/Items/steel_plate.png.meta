@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      steel_plate_0: 7000149559540890843
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
