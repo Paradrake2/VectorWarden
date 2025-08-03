@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: legendaryHealthSkillCard
+  m_EditorClassIdentifier: 
+  skillName: Legendary Health Card
+  description: Massively increases health
+  skillIcon: {fileID: -5218455497292005239, guid: 335dd58fc75a05e49952d55996a6bcec, type: 3}
+  cardPicture: {fileID: -3080222822951582302, guid: 964630b3ecffaea498deb26339023c85, type: 3}
+  skillType: 1
+  skillCardRarity: 4
+  statModifiers:
+  - statType: 0
+    flatAmount: 200
+    percentAmount: 0.6
+  projectilePrefab: {fileID: 0}
+  minimumLevelRequired: 1
+  specialEffects: []
+  projectileData: {fileID: 0}
+  maxValue: 0
+  minValue: 0

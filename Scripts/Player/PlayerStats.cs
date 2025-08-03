@@ -16,13 +16,15 @@ public enum StatType
     ManaRegeneration,
     DashDistance,
     DashNumber,
-    ProjectileSpeed,
+    PlayerMoveSpeed,
+    AttackSpeed,
     AttackCooldown,
+    // These need to be special effects
+    ProjectileSpeed,
     PierceAmount,
     ExplosionRadius,
     HomingRange,
     ProjectileSize,
-    PlayerMoveSpeed
     
 }
 public class PlayerStats : MonoBehaviour
@@ -32,6 +34,7 @@ public class PlayerStats : MonoBehaviour
     public List<Equipment> existingGear = new List<Equipment>();
     public Equipment[] accessorySlots;
     public List<SkillCard> activeSkillCards = new List<SkillCard>();
+    public List<SpecialEffectType> activeSpecialEffects = new List<SpecialEffectType>();
 
     public static PlayerStats Instance;
     public LevelUp levelUp;
@@ -63,10 +66,12 @@ public class PlayerStats : MonoBehaviour
     public float BaseProjectileSize = 1f;
     public float CurrentGold = 0f;
     public float BaseMoveSpeed = 5.0f;
-
     public float HealthPerLevel = 10f;
     public float DamagePerLevel = 1f;
     public float DefensePerLevel = 0.5f;
+
+
+    public float BaseAttackSpeed = 8f; // 8 attacks per second
 
     public float CurrentDefense => CalculateStat(StatType.Defense);
     public float CurrentDamage => CalculateStat(StatType.Damage) + PureDamage;
@@ -74,7 +79,8 @@ public class PlayerStats : MonoBehaviour
     public float CurrentMaxMana => BaseMana;
     public float CurrentMagicDamage => 0f;
     public float CurrentKnockback => CalculateStat(StatType.Knockback);
-    public float CurrentAttackCooldown => CalculateStat(StatType.AttackCooldown);
+    public float CurrentAttackCooldown => 1f / CalculateStat(StatType.AttackSpeed);
+    public float CurrentAttackSpeed => CalculateStat(StatType.AttackSpeed);
     public float CurrentRegeneration => BaseRegeneration;
     public float CurrentManaRegeneration => BaseManaRegeneration;
     public float CurrentProjectileSpeed => CalculateStat(StatType.ProjectileSpeed);
@@ -103,6 +109,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float inspector_CurrentHomingRange;
     [SerializeField] private float inspector_CurrentProjectileSize;
     [SerializeField] private float inspector_AttackCooldown = 0.5f; // Default attack cooldown
+    [SerializeField] private float inspector_AttackSpeed = 8f; // Default attack speed
 
 
 
@@ -144,6 +151,16 @@ public class PlayerStats : MonoBehaviour
         inspector_CurrentHomingRange = CurrentHomingRange;
         inspector_CurrentProjectileSize = CurrentProjectileSize;
         inspector_AttackCooldown = CurrentAttackCooldown;
+        inspector_AttackSpeed = CurrentAttackSpeed;
+    }
+    public void GainHealth(float amount)
+    {
+        CurrentHealth += amount;
+        if (CurrentHealth > CurrentMaxHealth)
+        {
+            CurrentHealth = CurrentMaxHealth;
+        }
+        UIManager.Instance.UpdateHealthText();
     }
 
     public void GainXP(float amount)
@@ -165,6 +182,21 @@ public class PlayerStats : MonoBehaviour
         }
         return projectiles;
     }
+    public List<SpecialEffects> GetActiveSpecialEffects()
+    {
+        List<SpecialEffects> activeEffects = new List<SpecialEffects>();
+        foreach (var card in activeSkillCards)
+        {
+            if (card != null)
+            {
+                foreach (var effect in card.specialEffects)
+                {
+                    activeEffects.Add(effect);
+                }
+            }
+        }
+        return activeEffects;
+    }
     public void LevelUp()
     {
         Level++;
@@ -182,7 +214,7 @@ public class PlayerStats : MonoBehaviour
     {
         float flat = 0f;
         float percent = 1f;
-        
+
         foreach (var kvp in equippedItems)
         {
             var item = kvp.Value;
@@ -286,8 +318,138 @@ public class PlayerStats : MonoBehaviour
             StatType.HomingRange => BaseHomingRange,
             StatType.ProjectileSize => BaseProjectileSize,
             StatType.PlayerMoveSpeed => BaseMoveSpeed,
+            StatType.AttackSpeed => BaseAttackSpeed,
             _ => 0
         };
+        percent = Mathf.Max(0f, percent); // Ensure percent is not negative
         return (baseValue + flat) * percent;
+    }
+
+    public bool HasSpecialEffect(SpecialEffectType effectType)
+    {
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == effectType)
+            {
+                return true;
+            }
+        }
+        return activeSpecialEffects.Contains(effectType);
+    }
+
+    public int GetProjectileCount()
+    {
+        int projectileAmount = 1;
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.MultipleProjectiles)
+            {
+                projectileAmount += (int)effect.value;
+            }
+        }
+        return projectileAmount;
+    }
+
+    public float GetLifestealAmount()
+    {
+        float lifestealAmount = 0f;
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.Lifesteal)
+            {
+                lifestealAmount += effect.value;
+            }
+        }
+        return lifestealAmount;
+    }
+    public bool GetAutofireEnabled()
+    {
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.AutoFire)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public float GetCriticalChance()
+    {
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.CriticalChance)
+            {
+                return effect.value;
+            }
+        }
+        return 0f; // Default value if no effect is active
+    }
+    public float GetCriticalDamage()
+    {
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.CriticalDamage)
+            {
+                return effect.value;
+            }
+        }
+        return 0f; // Default value if no effect is active
+    }
+    public float GetExplosionRadius()
+    {
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.ExplosionRadius)
+            {
+                return effect.value;
+            }
+        }
+        return 0f; // Default value if no effect is active
+    }
+
+    public float GetHomingRange()
+    {
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.HomingRange)
+            {
+                return effect.value;
+            }
+        }
+        return 0f; // Default value if no effect is active
+    }
+
+    public int GetPiercingAmount()
+    {
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.Piercing)
+            {
+                return (int)effect.value;
+            }
+        }
+        return 0; // Default value if no effect is active
+    }
+    public float GetProjectileSize()
+    {
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.ProjectileSize)
+            {
+                return effect.value;
+            }
+        }
+        return 1f; // Default value if no effect is active
+    }
+    public float GetProjectileSpeed()
+    {
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.ProjectileSpeed)
+            {
+                return effect.value;
+            }
+        }
+        return 1f; // Default value if no effect is active
     }
 }

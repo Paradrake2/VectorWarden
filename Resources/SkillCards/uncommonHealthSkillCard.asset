@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: uncommonHealthSkillCard
+  m_EditorClassIdentifier: 
+  skillName: Uncommon Health Card
+  description: Moderately increases health
+  skillIcon: {fileID: -5218455497292005239, guid: 335dd58fc75a05e49952d55996a6bcec, type: 3}
+  cardPicture: {fileID: -7266210191863170210, guid: e1b5fdcdb6c4e50499e3447f7f614347, type: 3}
+  skillType: 1
+  skillCardRarity: 1
+  statModifiers:
+  - statType: 0
+    flatAmount: 40
+    percentAmount: 0.05
+  projectilePrefab: {fileID: 0}
+  minimumLevelRequired: 1
+  specialEffects: []
+  projectileData: {fileID: 0}
+  maxValue: 0
+  minValue: 0

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: legendaryPiercingCard
+  m_EditorClassIdentifier: 
+  skillName: Legendary Piercing
+  description: 
+  skillIcon: {fileID: 3809399329402134398, guid: dd53cdcc0d0791848bfbe7502b620c22, type: 3}
+  cardPicture: {fileID: 3933213698999375836, guid: 21f9c6c92c695344ba264dd5a3b0aac6, type: 3}
+  skillType: 2
+  skillCardRarity: 4
+  statModifiers: []
+  projectilePrefab: {fileID: 0}
+  minimumLevelRequired: 1
+  specialEffects:
+  - {fileID: 11400000, guid: 1db18887aeaafef4cabbe20a63e89dc5, type: 2}
+  projectileData: {fileID: 0}
+  maxValue: 0
+  minValue: 0

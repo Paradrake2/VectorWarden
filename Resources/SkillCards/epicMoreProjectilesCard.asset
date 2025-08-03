@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: epicMoreProjectilesCard
+  m_EditorClassIdentifier: 
+  skillName: More Projectiles Card
+  description: +1 Projectiles
+  skillIcon: {fileID: 7592368226437448079, guid: 59453d6e49ac3ae43827b466ff985765, type: 3}
+  cardPicture: {fileID: -2982252875268197023, guid: 679d7ddd19864cc449ff0ccf5691b7f4, type: 3}
+  skillType: 2
+  skillCardRarity: 3
+  statModifiers: []
+  projectilePrefab: {fileID: 0}
+  minimumLevelRequired: 1
+  specialEffects:
+  - {fileID: 11400000, guid: de6fad2ef190f6543aeaf4bb031983ff, type: 2}
+  projectileData: {fileID: 0}
+  maxValue: 0
+  minValue: 0

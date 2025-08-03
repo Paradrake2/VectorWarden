@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: epicAttackSpeedCard
+  m_EditorClassIdentifier: 
+  skillName: Epic Attack Speed Card
+  description: Significantly increases attack speed
+  skillIcon: {fileID: -1109151286061468734, guid: 98c13e3c7c238bd45800ec8915d3ffd8, type: 3}
+  cardPicture: {fileID: 6744796617634813421, guid: 480c4905221ad3244a99693d4d21b593, type: 3}
+  skillType: 1
+  skillCardRarity: 3
+  statModifiers:
+  - statType: 13
+    flatAmount: 2
+    percentAmount: 0.01
+  projectilePrefab: {fileID: 0}
+  minimumLevelRequired: 1
+  specialEffects: []
+  projectileData: {fileID: 0}
+  maxValue: 0
+  minValue: 0

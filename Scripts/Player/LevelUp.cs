@@ -8,6 +8,7 @@ using System;
 public class LevelUp : MonoBehaviour
 {
     public PlayerStats playerStats;
+    public PlayerAttack playerAttack;
     public SkillCardUI skillCardUIPrefab;
     public GameObject levelUpPanel;
     public SkillIconUIManager skillIconUIManager;
@@ -117,6 +118,7 @@ public class LevelUp : MonoBehaviour
         if (skillCard.skillType == SkillType.Projectile && placeholder)
         {
             playerStats.activeSkillCards.RemoveAll(card => card.skillType == SkillType.Projectile);
+            
         }
         playerStats.activeSkillCards.Add(skillCard);
         UpdatePlayerStats();
@@ -149,9 +151,9 @@ public class LevelUp : MonoBehaviour
             StatType.Defense,
             StatType.PlayerMoveSpeed,
             StatType.AttackCooldown,
-            StatType.ExplosionRadius,
-            StatType.HomingRange,
-            StatType.PierceAmount
+            //StatType.ExplosionRadius,
+            //StatType.HomingRange,
+            //StatType.PierceAmount
         };
 
         for (int i = 0; i < boostCount; i++)
@@ -175,6 +177,7 @@ public class LevelUp : MonoBehaviour
                 case StatType.AttackCooldown:
                     playerStats.BaseAttackCooldown -= boostValue / 70;
                     break;
+                    /*
                 case StatType.ExplosionRadius:
                     playerStats.BaseExplosionRadius += boostValue / 130;
                     break;
@@ -185,6 +188,7 @@ public class LevelUp : MonoBehaviour
                     int val = Math.Min(3, Math.Max(1, (int)boostValue / 2));
                     playerStats.BasePiercingAmount += val;
                     break;
+                    */
             }
         }
         // Show the results
@@ -194,7 +198,7 @@ public class LevelUp : MonoBehaviour
     {
         playerStats.CurrentHealth = playerStats.CurrentMaxHealth;
         playerStats.CurrentMana = playerStats.CurrentMaxMana;
-        UIManager.Instance.UpdateHealthText(); // Assuming you have a UI manager to update the stats display
+        UIManager.Instance.UpdateHealthText();
     }
     public void LevelUpStats()
     {

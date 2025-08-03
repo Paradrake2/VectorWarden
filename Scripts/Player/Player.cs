@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
-        Debug.Log("Player took damage: " + damage);
         if (Time.time - lastDamageTime < damageCooldown) return;
         if (stats.isDashing == true) return;
         lastDamageTime = Time.time;

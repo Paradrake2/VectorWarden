@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: rareHealthSkillCard
+  m_EditorClassIdentifier: 
+  skillName: Rare Health Card
+  description: Increases player health
+  skillIcon: {fileID: -5218455497292005239, guid: 335dd58fc75a05e49952d55996a6bcec, type: 3}
+  cardPicture: {fileID: 7189067106010162349, guid: ff99b24d8ae53dc49bf3b5f24522294c, type: 3}
+  skillType: 1
+  skillCardRarity: 2
+  statModifiers:
+  - statType: 0
+    flatAmount: 80
+    percentAmount: 0.1
+  projectilePrefab: {fileID: 0}
+  minimumLevelRequired: 1
+  specialEffects: []
+  projectileData: {fileID: 0}
+  maxValue: 0
+  minValue: 0

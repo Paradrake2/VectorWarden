@@ -28,7 +28,7 @@ public class SkillCard : ScriptableObject
     public List<StatModifier> statModifiers;
     public GameObject projectilePrefab;
     public int minimumLevelRequired = 1;
-    public List<SpecialEffect> specialEffects; // List of special effects that this skill card can apply
+    public List<SpecialEffects> specialEffects; // List of special effects that this skill card can apply
     public ProjectileData projectileData; // Reference to the projectile data if this is a projectile skill
 
     [Header("Random Card Settings")]
@@ -36,10 +36,4 @@ public class SkillCard : ScriptableObject
     public float minValue;
 }
 
-[CreateAssetMenu(fileName = "SpecialEffect", menuName = "Scriptable Objects/SpecialEffect")]
-public class SpecialEffect : ScriptableObject
-{
-    public string effectName;
-    public string effectDescription;
-    // Add fields for effect logic as needed
-}
+

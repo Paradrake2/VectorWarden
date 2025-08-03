@@ -48,9 +48,11 @@ public class PlayerProjectile : MonoBehaviour
             spriteRotationOffset = projectileData.spriteRotationOffset;
             lifetime = projectileData.lifetime;
             damageMultiplier = projectileData.damageMultiplier;
-            pierceAmount = (int)(projectileData.pierceAmount + playerStats.CurrentPiercingAmount);
-            explosionRadius = projectileData.explosionRadius + playerStats.CurrentExplosionRadius;
-            
+            pierceAmount = (int)(projectileData.pierceAmount + playerStats.GetPiercingAmount());
+            explosionRadius = projectileData.explosionRadius + playerStats.GetExplosionRadius();
+            homingRange = projectileData.homingRange + playerStats.GetHomingRange();
+            projectileSize = projectileData.projectileSize + playerStats.GetProjectileSize();
+
         }
         else
         {
@@ -111,7 +113,7 @@ public class PlayerProjectile : MonoBehaviour
         {
             projectileData = data;
             spriteRotationOffset = projectileData.spriteRotationOffset;
-            projectileSpeed = data.baseSpeed * data.speedMultiplier;
+            projectileSpeed = data.baseSpeed * data.speedMultiplier + playerStats.GetProjectileSpeed();
         }
         else
         {
@@ -122,10 +124,10 @@ public class PlayerProjectile : MonoBehaviour
 
         if (playerStats != null)
         {
-            pierceAmount = playerStats.CurrentPiercingAmount;
-            explosionRadius = playerStats.CurrentExplosionRadius;
-            homingRange = playerStats.CurrentHomingRange;
-            projectileSize = playerStats.CurrentProjectileSize;
+            pierceAmount = playerStats.GetPiercingAmount() + (int)projectileData.pierceAmount;
+            explosionRadius = playerStats.GetExplosionRadius()+ projectileData.explosionRadius;
+            homingRange = playerStats.GetHomingRange() + projectileData.homingRange;
+            projectileSize = playerStats.GetProjectileSize() + projectileData.projectileSize;
         }
         else
         {
@@ -157,18 +159,21 @@ public class PlayerProjectile : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyStats enemyStats = collision.gameObject.GetComponent<EnemyStats>();
-            if (enemyStats != null)
+            if (enemyStats != null && explosionRadius <= 0f)
             {
                 enemyStats.currentHealth -= damage;
-                Debug.LogWarning($"Enemy hit! Remaining Health: {enemyStats.currentHealth}");
-                Debug.LogWarning(collision.gameObject.name);
                 if (enemyStats.currentHealth <= 0)
                 {
                     collision.GetComponent<Enemy>().Die();
                 }
             }
             pierceAmount--;
-            if (projectileData.projectileType == ProjectileType.Explosive || projectileData.explosionRadius > 0f) Explode();
+            if (playerStats.HasSpecialEffect(SpecialEffectType.Lifesteal))
+            {
+                Debug.Log("Lifesteal applied");
+                playerStats.GainHealth(damage * playerStats.GetLifestealAmount());
+            }
+            if (playerStats.GetExplosionRadius() + explosionRadius > 0f) Explode();
             if (pierceAmount < 0) Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("Wall"))
@@ -176,6 +181,7 @@ public class PlayerProjectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     void Explode()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
@@ -188,7 +194,7 @@ public class PlayerProjectile : MonoBehaviour
                 if (enemyStats != null)
                 {
                     enemyStats.currentHealth -= damage;
-                    Debug.LogWarning($"Enemy hit by explosion! Remaining Health: {enemyStats.currentHealth}");
+                    Debug.Log("BOOM");
                     if (enemyStats.currentHealth <= 0)
                     {
                         enemy.GetComponent<Enemy>().Die();

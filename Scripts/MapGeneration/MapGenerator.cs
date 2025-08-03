@@ -116,7 +116,7 @@ public class MapGenerator : MonoBehaviour
         foreach (var tilePos in pendingUnwalkables)
         {
             MakeUnwalkable(tilePos);
-            Debug.Log($"Made unwalkable: {tilePos}");
+            //Debug.Log($"Made unwalkable: {tilePos}");
         }
         pendingUnwalkables.Clear();
     }

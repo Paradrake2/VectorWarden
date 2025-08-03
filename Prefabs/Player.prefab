@@ -300,7 +300,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f822047b986ade44b717bbf996fe9b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 6670500428637364174, guid: d1f613c8c03908442a4093eade85eed8, type: 3}
+  projectilePrefab:
+  - {fileID: 6670500428637364174, guid: d1f613c8c03908442a4093eade85eed8, type: 3}
   playerStats: {fileID: 0}
   firePoint: {fileID: 3967256525827179599}
   player: {fileID: 8332431595433808619}

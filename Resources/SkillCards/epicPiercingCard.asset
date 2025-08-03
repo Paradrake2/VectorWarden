@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: epicPiercingCard
+  m_EditorClassIdentifier: 
+  skillName: Epic Piercing
+  description: 
+  skillIcon: {fileID: 3809399329402134398, guid: dd53cdcc0d0791848bfbe7502b620c22, type: 3}
+  cardPicture: {fileID: 3242195204814068808, guid: 0b1be5f36cd4c2342b99e53831289fc7, type: 3}
+  skillType: 2
+  skillCardRarity: 3
+  statModifiers: []
+  projectilePrefab: {fileID: 0}
+  minimumLevelRequired: 1
+  specialEffects:
+  - {fileID: 11400000, guid: b96be1e49e2adf344b695dc28d914d0b, type: 2}
+  projectileData: {fileID: 0}
+  maxValue: 0
+  minValue: 0
