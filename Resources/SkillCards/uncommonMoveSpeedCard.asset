@@ -19,7 +19,7 @@ MonoBehaviour:
   skillType: 1
   skillCardRarity: 1
   statModifiers:
-  - statType: 18
+  - statType: 12
     flatAmount: 1
     percentAmount: 0
   projectilePrefab: {fileID: 0}

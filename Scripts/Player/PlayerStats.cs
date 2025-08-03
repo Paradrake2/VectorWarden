@@ -53,7 +53,7 @@ public class PlayerStats : MonoBehaviour
     public float BaseGoldGain = 1f;
     public float BaseRegeneration = 0f;
     public float BaseManaRegeneration = 1f;
-    public float BaseProjectileSpeed = 20f;
+    public float BaseProjectileSpeed = 10f;
     public float CurrentHealth;
     public float DashDistance = 2f;
     public int DashNumber = 2;
@@ -397,59 +397,65 @@ public class PlayerStats : MonoBehaviour
     }
     public float GetExplosionRadius()
     {
+        float val = 0f;
         foreach (var effect in GetActiveSpecialEffects())
         {
             if (effect.effectType == SpecialEffectType.ExplosionRadius)
             {
-                return effect.value;
+                val += effect.value;
             }
         }
-        return 0f; // Default value if no effect is active
+        return val; // Default value if no effect is active
     }
 
     public float GetHomingRange()
     {
+        float val = 0f;
         foreach (var effect in GetActiveSpecialEffects())
         {
             if (effect.effectType == SpecialEffectType.HomingRange)
             {
-                return effect.value;
+                val += effect.value;
             }
         }
-        return 0f; // Default value if no effect is active
+        return val;
     }
 
     public int GetPiercingAmount()
     {
+        int val = 0;
         foreach (var effect in GetActiveSpecialEffects())
         {
             if (effect.effectType == SpecialEffectType.Piercing)
             {
-                return (int)effect.value;
+                val += (int)effect.value;
             }
         }
-        return 0; // Default value if no effect is active
+        return val;
     }
     public float GetProjectileSize()
     {
+        float val = 0f;
         foreach (var effect in GetActiveSpecialEffects())
         {
             if (effect.effectType == SpecialEffectType.ProjectileSize)
             {
-                return effect.value;
+                val += effect.value;
             }
         }
-        return 1f; // Default value if no effect is active
+        return val;
     }
     public float GetProjectileSpeed()
     {
+        Debug.Log("Calculating Projectile Speed");
+        float val = BaseProjectileSpeed;
         foreach (var effect in GetActiveSpecialEffects())
         {
             if (effect.effectType == SpecialEffectType.ProjectileSpeed)
             {
-                return effect.value;
+                val += effect.value;
             }
         }
-        return 1f; // Default value if no effect is active
+        return val;
     }
 }

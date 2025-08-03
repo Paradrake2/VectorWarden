@@ -116,7 +116,7 @@ public class PlayerAttack : MonoBehaviour
                         projectile.transform.rotation = Quaternion.Euler(0, 0, angle + projScript.spriteRotationOffset);
 
                         // Optionally, use InitializeProjectile for consistency
-                        projScript.InitializeProjectile(direction, playerStats.CurrentProjectileSpeed, playerStats.CurrentDamage, projScript.projectileType);
+                        projScript.InitializeProjectile(direction, playerStats.GetProjectileSpeed(), playerStats.CurrentDamage, projScript.projectileType);
                     }
                     else
                     {

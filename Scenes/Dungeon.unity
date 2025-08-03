@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 279793368}
+  playerAttack: {fileID: 0}
   skillCardUIPrefab: {fileID: 6078019962329758942, guid: c0536fb008742134f841dfc072b39be1, type: 3}
   levelUpPanel: {fileID: 1640664678}
   skillIconUIManager: {fileID: 1307608573}
@@ -409,7 +410,7 @@ MonoBehaviour:
   Level: 1
   XP: 0
   BaseHealth: 100
-  BaseDefense: 777
+  BaseDefense: 0
   BaseDamage: 10
   PureDamage: 0
   BaseMana: 100

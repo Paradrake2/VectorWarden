@@ -42,7 +42,7 @@ public class PlayerProjectile : MonoBehaviour
         }
         if (projectileData != null)
         {
-            projectileSpeed = projectileData.baseSpeed + (playerStats.CurrentProjectileSpeed * projectileData.speedMultiplier);
+            projectileSpeed = projectileData.baseSpeed + (playerStats.GetProjectileSpeed() * (1 +projectileData.speedMultiplier));
             damage = projectileData.baseDamage + playerStats.CurrentDamage;
             projectileType = projectileData.projectileType;
             spriteRotationOffset = projectileData.spriteRotationOffset;
@@ -114,6 +114,7 @@ public class PlayerProjectile : MonoBehaviour
             projectileData = data;
             spriteRotationOffset = projectileData.spriteRotationOffset;
             projectileSpeed = data.baseSpeed * data.speedMultiplier + playerStats.GetProjectileSpeed();
+            Debug.Log($"Initialized projectile with speed: {projectileSpeed}, damage: {damageAmount}, type: {type}");
         }
         else
         {
