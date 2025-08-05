@@ -24,6 +24,7 @@ public class LevelUp : MonoBehaviour
     {
         Time.timeScale = 0;
         LevelUpStats(); // Update player stats based on level up
+        XPUIManager.Instance.UpdateLevelText();
         levelUpPanel.SetActive(true);
         cardStatsText.gameObject.SetActive(true);
         List<SkillCard> availableCards = GetCardOptions(playerLevel, cardOptions);
@@ -118,7 +119,7 @@ public class LevelUp : MonoBehaviour
         if (skillCard.skillType == SkillType.Projectile && placeholder)
         {
             playerStats.activeSkillCards.RemoveAll(card => card.skillType == SkillType.Projectile);
-            
+
         }
         playerStats.activeSkillCards.Add(skillCard);
         UpdatePlayerStats();
@@ -131,6 +132,7 @@ public class LevelUp : MonoBehaviour
         cardStatsText.gameObject.SetActive(false);
         skillIconUIManager.UpdateSkillIcons();
         Time.timeScale = 1; // Resume the game
+        XPUIManager.Instance.UpdateXPBarFill();
     }
     public void RandomStatBoost(SkillCard card)
     {
@@ -205,6 +207,9 @@ public class LevelUp : MonoBehaviour
         playerStats.BaseHealth += playerStats.HealthPerLevel;
         playerStats.BaseDamage += playerStats.DamagePerLevel;
         playerStats.BaseDefense += playerStats.DefensePerLevel;
+        // playerStats.BaseShield += playerStats.ShieldPerLevel;
+
+        Debug.LogWarning($"Base shield after level up: {playerStats.BaseShield}");
     }
     void Start()
     {

@@ -22,6 +22,22 @@ public class Player : MonoBehaviour
         {
             Debug.LogWarning("NO STATS");
         }
+        stats.ResetShieldRegenCooldown();
+        Debug.LogWarning(stats.CurrentShield);
+        if (stats.CurrentShield > 0)
+        {
+            stats.CurrentShield -= Mathf.RoundToInt(damage);
+            UIManager.Instance.UpdateShieldText();
+            if (stats.CurrentShield < 0)
+            {
+                damage = -stats.CurrentShield; // Apply remaining damage after shield is depleted
+                stats.CurrentShield = 0;
+            }
+            else
+            {
+                return; // No health lost, just shield
+            }
+        }
         float finalDamage = Mathf.Max(0, damage - stats.CurrentDefense);
         stats.CurrentHealth -= finalDamage;
 
@@ -37,6 +53,8 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Player has died");
         SceneManager.LoadScene("Refine");
+        // Clear all cards
+
     }
 
 }

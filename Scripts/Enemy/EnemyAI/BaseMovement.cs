@@ -9,6 +9,7 @@ public class BaseMovement : MonoBehaviour
     public float detectionRange = 10f;
     public float moveSpeed = 5f;
     public bool canMove = true;
+    
     // Pathfinding
     [SerializeField] private MapGenerator mapGenerator;
     private List<PathfindingNode> currentPath;

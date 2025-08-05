@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21c66b56ee8fa84fa4c38a1adc0ae1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapGenerator: {fileID: 0}
   areaEnemyLists:
   - areaName: Beginning
     rarityGroups:
@@ -58,7 +59,7 @@ MonoBehaviour:
       - {fileID: 7942617858057425736, guid: 345383ac70840684cb5e648cfc1a2ebe, type: 3}
     - rarity: 3
       enemies:
-      - {fileID: 7942617858057425736, guid: 345383ac70840684cb5e648cfc1a2ebe, type: 3}
+      - {fileID: 6601349067111442630, guid: 9129db58e82faa440a734bf6bfed5e95, type: 3}
     - rarity: 4
       enemies:
       - {fileID: 7942617858057425736, guid: 345383ac70840684cb5e648cfc1a2ebe, type: 3}

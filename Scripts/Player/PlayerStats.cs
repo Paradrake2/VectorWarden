@@ -19,6 +19,7 @@ public enum StatType
     PlayerMoveSpeed,
     AttackSpeed,
     AttackCooldown,
+    Shield,
     // These need to be special effects
     ProjectileSpeed,
     PierceAmount,
@@ -38,6 +39,7 @@ public class PlayerStats : MonoBehaviour
 
     public static PlayerStats Instance;
     public LevelUp levelUp;
+
     public int accessorySlotNum = 5;
     public int Level = 1;
     public float XP = 0;
@@ -54,10 +56,10 @@ public class PlayerStats : MonoBehaviour
     public float BaseRegeneration = 0f;
     public float BaseManaRegeneration = 1f;
     public float BaseProjectileSpeed = 10f;
-    public float CurrentHealth;
+    public float BaseShield = 0f;
+
     public float DashDistance = 2f;
     public int DashNumber = 2;
-    public bool isDashing = false;
     public int BaseCardOptions = 3;
     public int BonusCardOptions = 0;
     public int BasePiercingAmount = 0;
@@ -66,12 +68,15 @@ public class PlayerStats : MonoBehaviour
     public float BaseProjectileSize = 1f;
     public float CurrentGold = 0f;
     public float BaseMoveSpeed = 5.0f;
+    public float BaseAttackSpeed = 8f; // 8 attacks per second
+
+    // Stats per level up
     public float HealthPerLevel = 10f;
     public float DamagePerLevel = 1f;
     public float DefensePerLevel = 0.5f;
 
 
-    public float BaseAttackSpeed = 8f; // 8 attacks per second
+    public bool isDashing = false;
 
     public float CurrentDefense => CalculateStat(StatType.Defense);
     public float CurrentDamage => CalculateStat(StatType.Damage) + PureDamage;
@@ -87,7 +92,7 @@ public class PlayerStats : MonoBehaviour
     public float CurrentDropRate => BaseDropRate;
     public float CurrentXPGain => CalculateStat(StatType.XPGain);
     public float CalculateDashDistance => CalculateStat(StatType.DashDistance);
-
+    public float CalculateMaxShield => CalculateStat(StatType.Shield);
     public int CalculateDashNumber => DashNumber;
     public int CurrentPiercingAmount => CalculateStat(StatType.PierceAmount) > 0 ? (int)CalculateStat(StatType.PierceAmount) : 0;
     public float CurrentExplosionRadius => Mathf.Max(0f, CalculateStat(StatType.ExplosionRadius));
@@ -95,8 +100,17 @@ public class PlayerStats : MonoBehaviour
     public float CurrentProjectileSize => CalculateStat(StatType.ProjectileSize);
     public float CurrentPlayerMoveSpeed => CalculateStat(StatType.PlayerMoveSpeed);
 
-    public float XpToNextLevel => Level * 2000;
+    public float CurrentHealth;
+    public int CurrentShield;
     public float CurrentMana;
+
+    public float ShieldRegenCooldown = 5f;
+    public float ShieldRegenRate = 5f; // how many seconds it takes to reach full shield
+    private float lastShieldRegenTime = -99999f;
+    private float shieldRegenBuffer = 0f;
+
+
+    public float XpToNextLevel => Level * 2000;
 
     [Header("Current Stats (Read Only)")]
     [SerializeField] private float inspector_CurrentHealth;
@@ -110,6 +124,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float inspector_CurrentProjectileSize;
     [SerializeField] private float inspector_AttackCooldown = 0.5f; // Default attack cooldown
     [SerializeField] private float inspector_AttackSpeed = 8f; // Default attack speed
+    [SerializeField] private float inspector_CurrentMaxShield;
 
 
 
@@ -136,6 +151,8 @@ public class PlayerStats : MonoBehaviour
         }
         CurrentHealth = CurrentMaxHealth;
         CurrentMana = CurrentMaxMana;
+        CurrentShield = (int)CalculateMaxShield;
+        UIManager.Instance.UpdateShieldText();
     }
 
     void Update()
@@ -152,6 +169,23 @@ public class PlayerStats : MonoBehaviour
         inspector_CurrentProjectileSize = CurrentProjectileSize;
         inspector_AttackCooldown = CurrentAttackCooldown;
         inspector_AttackSpeed = CurrentAttackSpeed;
+        inspector_CurrentMaxShield = CalculateMaxShield;
+
+        if (Time.time - lastShieldRegenTime > ShieldRegenCooldown && CurrentShield < CalculateMaxShield)
+        {
+            shieldRegenBuffer += GetShieldRegenRate() * Time.deltaTime;
+
+            if (shieldRegenBuffer >= 1f)
+            {
+                int regenAmount = Mathf.FloorToInt(shieldRegenBuffer);
+                CurrentShield = Mathf.Min(CurrentShield + regenAmount, (int)CalculateMaxShield);
+                shieldRegenBuffer -= regenAmount;
+
+                UIManager.Instance.UpdateShieldText();
+                Debug.Log("Regen Shield: " + CurrentShield);
+            }
+        }
+
     }
     public void GainHealth(float amount)
     {
@@ -166,6 +200,8 @@ public class PlayerStats : MonoBehaviour
     public void GainXP(float amount)
     {
         XP += amount;
+        XPUIManager.Instance.UpdateXPText();
+        XPUIManager.Instance.UpdateXPBarFill();
         while (XP >= XpToNextLevel)
         {
             XP -= XpToNextLevel;
@@ -201,6 +237,9 @@ public class PlayerStats : MonoBehaviour
     {
         Level++;
         levelUp.LevelUpPlayer(Level, GetNumCardOptions());
+
+        CurrentShield = (int)CalculateMaxShield;
+        UIManager.Instance.UpdateShieldText();
     }
     public float GetStat(StatType statType)
     {
@@ -319,6 +358,7 @@ public class PlayerStats : MonoBehaviour
             StatType.ProjectileSize => BaseProjectileSize,
             StatType.PlayerMoveSpeed => BaseMoveSpeed,
             StatType.AttackSpeed => BaseAttackSpeed,
+            StatType.Shield => BaseShield,
             _ => 0
         };
         percent = Mathf.Max(0f, percent); // Ensure percent is not negative
@@ -457,5 +497,13 @@ public class PlayerStats : MonoBehaviour
             }
         }
         return val;
+    }
+    public int GetShieldRegenRate()
+    {
+        return Mathf.CeilToInt(CalculateMaxShield / ShieldRegenRate);
+    }
+    public void ResetShieldRegenCooldown()
+    {
+        lastShieldRegenTime = Time.time;
     }
 }

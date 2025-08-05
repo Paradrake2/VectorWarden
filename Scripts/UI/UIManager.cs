@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
     public PlayerStats playerStats;
     public TextMeshProUGUI healthText;
+    public TextMeshProUGUI shieldText;
     public Transform pauseMenu;
     void Awake()
     {
@@ -41,6 +42,17 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void UpdateShieldText()
+    {
+        if (shieldText != null && playerStats != null)
+        {
+            shieldText.text = $"Shield: {playerStats.CurrentShield}/{playerStats.CalculateMaxShield}";
+        }
+        else
+        {
+            Debug.LogWarning("Shield text or PlayerStats is not set.");
+        }
+    }
     public void TogglePauseMenu()
     {
         if (pauseMenu != null)

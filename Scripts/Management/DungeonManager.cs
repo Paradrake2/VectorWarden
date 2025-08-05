@@ -5,6 +5,7 @@ public class DungeonManager : MonoBehaviour
 {
     public static DungeonManager Instance;
     public UIManager uiManager;
+    public XPUIManager xpuiManager;
     public MapGenerator mapGenerator;
     public GameObject playerPrefab;
     public int totalEnemies = 0;
@@ -32,6 +33,10 @@ public class DungeonManager : MonoBehaviour
             Camera.main.GetComponent<CameraFollow>().target = player.transform;
             mapGenerator.GenerateRoom();
             uiManager.UpdateHealthText();
+            uiManager.UpdateShieldText();
+            xpuiManager.UpdateXPText();
+            xpuiManager.UpdateXPBarFill();
+            xpuiManager.UpdateLevelText();
         }
     }
     public int getFloor()

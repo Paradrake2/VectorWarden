@@ -16,6 +16,22 @@ public class Enemy : MonoBehaviour
     {
         movement.UpdateMovement();
     }
+    public void TakeDamage(float damage)
+    {
+        if (stats == null)
+        {
+            Debug.LogWarning("Enemy stats not set.");
+            return;
+        }
+
+        float finalDamage = Mathf.Max(0, damage - stats.defense);
+        stats.currentHealth -= finalDamage;
+
+        if (stats.currentHealth <= 0)
+        {
+            Die();
+        }
+    }
     public void Die()
     {
         List<Items> drops = stats.getDrop();
