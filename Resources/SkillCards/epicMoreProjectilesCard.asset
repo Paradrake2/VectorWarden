@@ -24,5 +24,6 @@ MonoBehaviour:
   specialEffects:
   - {fileID: 11400000, guid: de6fad2ef190f6543aeaf4bb031983ff, type: 2}
   projectileData: {fileID: 0}
+  unlocked: 0
   maxValue: 0
   minValue: 0

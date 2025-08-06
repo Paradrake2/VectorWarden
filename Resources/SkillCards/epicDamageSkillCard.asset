@@ -25,3 +25,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 0}
   minimumLevelRequired: 1
   specialEffects: []
+  projectileData: {fileID: 0}
+  unlocked: 1
+  maxValue: 0
+  minValue: 0

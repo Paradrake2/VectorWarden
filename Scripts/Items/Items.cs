@@ -17,7 +17,8 @@ public enum ItemType
     Drop,
     Ore,
     Token,
-    Material
+    Material,
+    XPItem
 }
 [CreateAssetMenu(fileName = "Items", menuName = "Scriptable Objects/Items")]
 public class Items : ScriptableObject
@@ -119,4 +120,6 @@ public class Items : ScriptableObject
     public int coreSize;
     [Header("Times enhanced")]
     public int enhancedNum;
+    [Header("XPValue")]
+    public float xpValue;
 }

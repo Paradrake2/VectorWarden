@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class ComponentSlot
 {
-    public string slotNmame;
+    public string slotName;
     public string acceptedTag;
     public int tier;
 }

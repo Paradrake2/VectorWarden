@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 4180041667824529806}
-  lifetime: 4
+  lifetime: 10
   rotationOffset: -90
   projectileType: 0
   damage: 5

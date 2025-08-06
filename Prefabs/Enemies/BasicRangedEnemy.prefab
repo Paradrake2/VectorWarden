@@ -123,9 +123,12 @@ MonoBehaviour:
   maxXP: 500
   minGold: 0
   maxGold: 0
-  dropPool: []
+  dropPool:
+  - rarity: 0
+    items:
+    - {fileID: 11400000, guid: d1265f38431876048a8972fcc1120f42, type: 2}
   playerStats: {fileID: 0}
-  id: 10I5X62W57
+  id: MQOCQW1SNE
 --- !u!114 &7957534175537650303
 MonoBehaviour:
   m_ObjectHideFlags: 0

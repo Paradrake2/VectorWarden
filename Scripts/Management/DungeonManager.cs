@@ -34,6 +34,8 @@ public class DungeonManager : MonoBehaviour
             mapGenerator.GenerateRoom();
             uiManager.UpdateHealthText();
             uiManager.UpdateShieldText();
+            uiManager.UpdateDamageText();
+            uiManager.UpdateDefenseText();
             xpuiManager.UpdateXPText();
             xpuiManager.UpdateXPBarFill();
             xpuiManager.UpdateLevelText();

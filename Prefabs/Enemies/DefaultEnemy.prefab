@@ -149,11 +149,9 @@ MonoBehaviour:
   dropPool:
   - rarity: 0
     items:
-    - {fileID: 11400000, guid: 1d6f6a85afa13d94eb07034e32f187fb, type: 2}
-    - {fileID: 11400000, guid: 94cda17cf69e98249990d1315d2c1dca, type: 2}
-    - {fileID: 11400000, guid: 1ead2bd57a09223409941c1c818d4b7e, type: 2}
+    - {fileID: 11400000, guid: d1265f38431876048a8972fcc1120f42, type: 2}
   playerStats: {fileID: 0}
-  id: XWAPGFDJ5B
+  id: 
 --- !u!212 &5055540027187088586
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -223,6 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: -821830664725293328}
   stats: {fileID: 2834578709467189344}
+  playerStats: {fileID: 0}
 --- !u!50 &1910425024513317366
 Rigidbody2D:
   serializedVersion: 5

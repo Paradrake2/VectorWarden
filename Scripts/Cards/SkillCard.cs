@@ -30,6 +30,7 @@ public class SkillCard : ScriptableObject
     public int minimumLevelRequired = 1;
     public List<SpecialEffects> specialEffects; // List of special effects that this skill card can apply
     public ProjectileData projectileData; // Reference to the projectile data if this is a projectile skill
+    public bool unlocked = false;
 
     [Header("Random Card Settings")]
     public float maxValue;

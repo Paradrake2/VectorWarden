@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
     void Die()
     {
         Debug.Log("Player has died");
-        SceneManager.LoadScene("Refine");
+        SceneManager.LoadScene("Upgrade");
         // Clear all cards
 
     }

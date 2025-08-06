@@ -66,7 +66,7 @@ public class LevelUp : MonoBehaviour
         List<SkillCard> filteredByLevel = new List<SkillCard>();
         foreach (var card in allCards)
         {
-            if (playerLevel >= card.minimumLevelRequired)
+            if (playerLevel >= card.minimumLevelRequired && card.unlocked)
             {
                 filteredByLevel.Add(card);
             }
@@ -200,15 +200,18 @@ public class LevelUp : MonoBehaviour
     {
         playerStats.CurrentHealth = playerStats.CurrentMaxHealth;
         playerStats.CurrentMana = playerStats.CurrentMaxMana;
+        UIManager.Instance.UpdateShieldText();
         UIManager.Instance.UpdateHealthText();
+        UIManager.Instance.UpdateDamageText();
+        UIManager.Instance.UpdateDefenseText();
     }
     public void LevelUpStats()
     {
         playerStats.BaseHealth += playerStats.HealthPerLevel;
         playerStats.BaseDamage += playerStats.DamagePerLevel;
         playerStats.BaseDefense += playerStats.DefensePerLevel;
-        // playerStats.BaseShield += playerStats.ShieldPerLevel;
-
+        playerStats.BaseShield += playerStats.ShieldPerLevel;
+        
         Debug.LogWarning($"Base shield after level up: {playerStats.BaseShield}");
     }
     void Start()

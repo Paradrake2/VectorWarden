@@ -36,11 +36,13 @@ public class PlayerStats : MonoBehaviour
     public Equipment[] accessorySlots;
     public List<SkillCard> activeSkillCards = new List<SkillCard>();
     public List<SpecialEffectType> activeSpecialEffects = new List<SpecialEffectType>();
+    public List<SkillCard> ownedSkillCards = new List<SkillCard>(); // Skill cards that have been acquired that the player can then take into battle
 
     public static PlayerStats Instance;
     public LevelUp levelUp;
 
     public int accessorySlotNum = 5;
+    public int StartingCardCount = 1;
     public int Level = 1;
     public float XP = 0;
     public float BaseHealth = 100;
@@ -74,6 +76,7 @@ public class PlayerStats : MonoBehaviour
     public float HealthPerLevel = 10f;
     public float DamagePerLevel = 1f;
     public float DefensePerLevel = 0.5f;
+    public int ShieldPerLevel = 5;
 
 
     public bool isDashing = false;
@@ -199,7 +202,7 @@ public class PlayerStats : MonoBehaviour
 
     public void GainXP(float amount)
     {
-        XP += amount;
+        XP += amount * CurrentXPGain;
         XPUIManager.Instance.UpdateXPText();
         XPUIManager.Instance.UpdateXPBarFill();
         while (XP >= XpToNextLevel)

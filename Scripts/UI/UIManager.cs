@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     public PlayerStats playerStats;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI shieldText;
+    public TextMeshProUGUI damageText;
+    public TextMeshProUGUI defenseText;
     public Transform pauseMenu;
     void Awake()
     {
@@ -51,6 +53,28 @@ public class UIManager : MonoBehaviour
         else
         {
             Debug.LogWarning("Shield text or PlayerStats is not set.");
+        }
+    }
+    public void UpdateDamageText()
+    {
+        if (damageText != null && playerStats != null)
+        {
+            damageText.text = $"Damage: {playerStats.CurrentDamage}";
+        }
+        else
+        {
+            Debug.LogWarning("Damage text or PlayerStats is not set.");
+        }
+    }
+    public void UpdateDefenseText()
+    {
+        if (defenseText != null && playerStats != null)
+        {
+            defenseText.text = $"Defense: {playerStats.CurrentDefense}";
+        }
+        else
+        {
+            Debug.LogWarning("Defense text or PlayerStats is not set.");
         }
     }
     public void TogglePauseMenu()

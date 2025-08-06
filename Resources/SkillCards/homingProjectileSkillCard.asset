@@ -23,3 +23,6 @@ MonoBehaviour:
   minimumLevelRequired: 1
   specialEffects: []
   projectileData: {fileID: 11400000, guid: 0fba370d6c54f7244bf21ffddeb54c2d, type: 2}
+  unlocked: 0
+  maxValue: 0
+  minValue: 0
