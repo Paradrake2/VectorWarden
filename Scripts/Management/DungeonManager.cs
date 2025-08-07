@@ -10,7 +10,9 @@ public class DungeonManager : MonoBehaviour
     public GameObject playerPrefab;
     public int totalEnemies = 0;
     public int enemiesKilled = 0;
+    public int floormasterThreshold = 30;
     public int floor;
+    public bool floormasterSpawned = false;
 
     private void Awake()
     {
@@ -29,6 +31,7 @@ public class DungeonManager : MonoBehaviour
     {
         if (scene.name == "Dungeon")
         {
+            floormasterSpawned = false;
             GameObject player = Instantiate(playerPrefab, mapGenerator.playerSpawnPosition, Quaternion.identity);
             Camera.main.GetComponent<CameraFollow>().target = player.transform;
             mapGenerator.GenerateRoom();
@@ -44,6 +47,15 @@ public class DungeonManager : MonoBehaviour
     public int getFloor()
     {
         return floor;
+    }
+    public void EnemyKilled()
+    {
+        enemiesKilled++;
+        if (enemiesKilled >= floormasterThreshold && !floormasterSpawned)
+        {
+            Floormaster.Instance.SpawnFloormaster();
+            floormasterSpawned = true;
+        }
     }
     void Start()
     {

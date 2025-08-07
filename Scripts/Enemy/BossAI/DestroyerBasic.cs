@@ -6,8 +6,10 @@ public class DestroyerBasic : MonoBehaviour
 {
     public EnemyStats stats;
     public Boss boss;
+    public BossAIComponents bossAIComponents;
     public List<EnemyProjectile> projectileListOne;
     public List<EnemyProjectile> projectileListTwo;
+    public GameObject previewPrefab;
 
     public Player player;
 
@@ -62,10 +64,14 @@ public class DestroyerBasic : MonoBehaviour
             if (attackCounter >= 5)
             {
                 StartCoroutine(RapidFireAttack());
+                StartCoroutine(bossAIComponents.PerformGridAttack(transform.position, 70f, 70f, 3f, projectileListTwo[Random.Range(0, projectileListTwo.Count)], previewPrefab));
+                Debug.LogWarning("Rapid Fire Attack Triggered!");
                 attackCounter = 0; // Reset counter after rapid fire
             }
             // Find a random projectile to use
-            FireProjectile();
+            EnemyProjectile projectile = projectileListOne[Random.Range(0, projectileListOne.Count)];
+
+            bossAIComponents.FireProjectile(projectile, transform.position, player.transform.position, player.GetComponent<PlayerMovement>().SmoothedVelocity);
             lastAttackTime = Time.time;
             attackCounter++;
         }
@@ -73,19 +79,21 @@ public class DestroyerBasic : MonoBehaviour
     IEnumerator RapidFireAttack()
     {
         Debug.Log("Rapid Fire Attack!");
+        EnemyProjectile projectile = projectileListOne[Random.Range(0, projectileListOne.Count)];
+
         // Stop moving while attacking
-        int attackCount = Random.Range(4, 8); // Random number of attacks
+        int attackCount = Random.Range(10, 15); // Random number of attacks
         for (int i = 0; i < attackCount; i++)
         {
             Debug.LogWarning("Rapid Fire Attack: " + i);
             // Find a random projectile to use
-            FireProjectile();
-            yield return new WaitForSeconds(0.2f);
+            bossAIComponents.FireProjectile(projectile, transform.position, player.transform.position, player.GetComponent<PlayerMovement>().SmoothedVelocity);
+            yield return new WaitForSeconds(0.16f);
         }
     }
+    /*
     void FireProjectile()
     {
-        EnemyProjectile projectile = projectileListOne[Random.Range(0, projectileListOne.Count)];
         GameObject newProj = Instantiate(projectile.gameObject, transform.position, Quaternion.identity);
         EnemyProjectile projData = newProj.GetComponent<EnemyProjectile>();
         projData.speed = projectileSpeed;
@@ -108,7 +116,6 @@ public class DestroyerBasic : MonoBehaviour
         }
 
 
-        /*
         Vector3 toPlayer = (player.transform.position - transform.position).normalized;
 Vector3 aimDir = direction; // The one from GetPredictedPosition
 
@@ -118,8 +125,8 @@ Debug.DrawRay(transform.position, toPlayer * 3f, Color.green, 2f);
 float dot = Vector3.Dot(toPlayer, aimDir);
         Debug.Log("DOT: " + dot);
 
-        */
     }
+        */
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

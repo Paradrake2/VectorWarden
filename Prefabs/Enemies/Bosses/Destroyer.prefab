@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4914560760885680291}
   - component: {fileID: 1093148419304779847}
   - component: {fileID: 6264438899735182654}
+  - component: {fileID: -3605561591465643749}
   m_Layer: 8
   m_Name: Destroyer
   m_TagString: Enemy
@@ -108,9 +109,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rarity: 0
   type: 1
-  maxHealth: 1400
-  currentHealth: 1400
-  damage: 60
+  maxHealth: 2500
+  currentHealth: 2500
+  damage: 120
   defense: 15
   knockback: 0
   knockbackResistance: 0
@@ -147,9 +148,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats: {fileID: 2659257618325411791}
   boss: {fileID: 2504809439447683730}
+  bossAIComponents: {fileID: -3605561591465643749}
   projectileListOne:
   - {fileID: 3615279631910130068, guid: b0b695a7425888949b50673e2e884213, type: 3}
-  projectileListTwo: []
+  projectileListTwo:
+  - {fileID: 4216807312999735215, guid: 98ce733c070f35a4da52c80dcf408fb4, type: 3}
+  previewPrefab: {fileID: 6371842183072096162, guid: fd5aa9608d9d9e94193a2c41ee903737, type: 3}
   player: {fileID: 0}
   health: 999999
   attackRange: 15
@@ -263,6 +267,18 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &-3605561591465643749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475650395302570904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcee36294f28b984b85f450f61b84766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5642842502318347293
 GameObject:
   m_ObjectHideFlags: 0

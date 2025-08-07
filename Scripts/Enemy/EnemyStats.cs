@@ -225,4 +225,16 @@ public class EnemyStats : MonoBehaviour
             aura.transform.localScale = Vector3.one * 1.3f; // Slightly larger than the main sprite
         }
     }
+    public void FloorMult(int floor)
+    {
+        if (floor <= 1) return;
+
+        float baseGrowth = 1.2f;
+        float scale = Mathf.Pow(baseGrowth, floor - 1);
+        maxHealth *= Mathf.Floor(maxHealth *scale);
+        currentHealth = Mathf.Floor(currentHealth * scale);
+        maxHealth = Mathf.Floor(maxHealth * scale);
+        damage = Mathf.Floor(damage * scale);
+        defense = Mathf.Floor(defense * scale);
+    }
 }

@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rarity: 0
+  type: 0
   maxHealth: 50
   currentHealth: 50
   damage: 10
@@ -145,6 +146,8 @@ MonoBehaviour:
   isElite: 0
   healthMultiplier: 2
   damageMultiplier: 1.5
+  xpMultiplier: 4
+  movementSpeedMultiplier: 1.2
   minXP: 200
   maxXP: 500
   minGold: 0
@@ -153,11 +156,24 @@ MonoBehaviour:
   - rarity: 0
     items:
     - {fileID: 11400000, guid: d1265f38431876048a8972fcc1120f42, type: 2}
+  - rarity: 1
+    items:
+    - {fileID: 11400000, guid: 83c7a29c696d0964da7b13ec691d7cb9, type: 2}
+  - rarity: 3
+    items:
+    - {fileID: 11400000, guid: a75a1c2430e5e644184452e21ba11925, type: 2}
+    - {fileID: 11400000, guid: 056db2adf6b1a9c40b432ae476387c7e, type: 2}
+    - {fileID: 11400000, guid: 377b0a85d719e8242aad405f9825c44d, type: 2}
   eliteDropPool:
   - rarity: 0
     items:
     - {fileID: 11400000, guid: caacd75e526c222488eb8178202584bf, type: 2}
     - {fileID: 11400000, guid: af2aa0f87ad166f429de6b9e7312e838, type: 2}
+  - rarity: 1
+    items:
+    - {fileID: 11400000, guid: a75a1c2430e5e644184452e21ba11925, type: 2}
+    - {fileID: 11400000, guid: 056db2adf6b1a9c40b432ae476387c7e, type: 2}
+    - {fileID: 11400000, guid: 377b0a85d719e8242aad405f9825c44d, type: 2}
   playerStats: {fileID: 0}
   id: 
 --- !u!212 &5055540027187088586

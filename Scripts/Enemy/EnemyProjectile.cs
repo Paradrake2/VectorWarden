@@ -6,6 +6,7 @@ public enum EnemyProjectileType
     Normal,
     Explosive,
     Homing,
+    Static
 }
 public class EnemyProjectile : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class EnemyProjectile : MonoBehaviour
 
     void Start()
     {
-
+        Destroy(gameObject, lifetime);
     }
 
     // Update is called once per frame
@@ -48,7 +49,10 @@ public class EnemyProjectile : MonoBehaviour
             {
                 player.HitByEnemy(damage, enemyName);
             }
-            Destroy(gameObject);
+            if (projectileType != EnemyProjectileType.Static)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

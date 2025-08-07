@@ -15,11 +15,6 @@ public class EnemyArea
 {
     public string areaName;
     public List<EnemyRarityGroup> rarityGroups;
-    public List<EnemyBoss> bosses;
-}
-[System.Serializable]
-public class EnemyBoss {
-    public List<GameObject> bosses;
 }
 [System.Serializable]
 public class EnemyRarityGroup
@@ -75,6 +70,7 @@ public class EnemySpawn : MonoBehaviour
         var enemy = Instantiate(chosenEnemy, position, Quaternion.identity);
         enemy.GetComponent<EnemyStats>().SetID(GenerateID());
         enemy.GetComponent<EnemyStats>().SetElite(isElite);
+        enemy.GetComponent<EnemyStats>().FloorMult(DungeonManager.Instance.floor);
     }
     string GenerateID()
     {
