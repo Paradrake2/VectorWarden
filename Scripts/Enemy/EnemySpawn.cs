@@ -15,6 +15,11 @@ public class EnemyArea
 {
     public string areaName;
     public List<EnemyRarityGroup> rarityGroups;
+    public List<EnemyBoss> bosses;
+}
+[System.Serializable]
+public class EnemyBoss {
+    public List<GameObject> bosses;
 }
 [System.Serializable]
 public class EnemyRarityGroup
@@ -66,8 +71,10 @@ public class EnemySpawn : MonoBehaviour
             chosenEnemy = group.enemies[0];
             Debug.LogWarning("was null");
         }
-        chosenEnemy.GetComponent<EnemyStats>().SetID(GenerateID());
+        bool isElite = ShouldSpawnElite(DungeonManager.Instance.floor);
         var enemy = Instantiate(chosenEnemy, position, Quaternion.identity);
+        enemy.GetComponent<EnemyStats>().SetID(GenerateID());
+        enemy.GetComponent<EnemyStats>().SetElite(isElite);
     }
     string GenerateID()
     {
@@ -102,6 +109,11 @@ public class EnemySpawn : MonoBehaviour
     {
         enemyIDs.Add(id);
     }
+    private bool ShouldSpawnElite(int floor)
+{
+    float eliteChance = Mathf.Clamp(floor * 0.02f, 0, 0.5f); // Max 50% chance
+    return Random.value < eliteChance;
+}
     void Start()
     {
         

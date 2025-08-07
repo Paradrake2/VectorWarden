@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: baseProjectileCard
+  m_EditorClassIdentifier: 
+  skillName: Basic Projectile
+  description: 
+  skillIcon: {fileID: 2768555999611999483, guid: 46323c318a7252c42a525f0fadd5b3b2, type: 3}
+  cardPicture: {fileID: 3520314400377215377, guid: 1c549f0a49900af46a9cadc02bdfbed3, type: 3}
+  skillType: 0
+  skillCardRarity: 3
+  statModifiers: []
+  projectilePrefab: {fileID: 6670500428637364174, guid: d1f613c8c03908442a4093eade85eed8, type: 3}
+  minimumLevelRequired: 1
+  specialEffects: []
+  projectileData: {fileID: 11400000, guid: 2f6bf72408c42944fa0d2fd5cf8518b1, type: 2}
+  unlocked: 1
+  maxValue: 0
+  minValue: 0

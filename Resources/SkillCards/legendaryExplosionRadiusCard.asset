@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: legendaryExplosionRadiusCard
+  m_EditorClassIdentifier: 
+  skillName: Legendary Explosion Radius
+  description: 
+  skillIcon: {fileID: 6529244736017826802, guid: f2afbff22087c9844b899b2d934f22e4, type: 3}
+  cardPicture: {fileID: 5590243214974236592, guid: 81d7a618a75123040878fe8ae6879971, type: 3}
+  skillType: 2
+  skillCardRarity: 4
+  statModifiers: []
+  projectilePrefab: {fileID: 0}
+  minimumLevelRequired: 1
+  specialEffects:
+  - {fileID: 11400000, guid: ccf532677a773054ab717c504f35a157, type: 2}
+  projectileData: {fileID: 0}
+  unlocked: 0
+  maxValue: 0
+  minValue: 0

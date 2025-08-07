@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: legendaryExplosionRadius
   m_EditorClassIdentifier: 
   effectType: 6
-  value: 2
+  value: 1.5

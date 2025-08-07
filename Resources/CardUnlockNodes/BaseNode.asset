@@ -17,5 +17,6 @@ MonoBehaviour:
   icon: {fileID: -5668804815215064262, guid: b820627d98035444491c2bc1ea9c7e28, type: 3}
   prerequisites: []
   requiredXP: 0
+  isUnlocked: 1
   unlockedCards: []
   disabledCards: []

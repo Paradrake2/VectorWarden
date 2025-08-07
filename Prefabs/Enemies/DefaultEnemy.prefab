@@ -142,6 +142,9 @@ MonoBehaviour:
   wasHitByPlayer: 0
   colliderHeight: 1
   colliderWidth: 1
+  isElite: 0
+  healthMultiplier: 2
+  damageMultiplier: 1.5
   minXP: 200
   maxXP: 500
   minGold: 0
@@ -150,6 +153,11 @@ MonoBehaviour:
   - rarity: 0
     items:
     - {fileID: 11400000, guid: d1265f38431876048a8972fcc1120f42, type: 2}
+  eliteDropPool:
+  - rarity: 0
+    items:
+    - {fileID: 11400000, guid: caacd75e526c222488eb8178202584bf, type: 2}
+    - {fileID: 11400000, guid: af2aa0f87ad166f429de6b9e7312e838, type: 2}
   playerStats: {fileID: 0}
   id: 
 --- !u!212 &5055540027187088586
@@ -175,7 +183,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

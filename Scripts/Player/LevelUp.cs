@@ -72,8 +72,9 @@ public class LevelUp : MonoBehaviour
             }
         }
 
-        if (playerLevel % 5 == 0)
+        if (playerLevel % 5 == 0 && filteredByLevel.Any(card => card.skillType == SkillType.Projectile)) // only runs if there are available projectile cards and the player level is a multiple of 5
         {
+
             filteredByLevel = filteredByLevel.FindAll(card => card.skillType == SkillType.Projectile);
         }
         filteredByLevel.RemoveAll(card =>

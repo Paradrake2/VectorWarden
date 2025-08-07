@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     {
         stats = PlayerStats.Instance;
     }
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, string enemyName)
     {
         if (Time.time - lastDamageTime < damageCooldown) return;
         if (stats.isDashing == true) return;
@@ -23,7 +23,6 @@ public class Player : MonoBehaviour
             Debug.LogWarning("NO STATS");
         }
         stats.ResetShieldRegenCooldown();
-        Debug.LogWarning(stats.CurrentShield);
         if (stats.CurrentShield > 0)
         {
             stats.CurrentShield -= Mathf.RoundToInt(damage);
@@ -45,16 +44,17 @@ public class Player : MonoBehaviour
 
         if (stats.CurrentHealth <= 0)
         {
-            Die();
+            Die(enemyName);
         }
     }
 
-    void Die()
+    void Die(string name)
     {
         Debug.Log("Player has died");
-        SceneManager.LoadScene("Upgrade");
-        // Clear all cards
-
+        PlayerStats.Instance.ResetCards();
+        Time.timeScale = 0;
+        PostDeathUIScreen.Instance.ShowPostDeathScreen(name);
     }
+    
 
 }

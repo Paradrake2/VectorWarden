@@ -37,7 +37,6 @@ public class PlayerStats : MonoBehaviour
     public List<SkillCard> activeSkillCards = new List<SkillCard>();
     public List<SpecialEffectType> activeSpecialEffects = new List<SpecialEffectType>();
     public List<SkillCard> ownedSkillCards = new List<SkillCard>(); // Skill cards that have been acquired that the player can then take into battle
-
     public static PlayerStats Instance;
     public LevelUp levelUp;
 
@@ -185,7 +184,6 @@ public class PlayerStats : MonoBehaviour
                 shieldRegenBuffer -= regenAmount;
 
                 UIManager.Instance.UpdateShieldText();
-                Debug.Log("Regen Shield: " + CurrentShield);
             }
         }
 
@@ -490,7 +488,6 @@ public class PlayerStats : MonoBehaviour
     }
     public float GetProjectileSpeed()
     {
-        Debug.Log("Calculating Projectile Speed");
         float val = BaseProjectileSpeed;
         foreach (var effect in GetActiveSpecialEffects())
         {
@@ -508,5 +505,14 @@ public class PlayerStats : MonoBehaviour
     public void ResetShieldRegenCooldown()
     {
         lastShieldRegenTime = Time.time;
+    }
+    public void ResetCards()
+    {
+        activeSkillCards.Clear();
+        ownedSkillCards.Clear();
+        CurrentHealth = CurrentMaxHealth;
+        CurrentMana = CurrentMaxMana;
+        CurrentShield = (int)CalculateMaxShield;
+        UIManager.Instance.UpdateShieldText();
     }
 }

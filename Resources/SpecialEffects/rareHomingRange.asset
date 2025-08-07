@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: rareHomingRange
   m_EditorClassIdentifier: 
   effectType: 8
-  value: 0.5
+  value: 0.25

@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
         List<Items> drops = stats.getDrop();
         foreach (var item in drops)
         {
-            InventorySystem.Instance.AddItem(item.ID, 1);
+            InventorySystem.Instance.AddItemToSpoils(item.ID, 1);
         }
         playerStats.GainXP(Random.Range(stats.minXP, stats.maxXP));
         Destroy(gameObject);

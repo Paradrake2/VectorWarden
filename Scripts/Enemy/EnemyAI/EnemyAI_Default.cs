@@ -15,11 +15,10 @@ public class EnemyAI_Default : MonoBehaviour
     {
         if (other.CompareTag("PlayerHitbox") && Time.time >= lastAttackTime + attackCooldown)
         {
-            Debug.Log("Enemy triggered with: " + other.name);
             lastAttackTime = Time.time;
             if (stats != null)
             {
-                other.GetComponent<PlayerHitbox>()?.HitByEnemy(stats.damage);
+                other.GetComponent<PlayerHitbox>()?.HitByEnemy(stats.damage, stats.name);
             }
             else
             {

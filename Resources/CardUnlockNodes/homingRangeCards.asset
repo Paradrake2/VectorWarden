@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
+  m_Name: homingRangeCards
+  m_EditorClassIdentifier: 
+  unlockID: homingRangeCards
+  cardUnlockname: Homing Range Cards
+  icon: {fileID: 6165505304366273296, guid: e744fe22f15cd6e44b2ffdc2c43400bc, type: 3}
+  prerequisites:
+  - {fileID: 11400000, guid: b7e99714446123142b9707f0d05d4105, type: 2}
+  requirements:
+  - item: {fileID: 11400000, guid: 056db2adf6b1a9c40b432ae476387c7e, type: 2}
+    amount: 5
+  requiredXP: 1000
+  isUnlocked: 0
+  unlockedCards:
+  - {fileID: 11400000, guid: 56e8169d665844e4fb2a8dec498a5ad0, type: 2}
+  - {fileID: 11400000, guid: 86566c19977aa2643a82a6f262818626, type: 2}
+  - {fileID: 11400000, guid: 00030bf5b4b66bc41a7887e46518599c, type: 2}
+  disabledCards: []

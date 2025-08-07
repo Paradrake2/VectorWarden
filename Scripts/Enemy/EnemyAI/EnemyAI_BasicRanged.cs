@@ -35,11 +35,10 @@ public class EnemyAI_BasicRanged : MonoBehaviour
 
     private void AttackPlayer()
     {
-        if (Time.time >= lastAttackTime + attackCooldown)
+        if (Time.time >= lastAttackTime + attackCooldown && IsPlayerInRange())
         {
             FireProjectile();
             // Fire projectile sound
-            Debug.Log("Attacking Player!");
             lastAttackTime = Time.time;
         }
     }
@@ -52,6 +51,7 @@ public class EnemyAI_BasicRanged : MonoBehaviour
             EnemyProjectile projData = newProjectile.GetComponent<EnemyProjectile>();
             projData.speed = projectileSpeed;
             projData.damage = stats.damage;
+            projData.enemyName = stats.name;
             // Set the projectile's direction towards the player or a specific target
             Vector3 direction = (GameObject.FindGameObjectWithTag("Player").transform.position - transform.position).normalized;
             newProjectile.GetComponent<Rigidbody2D>().linearVelocity = direction * projectileSpeed; // Adjust speed as necessary
@@ -62,7 +62,7 @@ public class EnemyAI_BasicRanged : MonoBehaviour
     private void RotateToFacePlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
+        if (player != null && IsPlayerInRange())
         {
             Vector3 direction = (player.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

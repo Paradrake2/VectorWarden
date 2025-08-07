@@ -17,7 +17,13 @@ MonoBehaviour:
   icon: {fileID: 7113744506422539910, guid: bb696edcc5538114183c8b0a146e7f2c, type: 3}
   prerequisites:
   - {fileID: 11400000, guid: 835154d210d45f54684cae29ace084a0, type: 2}
+  requirements:
+  - item: {fileID: 11400000, guid: 377b0a85d719e8242aad405f9825c44d, type: 2}
+    amount: 5
+  - item: {fileID: 11400000, guid: 1ead2bd57a09223409941c1c818d4b7e, type: 2}
+    amount: 5
   requiredXP: 100
+  isUnlocked: 0
   unlockedCards:
   - {fileID: 11400000, guid: ad9d62fceef792441a15bc9dfda599c7, type: 2}
   disabledCards: []

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a1ec2208e401b4a9f33f1eb4bca114, type: 3}
   m_Name: basicXPItem
   m_EditorClassIdentifier: 
-  itemName: basicXPItem
-  icon: {fileID: 0}
+  itemName: basicXPItemSmall
+  icon: {fileID: 1247595273109665653, guid: 6d7a3aa6e4bdbc54796a0de1d0accbb7, type: 3}
   description: 
   color: {r: 0, g: 0, b: 0, a: 0}
   maxStackSize: 999
@@ -50,8 +50,9 @@ MonoBehaviour:
   dropRate: 0
   dashDistance: 0
   dashNumber: 0
-  tags: []
-  ID: 
+  tags:
+  - basicXPItem
+  ID: basicXPItemSmall
   coreTier: 0
   coreSize: 0
   enhancedNum: 0

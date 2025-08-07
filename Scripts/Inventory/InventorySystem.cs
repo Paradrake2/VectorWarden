@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class InventorySystem : MonoBehaviour
 {
     public List<InventoryItem> itemStacks = new List<InventoryItem>();
+    public List<InventoryItem> acquiredItems = new List<InventoryItem>(); // Stuff the player has gotten during the run
+
     //public List<Augment> ownedAugments = new List<Augment>();
     public HashSet<String> discoveredRefinedItems = new();
     public static InventorySystem Instance;
@@ -103,6 +105,19 @@ public class InventorySystem : MonoBehaviour
             //if (log != null) log.AddLogMessage(itemId, amount);
         }
 
+    }
+    public void AddItemToSpoils(string itemId, int amount)
+    {
+        InventoryItem existing = acquiredItems.Find(i => i.itemId == itemId);
+
+        if (existing != null)
+        {
+            existing.quantity += amount;
+        }
+        else
+        {
+            acquiredItems.Add(new InventoryItem { itemId = itemId, quantity = amount });
+        }
     }
     public bool HasItemsWithTag(string tag, int requiredAmount)
     {

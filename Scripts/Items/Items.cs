@@ -23,6 +23,7 @@ public enum ItemType
 [CreateAssetMenu(fileName = "Items", menuName = "Scriptable Objects/Items")]
 public class Items : ScriptableObject
 {
+    // A large number of these values are not used in the game, but are here for future expansion or reference. They are legacy values from previous versions of the game.
     public string itemName;
     public Sprite icon;
     [TextArea] public string description;

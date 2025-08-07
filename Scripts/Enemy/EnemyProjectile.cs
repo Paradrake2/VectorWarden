@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum EnemyProjectileType
@@ -19,6 +20,7 @@ public class EnemyProjectile : MonoBehaviour
     public float explosionRadius = 0f; // For explosive projectiles
     public float homingStrength = 0f;
     public float homingRange = 0f;
+    public string enemyName;
 
     void Start()
     {
@@ -44,9 +46,10 @@ public class EnemyProjectile : MonoBehaviour
             PlayerHitbox player = collider.GetComponent<PlayerHitbox>();
             if (player != null)
             {
-                player.HitByEnemy(damage);
+                player.HitByEnemy(damage, enemyName);
             }
             Destroy(gameObject);
         }
     }
+
 }

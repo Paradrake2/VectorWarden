@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: commonExplosionRadiusCard
+  m_EditorClassIdentifier: 
+  skillName: Common Explosion Radius
+  description: 
+  skillIcon: {fileID: 6529244736017826802, guid: f2afbff22087c9844b899b2d934f22e4, type: 3}
+  cardPicture: {fileID: -8368548296620217768, guid: b62f7c95da26fca48acc67b0f159e10b, type: 3}
+  skillType: 2
+  skillCardRarity: 0
+  statModifiers: []
+  projectilePrefab: {fileID: 0}
+  minimumLevelRequired: 1
+  specialEffects:
+  - {fileID: 11400000, guid: dad29ba1075f2cb4cbe80d378cad3c0f, type: 2}
+  projectileData: {fileID: 0}
+  unlocked: 0
+  maxValue: 0
+  minValue: 0

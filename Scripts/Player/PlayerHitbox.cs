@@ -3,9 +3,9 @@ using UnityEngine;
 public class PlayerHitbox : MonoBehaviour
 {
     public Player player;
-    public void HitByEnemy(float damage)
+    public void HitByEnemy(float damage, string enemyName)
     {
-        player.TakeDamage(damage);
+        player.TakeDamage(damage, enemyName);
     }
     void Start()
     {

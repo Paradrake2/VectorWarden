@@ -10,7 +10,6 @@ public class UpgradeUIManager : MonoBehaviour
     public PlayerStats playerStats;
 
     public Transform statUpgradePanel;
-    public Transform cardUnlockPanel;
 
     [Header("Not Enough XP panel")]
     public GameObject notEnoughXPPanel;
@@ -29,6 +28,7 @@ public class UpgradeUIManager : MonoBehaviour
         {
             Debug.LogError("PlayerStats instance not found.");
         }
+        notEnoughXPPanel.SetActive(false);
     }
     public void ShowNotEnoughXPPanel(float neededXP)
     {

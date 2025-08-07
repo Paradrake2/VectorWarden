@@ -8,6 +8,7 @@ public class SkillUpgradeButton : MonoBehaviour
 {
     public CardUnlockNode cardNode;
     public Image shader;
+    public Image icon;
     public UpgradeManager upgradeManager;
     void Start()
     {
@@ -25,13 +26,14 @@ public class SkillUpgradeButton : MonoBehaviour
                 Debug.LogError("UpgradeManager instance not found.");
             }
         }
+        icon.sprite = cardNode.icon;
     }
     public void DisplayRequirements()
     {
         string requirementsText = "Requirements:\n";
         foreach (var requirement in cardNode.requirements)
         {
-            requirementsText += $"{requirement.Key.itemName}: {requirement.Value}\n";
+            requirementsText += $"{requirement.item.itemName}: {requirement.amount}\n";
         }
         Debug.Log(requirementsText);
     }
@@ -49,9 +51,10 @@ public class SkillUpgradeButton : MonoBehaviour
     }
     bool HasRequiredItems()
     {
+        if (cardNode.requirements == null) return true; // null check
         foreach (var requirement in cardNode.requirements)
         {
-            if (InventorySystem.Instance.itemStacks.Find(i => i.itemId == requirement.Key.ID)?.quantity < requirement.Value)
+            if (InventorySystem.Instance.itemStacks.Find(i => i.itemId == requirement.item.ID)?.quantity < requirement.amount)
             {
                 return false; // Not enough of the required item
             }

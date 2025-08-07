@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
+  m_Name: piercingCards
+  m_EditorClassIdentifier: 
+  unlockID: piercingCards
+  cardUnlockname: Piercing Cards
+  icon: {fileID: 3809399329402134398, guid: dd53cdcc0d0791848bfbe7502b620c22, type: 3}
+  prerequisites:
+  - {fileID: 11400000, guid: 7e356c4b4e9b01547a51c0723f22d956, type: 2}
+  requirements:
+  - item: {fileID: 11400000, guid: 377b0a85d719e8242aad405f9825c44d, type: 2}
+    amount: 10
+  requiredXP: 1000
+  isUnlocked: 0
+  unlockedCards:
+  - {fileID: 11400000, guid: ac8b1f5d28fa5644387197a6bc2b8ecb, type: 2}
+  - {fileID: 11400000, guid: 7cdc00d926bc4d648ba1ccdf8f28e0ce, type: 2}
+  - {fileID: 11400000, guid: 1a2ba482412547c4cac3b3d7360e1ac1, type: 2}
+  disabledCards: []

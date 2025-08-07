@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
+  m_Name: explosiveRadiusCardUnlock
+  m_EditorClassIdentifier: 
+  unlockID: explosiveRadiusCards
+  cardUnlockname: Explosive Radius Cards
+  icon: {fileID: 6529244736017826802, guid: f2afbff22087c9844b899b2d934f22e4, type: 3}
+  prerequisites:
+  - {fileID: 11400000, guid: 5f461a8bb5ee56748bf9da6d6c4fae4c, type: 2}
+  requirements:
+  - item: {fileID: 11400000, guid: a75a1c2430e5e644184452e21ba11925, type: 2}
+    amount: 15
+  requiredXP: 1000
+  isUnlocked: 0
+  unlockedCards:
+  - {fileID: 11400000, guid: d4c2b7a45bffad4479a46316c4a746e3, type: 2}
+  - {fileID: 11400000, guid: 68aee7f122d757f4d967c341da4d2868, type: 2}
+  - {fileID: 11400000, guid: 106f4a6047c97df408794b4def923d2b, type: 2}
+  - {fileID: 11400000, guid: 1b1fc26dcb25d5c468b297da9ddf4deb, type: 2}
+  - {fileID: 11400000, guid: 3db1029e9a49aac4ea523720fb08490e, type: 2}
+  disabledCards: []

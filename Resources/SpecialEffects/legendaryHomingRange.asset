@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: legendaryHomingRange
   m_EditorClassIdentifier: 
   effectType: 8
-  value: 2
+  value: 1

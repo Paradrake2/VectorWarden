@@ -4,6 +4,7 @@ using UnityEngine;
 public class StatUpgradeButton : MonoBehaviour
 {
     public PlayerStats playerStats;
+    public UpgradeUIManager upgradeUIManager;
     public StatType upgradeStatType;
     public TextMeshProUGUI costText;
     public float upgradeAmount = 1f;
@@ -26,7 +27,7 @@ public class StatUpgradeButton : MonoBehaviour
         {
             Debug.LogWarning("Not enough XP to upgrade.");
             float neededXP = CalculateCost() - UpgradeManager.Instance.GetUpgradeXPAmount();
-            UpgradeUIManager.Instance.ShowNotEnoughXPPanel(neededXP);
+            upgradeUIManager.ShowNotEnoughXPPanel(neededXP);
             return;
         }
         switch (upgradeStatType)
@@ -55,6 +56,7 @@ public class StatUpgradeButton : MonoBehaviour
         }
         timesBought++;
         UpgradeManager.Instance.RemoveXP(CalculateCost());
+        UpgradeManager.Instance.UpdateXPText();
         costText.text = CalculateCost().ToString();
         // UIManager.Instance.UpdateHealthText();
         // UIManager.Instance.UpdateShieldText();

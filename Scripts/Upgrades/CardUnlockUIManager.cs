@@ -40,6 +40,7 @@ public class CardUnlockUIManager : MonoBehaviour
         UpdateSkillUpgradeButtons();
         node.isUnlocked = true;
         node = null;
+        UpgradeMaterialInventoryManager.Instance.PopulateInventory();
         ClearConfirmPanel();
     }
     public void UnlockSkillCards(CardUnlockNode cardNode)
@@ -73,7 +74,7 @@ public class CardUnlockUIManager : MonoBehaviour
         confirmPanel.SetActive(true);
         confirmText.text = $"Are you sure you want to unlock {node.unlockID}?";
         confirmNodeName.text = node.unlockID;
-        confirmNodeRequirements.text = string.Join(", ", node.requirements.Select(r => r.Key.itemName));
+        confirmNodeRequirements.text = string.Join(", ", node.requirements.Select(r => r.item.itemName));
         confirmNodeXP.text = node.requiredXP.ToString();
         SetNode(node);
     }
@@ -90,7 +91,7 @@ public class CardUnlockUIManager : MonoBehaviour
     {
         foreach (var requirement in node.requirements)
         {
-            InventorySystem.Instance.RemoveItem(requirement.Key.itemName, requirement.Value);
+            InventorySystem.Instance.RemoveItem(requirement.item.itemName, requirement.amount);
         }
         UpgradeManager.Instance.RemoveXP(node.requiredXP);
     }
@@ -100,7 +101,7 @@ public class CardUnlockUIManager : MonoBehaviour
         requirementsText.text = $"Requirements for {node.unlockID}:\n";
         foreach (var requirement in node.requirements)
         {
-            requirementsText.text += $"{requirement.Key.itemName}: {requirement.Value}\n";
+            requirementsText.text += $"{requirement.item.itemName}: {requirement.amount}\n";
         }
         requirementsText.text += $"Required XP: {node.requiredXP}";
         requirementsText.text += $"\nPrerequisites: {string.Join(", ", node.prerequisites.Select(p => p.unlockID))}";

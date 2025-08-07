@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: epicHomingRange
   m_EditorClassIdentifier: 
   effectType: 8
-  value: 1
+  value: 0.5

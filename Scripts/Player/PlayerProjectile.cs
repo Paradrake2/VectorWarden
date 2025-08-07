@@ -165,7 +165,14 @@ public class PlayerProjectile : MonoBehaviour
                 enemyStats.currentHealth -= damage;
                 if (enemyStats.currentHealth <= 0)
                 {
-                    collision.GetComponent<Enemy>().Die();
+                    if (collision.GetComponent<Enemy>() != null)
+                    {
+                        collision.GetComponent<Enemy>().Die();
+                    }
+                    else if (collision.GetComponent<Boss>() != null)
+                    {
+                        collision.GetComponent<Boss>().Die();
+                    }
                 }
             }
             pierceAmount--;

@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
     public PlayerStats playerStats;
+    public Player player;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI shieldText;
     public TextMeshProUGUI damageText;
@@ -30,6 +31,11 @@ public class UIManager : MonoBehaviour
         if (playerStats == null)
         {
             Debug.LogError("PlayerStats not found in the scene.");
+        }
+        player = FindFirstObjectByType<Player>();
+        if (player == null)
+        {
+            Debug.LogError("Cant find player");
         }
     }
     public void UpdateHealthText()
@@ -115,6 +121,10 @@ public class UIManager : MonoBehaviour
     }
     void Update()
     {
-        
+
+    }
+    public void KillPlayer()
+    {
+        player.TakeDamage(999999999999999, "command");
     }
 }
