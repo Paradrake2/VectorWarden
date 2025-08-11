@@ -13,17 +13,16 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI damageText;
     public TextMeshProUGUI defenseText;
     public Transform pauseMenu;
+    public GameObject bossHealthBar;
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
+    }
+    public void BindPlayer(Player p) {
+        player = p;
+        playerStats = PlayerStats.Instance; // your stats are DDOL
+        bossHealthBar.SetActive(false);     // ensure correct default on each bind
+        UpdateHealthText(); UpdateShieldText(); /* etc. */
     }
     void Start()
     {
@@ -33,6 +32,7 @@ public class UIManager : MonoBehaviour
             Debug.LogError("PlayerStats not found in the scene.");
         }
         player = FindFirstObjectByType<Player>();
+        bossHealthBar.SetActive(false);
         if (player == null)
         {
             Debug.LogError("Cant find player");
@@ -114,7 +114,14 @@ public class UIManager : MonoBehaviour
         Application.Quit();
         Debug.Log("Game is quitting...");
     }
-
+    public void ShowBossHealthbar()
+    {
+        bossHealthBar.SetActive(true);
+    }
+    public void HideBossHealthbar()
+    {
+        bossHealthBar.SetActive(false);
+    }
     public void ToRefineMenu()
     {
         SceneManager.LoadScene("Refine");

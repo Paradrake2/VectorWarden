@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
+  m_Name: randomCardUnlockNode
+  m_EditorClassIdentifier: 
+  unlockID: randomCardUnlock
+  cardUnlockname: 
+  icon: {fileID: 6510710865780934179, guid: fd666b12b3c644d4a81f1c3939953344, type: 3}
+  prerequisites:
+  - {fileID: 11400000, guid: fc01b8da2da5253428185134ad7c90ad, type: 2}
+  requirements:
+  - item: {fileID: 11400000, guid: 83c7a29c696d0964da7b13ec691d7cb9, type: 2}
+    amount: 8
+  requiredXP: 1250
+  isUnlocked: 0
+  unlockedCards:
+  - {fileID: 11400000, guid: b07465afbfc2e0044a8609b328796659, type: 2}
+  - {fileID: 11400000, guid: 003b06c257df0d446b82babaccfb6846, type: 2}
+  - {fileID: 11400000, guid: deab17f3ef7ab59459298e8a1916fb8e, type: 2}
+  - {fileID: 11400000, guid: 82adb3298741a834590abc80ac38171e, type: 2}
+  - {fileID: 11400000, guid: 9b5e8730b4230db469db86caa78e11c0, type: 2}
+  disabledCards: []

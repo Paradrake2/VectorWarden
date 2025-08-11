@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -12,9 +13,26 @@ public class UpgradeManager : MonoBehaviour
     {
         Instance = this;
         playerStats = PlayerStats.Instance;
+        ConvertToXP();
         xpText.text = UpgradeXPAmount.ToString();
     }
-
+    void ConvertToXP()
+    {
+        var itemsToRemove = new List<(string itemId, int quantity)>();
+        foreach (var item in InventorySystem.Instance.itemStacks)
+        {
+            var itemData = ItemRegistry.Instance.GetItemById(item.itemId);
+            if (itemData != null && itemData.itemType == ItemType.XPItem)
+            {
+                UpgradeXPAmount += itemData.xpValue * item.quantity;
+                itemsToRemove.Add((item.itemId, item.quantity));
+            }
+        }
+        foreach (var (itemId, quantity) in itemsToRemove)
+        {
+            InventorySystem.Instance.RemoveItem(itemId, quantity);
+        }
+    }
     public float GetUpgradeXPAmount()
     {
         return UpgradeXPAmount;
@@ -23,9 +41,13 @@ public class UpgradeManager : MonoBehaviour
     {
         UpgradeXPAmount -= amount;
     }
+    public void AddXP(float amount)
+    {
+        UpgradeXPAmount += amount;
+    }
     public void UpdateXPText()
     {
-        xpText.text = UpgradeXPAmount.ToString();
+        xpText.text = NumberFormatUtil.FormatWithSciThreshold(UpgradeXPAmount, 20);
     }
     // Update is called once per frame
     void Update()

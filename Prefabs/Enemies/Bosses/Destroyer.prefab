@@ -109,9 +109,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rarity: 0
   type: 1
-  maxHealth: 2500
-  currentHealth: 2500
-  damage: 120
+  maxHealth: 6000
+  currentHealth: 6000
+  damage: 200
   defense: 15
   knockback: 0
   knockbackResistance: 0
@@ -183,6 +183,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 056db2adf6b1a9c40b432ae476387c7e, type: 2}
     - {fileID: 11400000, guid: 377b0a85d719e8242aad405f9825c44d, type: 2}
     amount: 10
+  healthBar: {fileID: 0}
 --- !u!114 &4914560760885680291
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rarity: 0
+  type: 0
   maxHealth: 40
   currentHealth: 40
   damage: 30
@@ -122,10 +123,12 @@ MonoBehaviour:
   isElite: 0
   healthMultiplier: 2
   damageMultiplier: 1.5
+  xpMultiplier: 4
+  movementSpeedMultiplier: 1.2
   minXP: 300
   maxXP: 500
-  minGold: 0
-  maxGold: 0
+  minGold: 2
+  maxGold: 4
   dropPool:
   - rarity: 0
     items:
@@ -242,6 +245,7 @@ MonoBehaviour:
   movement: {fileID: 5255666367628965395}
   stats: {fileID: 2461246160683010473}
   playerStats: {fileID: 0}
+  damageIndicator: {fileID: 0}
 --- !u!114 &5255666367628965395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,7 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   stats: {fileID: 2461246160683010473}
-  detectionRange: 10
+  detectionRange: 50
   moveSpeed: 3
   canMove: 1
   mapGenerator: {fileID: 0}

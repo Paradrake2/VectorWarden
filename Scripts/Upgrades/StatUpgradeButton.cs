@@ -58,6 +58,7 @@ public class StatUpgradeButton : MonoBehaviour
         UpgradeManager.Instance.RemoveXP(CalculateCost());
         UpgradeManager.Instance.UpdateXPText();
         costText.text = CalculateCost().ToString();
+        UpgradeUIManager.Instance.UpdateStatsText();
         // UIManager.Instance.UpdateHealthText();
         // UIManager.Instance.UpdateShieldText();
         // UIManager.Instance.UpdateDamageText();

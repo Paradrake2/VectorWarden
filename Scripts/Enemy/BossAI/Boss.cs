@@ -1,21 +1,25 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Boss : MonoBehaviour
 {
     public EnemyStats stats;
     public PlayerStats playerStats;
     public BaseMovement movement;
     public List<BossDrops> bossDrops = new();
+    public Image healthBar;
     void Start()
     {
         playerStats = FindFirstObjectByType<PlayerStats>();
+        UIManager.Instance.ShowBossHealthbar();
+        healthBar = GameObject.FindGameObjectWithTag("BossHealthBar").GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
         movement.UpdateMovement();
+        healthBar.fillAmount = stats.currentHealth / stats.maxHealth;
     }
     public void Die()
     {
@@ -28,6 +32,7 @@ public class Boss : MonoBehaviour
         }
         playerStats.GainXP(Random.Range(stats.minXP, stats.maxXP));
         Destroy(gameObject);
+        UIManager.Instance.HideBossHealthbar();
         // Open path to the next floor
     }
 }

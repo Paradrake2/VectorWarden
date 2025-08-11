@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
   m_Name: BaseNode
   m_EditorClassIdentifier: 
-  unlockID: 
+  unlockID: baseNode
   cardUnlockname: 
   icon: {fileID: -5668804815215064262, guid: b820627d98035444491c2bc1ea9c7e28, type: 3}
   prerequisites: []
+  requirements: []
   requiredXP: 0
   isUnlocked: 1
   unlockedCards: []

@@ -123,4 +123,5 @@ public class Items : ScriptableObject
     public int enhancedNum;
     [Header("XPValue")]
     public float xpValue;
+    public float goldCost;
 }

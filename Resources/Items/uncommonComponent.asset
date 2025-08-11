@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92a1ec2208e401b4a9f33f1eb4bca114, type: 3}
+  m_Name: uncommonComponent
+  m_EditorClassIdentifier: 
+  itemName: uncommonComponent
+  icon: {fileID: 8026658937850779509, guid: 30441900dbcc9bc419d87924e38b305b, type: 3}
+  description: 
+  color: {r: 0, g: 0, b: 0, a: 0}
+  maxStackSize: 999
+  value: 0
+  Rarity: 1
+  componentSlot:
+    slotName: 
+    acceptedTag: 
+    tier: 0
+  itemType: 4
+  projectileType: 4
+  tier: 0
+  flatDamage: 0
+  damageMult: 0
+  flatDefense: 0
+  defenseMult: 0
+  flatMaxHP: 0
+  HPMult: 0
+  flatPureDamage: 0
+  pureDamageMult: 0
+  flatProjectileSpeed: 0
+  projectileSpeedMult: 0
+  flatMaxMana: 0
+  maxManaMult: 0
+  dropRateIncrease: 0
+  xpGainIncrease: 0
+  goldGainIncrease: 0
+  flatKnockbackIncrease: 0
+  knockbackMult: 0
+  knockbackResistanceMult: 0
+  flatKnockbackResistance: 0
+  attackSpeedFlat: 0
+  attackSpeedMult: 0
+  dropRate: 0
+  dashDistance: 0
+  dashNumber: 0
+  tags:
+  - uncommonComponent
+  ID: uncommonComponent
+  coreTier: 0
+  coreSize: 0
+  enhancedNum: 0
+  xpValue: 0
+  goldCost: 125

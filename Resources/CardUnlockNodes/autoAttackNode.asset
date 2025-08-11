@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
+  m_Name: autoAttackNode
+  m_EditorClassIdentifier: 
+  unlockID: autoAttackNode
+  cardUnlockname: 
+  icon: {fileID: 6410669657259478791, guid: f334f06aadd15cd47ab51774382d67b0, type: 3}
+  prerequisites:
+  - {fileID: 11400000, guid: 385c755be78299e4587c76fa9d836163, type: 2}
+  - {fileID: 11400000, guid: 2e360422b7e1c3e48886766f0a5fd074, type: 2}
+  - {fileID: 11400000, guid: 7e356c4b4e9b01547a51c0723f22d956, type: 2}
+  requirements:
+  - item: {fileID: 11400000, guid: a75a1c2430e5e644184452e21ba11925, type: 2}
+    amount: 5
+  - item: {fileID: 11400000, guid: 056db2adf6b1a9c40b432ae476387c7e, type: 2}
+    amount: 5
+  - item: {fileID: 11400000, guid: 377b0a85d719e8242aad405f9825c44d, type: 2}
+    amount: 5
+  - item: {fileID: 11400000, guid: 83c7a29c696d0964da7b13ec691d7cb9, type: 2}
+    amount: 5
+  requiredXP: 1000
+  isUnlocked: 0
+  unlockedCards:
+  - {fileID: 11400000, guid: 1aaa3b3c5ae0d2345812e3c8b9c60e33, type: 2}
+  disabledCards: []

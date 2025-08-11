@@ -6,7 +6,8 @@ public enum SkillType
     Projectile,
     StatModifier,
     SpecialEffect,
-    Random
+    Random,
+    AutoAttack
 }
 public enum SkillRarity {
     Common,
@@ -35,6 +36,8 @@ public class SkillCard : ScriptableObject
     [Header("Random Card Settings")]
     public float maxValue;
     public float minValue;
+
+    public List<SkillCard> prerequisites;
 }
 
 

@@ -17,12 +17,26 @@ public class LevelUp : MonoBehaviour
 
     public int guaranteedRarityEveryYLevels = 3;
     public int baseCardCount = 3;
-
-    public LevelUp Instance;
+    private int pendingLevelUps = 0;
+    private bool isPanelOpen = false;
+    public static LevelUp Instance;
     private bool placeholder = true; // this will be used later, maybe. Currently can be used to prevent all projectile cards from being destroyed when the player selects a new projectile card
+    public void BindPlayerStats(PlayerStats stats)
+    {
+        playerStats = stats;
+    }
+    void Awake()
+    {
+        if (playerStats == null) playerStats = PlayerStats.Instance;
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+    Instance = this;
+    }
+    void OnDestroy() { if (Instance == this) Instance = null; }
+
     public void LevelUpPlayer(int playerLevel, int cardOptions)
     {
         Time.timeScale = 0;
+        Debug.LogWarning("LevelUpPlayer running");
         LevelUpStats(); // Update player stats based on level up
         XPUIManager.Instance.UpdateLevelText();
         levelUpPanel.SetActive(true);
@@ -38,7 +52,22 @@ public class LevelUp : MonoBehaviour
         // Wait one frame before adding new cards
         StartCoroutine(ShowSkillCardsNextFrame(availableCards));
     }
-
+    public void EnqueueLevelUps(int count, int playerLevel, int cardOptions)
+    {
+        pendingLevelUps += count;
+        if (!isPanelOpen)
+        {
+            ShowLevelUpPanel(playerLevel, cardOptions);
+        }
+    }
+    private void ShowLevelUpPanel(int playerLevel, int cardOptions)
+    {
+        if (pendingLevelUps <= 0) return;
+        isPanelOpen = true;
+        Time.timeScale = 0;
+        levelUpPanel.SetActive(true);
+        LevelUpPlayer(playerLevel, cardOptions);
+    }
     private IEnumerator ShowSkillCardsNextFrame(List<SkillCard> availableCards)
     {
         yield return null; // Wait for end of frame
@@ -46,17 +75,26 @@ public class LevelUp : MonoBehaviour
         {
             Debug.Log($"Available Card: {card.skillName} (Rarity: {card.skillCardRarity})");
         }
+        List<Button> cardButtons = new List<Button>();
         foreach (SkillCard skillCard in availableCards)
         {
             SkillCardUI skillCardUI = Instantiate(skillCardUIPrefab, levelUpPanel.transform);
             skillCardUI.skillCard = skillCard;
             skillCardUI.UpdateUI();
+            Button cardButton = skillCardUI.GetComponent<Button>();
+            cardButton.interactable = false;
+            cardButtons.Add(cardButton);
         }
 
         LayoutGroup layout = levelUpPanel.GetComponent<LayoutGroup>();
         if (layout != null)
         {
             LayoutRebuilder.ForceRebuildLayoutImmediate(layout.GetComponent<RectTransform>());
+        }
+        yield return new WaitForSecondsRealtime(1);
+        foreach (Button cardButton in cardButtons)
+        {
+            cardButton.interactable = true; // Enable buttons after a short delay
         }
     }
 
@@ -68,7 +106,10 @@ public class LevelUp : MonoBehaviour
         {
             if (playerLevel >= card.minimumLevelRequired && card.unlocked)
             {
-                filteredByLevel.Add(card);
+                if (card.prerequisites == null || card.prerequisites.All(prereq => playerStats.activeSkillCards.Contains(prereq)))
+                {
+                    filteredByLevel.Add(card);
+                }
             }
         }
 
@@ -131,8 +172,22 @@ public class LevelUp : MonoBehaviour
         }
         levelUpPanel.SetActive(false);
         cardStatsText.gameObject.SetActive(false);
+        isPanelOpen = false;
+        //Time.timeScale = 1; // Resume the game
+        pendingLevelUps--;
+        if (pendingLevelUps > 0)
+        {
+            isPanelOpen = true;
+            var nextLevel = playerStats.Level;
+            var options = playerStats.GetNumCardOptions();
+            ShowLevelUpPanel(nextLevel, options);
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+        playerStats.AddCardToOwnedSkillCards(skillCard); // Adds the card to the list of cards the player has used
         skillIconUIManager.UpdateSkillIcons();
-        Time.timeScale = 1; // Resume the game
         XPUIManager.Instance.UpdateXPBarFill();
     }
     public void RandomStatBoost(SkillCard card)
@@ -165,21 +220,12 @@ public class LevelUp : MonoBehaviour
             float boostValue = UnityEngine.Random.Range(card.minValue, card.maxValue);
             switch (chosenStat)
             {
-                case StatType.MaxHealth:
-                    playerStats.BaseHealth += (int)boostValue;
-                    break;
-                case StatType.Damage:
-                    playerStats.BaseDamage += (int)boostValue;
-                    break;
-                case StatType.Defense:
-                    playerStats.BaseDefense += (int)boostValue;
-                    break;
-                case StatType.PlayerMoveSpeed:
-                    playerStats.BaseMoveSpeed += boostValue / 100;
-                    break;
-                case StatType.AttackCooldown:
-                    playerStats.BaseAttackCooldown -= boostValue / 70;
-                    break;
+                case StatType.MaxHealth:      playerStats.AddTempFlat(StatType.MaxHealth, boostValue); break;
+                case StatType.Damage:         playerStats.AddTempFlat(StatType.Damage,    boostValue); break;
+                case StatType.Defense:        playerStats.AddTempFlat(StatType.Defense,   boostValue); break;
+                case StatType.PlayerMoveSpeed:playerStats.AddTempPercent(StatType.PlayerMoveSpeed, boostValue/100f); break;
+                case StatType.AttackCooldown: playerStats.AddTempFlat(StatType.AttackCooldown, -boostValue/70f); break; // matches your old logic
+
                     /*
                 case StatType.ExplosionRadius:
                     playerStats.BaseExplosionRadius += boostValue / 130;
@@ -208,11 +254,11 @@ public class LevelUp : MonoBehaviour
     }
     public void LevelUpStats()
     {
-        playerStats.BaseHealth += playerStats.HealthPerLevel;
-        playerStats.BaseDamage += playerStats.DamagePerLevel;
-        playerStats.BaseDefense += playerStats.DefensePerLevel;
-        playerStats.BaseShield += playerStats.ShieldPerLevel;
-        
+        playerStats.AddTempFlat(StatType.MaxHealth, playerStats.HealthPerLevel);
+        playerStats.AddTempFlat(StatType.Damage,    playerStats.DamagePerLevel);
+        playerStats.AddTempFlat(StatType.Defense,   playerStats.DefensePerLevel);
+        playerStats.AddTempFlat(StatType.Shield,    playerStats.ShieldPerLevel);
+
         Debug.LogWarning($"Base shield after level up: {playerStats.BaseShield}");
     }
     void Start()

@@ -183,7 +183,7 @@ public class MapGenerator : MonoBehaviour
     void GenerateContents(Vector3Int tilePos, float enemyDensity, float obstacleDensity, float oreDensity, float chestDensity, RoomType roomType)
     {
         Vector3 spawnPos = new Vector3(tilePos.x, tilePos.y, 0) + new Vector3(0.5f, 0.5f, 0);
-        if (tilemap.HasTile(tilePos) && Random.value < enemyDensity) enemySpawnPoints.Add(spawnPos);
+        // if (tilemap.HasTile(tilePos) && Random.value < enemyDensity) enemySpawnPoints.Add(spawnPos);
         if (tilemap.HasTile(tilePos) && Random.value < obstacleDensity) CreateObstacle(tilePos, spawnPos, roomType);
         if (tilemap.HasTile(tilePos) && Random.value < oreDensity) SpawnOre(spawnPos, tilePos, roomType);
         if (tilemap.HasTile(tilePos) && Random.value < chestDensity) Instantiate(envLootPrefab[Random.Range(0, envLootPrefab.Length)], spawnPos, Quaternion.identity);

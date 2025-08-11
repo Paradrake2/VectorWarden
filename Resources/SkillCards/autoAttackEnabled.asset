@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: autoAttackEnabled
+  m_EditorClassIdentifier: 
+  skillName: autoAttackEnabled
+  description: Automatically attack!
+  skillIcon: {fileID: 873345848713419825, guid: 1756897aab3b3a9488b81f6a91da3cec, type: 3}
+  cardPicture: {fileID: 6410669657259478791, guid: f334f06aadd15cd47ab51774382d67b0, type: 3}
+  skillType: 4
+  skillCardRarity: 3
+  statModifiers: []
+  projectilePrefab: {fileID: 0}
+  minimumLevelRequired: 1
+  specialEffects: []
+  projectileData: {fileID: 0}
+  unlocked: 0
+  maxValue: 0
+  minValue: 0
+  prerequisites: []

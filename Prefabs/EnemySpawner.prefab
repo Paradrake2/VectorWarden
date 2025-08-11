@@ -53,7 +53,7 @@ MonoBehaviour:
       - {fileID: 7942617858057425736, guid: 345383ac70840684cb5e648cfc1a2ebe, type: 3}
     - rarity: 1
       enemies:
-      - {fileID: 7942617858057425736, guid: 345383ac70840684cb5e648cfc1a2ebe, type: 3}
+      - {fileID: 46461337758655470, guid: b4dd994d730df654ab3f6a5f71531057, type: 3}
     - rarity: 2
       enemies:
       - {fileID: 7942617858057425736, guid: 345383ac70840684cb5e648cfc1a2ebe, type: 3}
@@ -66,3 +66,4 @@ MonoBehaviour:
     - rarity: 5
       enemies:
       - {fileID: 7942617858057425736, guid: 345383ac70840684cb5e648cfc1a2ebe, type: 3}
+  spawnCheckInterval: 0.2

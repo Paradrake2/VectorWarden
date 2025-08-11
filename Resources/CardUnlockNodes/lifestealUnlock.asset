@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
+  m_Name: lifestealUnlock
+  m_EditorClassIdentifier: 
+  unlockID: lifestealUnlock
+  cardUnlockname: 
+  icon: {fileID: -7401396626558740647, guid: ff7fe799d514bf74daf307920f761da6, type: 3}
+  prerequisites:
+  - {fileID: 11400000, guid: 54dae99e2ad89c6469ec14cbdb26d229, type: 2}
+  requirements:
+  - item: {fileID: 11400000, guid: 83c7a29c696d0964da7b13ec691d7cb9, type: 2}
+    amount: 10
+  - item: {fileID: 11400000, guid: 22b45c2cf436ebf439ac29a73600cd67, type: 2}
+    amount: 10
+  requiredXP: 2500
+  isUnlocked: 0
+  unlockedCards:
+  - {fileID: 11400000, guid: 93cd041336efa284595208e87bc5b9db, type: 2}
+  - {fileID: 11400000, guid: ae0978b8271896549999a95331b382ba, type: 2}
+  disabledCards: []

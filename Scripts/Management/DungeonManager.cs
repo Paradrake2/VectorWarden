@@ -8,32 +8,25 @@ public class DungeonManager : MonoBehaviour
     public XPUIManager xpuiManager;
     public MapGenerator mapGenerator;
     public GameObject playerPrefab;
-    public int totalEnemies = 0;
     public int enemiesKilled = 0;
     public int floormasterThreshold = 30;
     public int floor;
-    public bool floormasterSpawned = false;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+
+        Instance = this;
+
+
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "Dungeon")
         {
-            floormasterSpawned = false;
+            
             GameObject player = Instantiate(playerPrefab, mapGenerator.playerSpawnPosition, Quaternion.identity);
             Camera.main.GetComponent<CameraFollow>().target = player.transform;
+            UIManager.Instance?.BindPlayer(player.GetComponent<Player>());
             mapGenerator.GenerateRoom();
             uiManager.UpdateHealthText();
             uiManager.UpdateShieldText();
@@ -51,11 +44,18 @@ public class DungeonManager : MonoBehaviour
     public void EnemyKilled()
     {
         enemiesKilled++;
-        if (enemiesKilled >= floormasterThreshold && !floormasterSpawned)
+        if (enemiesKilled >= floormasterThreshold)
         {
             Floormaster.Instance.SpawnFloormaster();
-            floormasterSpawned = true;
         }
+    }
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
     void Start()
     {

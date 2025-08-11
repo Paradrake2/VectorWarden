@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
+  m_Name: moveSpeedUnlock
+  m_EditorClassIdentifier: 
+  unlockID: moveSpeecUnlock
+  cardUnlockname: 
+  icon: {fileID: 6406470635852008369, guid: 65c41496b44f6e44890931a54adbfdb4, type: 3}
+  prerequisites:
+  - {fileID: 11400000, guid: 54dae99e2ad89c6469ec14cbdb26d229, type: 2}
+  requirements:
+  - item: {fileID: 11400000, guid: 83c7a29c696d0964da7b13ec691d7cb9, type: 2}
+    amount: 10
+  requiredXP: 750
+  isUnlocked: 0
+  unlockedCards:
+  - {fileID: 11400000, guid: 93923e7018a8ad44ab643943ebe77302, type: 2}
+  - {fileID: 11400000, guid: 987323a18bb36d94eb9f240d6edfad18, type: 2}
+  - {fileID: 11400000, guid: 5ccd13032678ce548b19774692ed9be5, type: 2}
+  - {fileID: 11400000, guid: 740d6de1399b5644c86c957833003da1, type: 2}
+  - {fileID: 11400000, guid: a9f9e153e2cec6b4dbc915817e3afd3b, type: 2}
+  disabledCards: []

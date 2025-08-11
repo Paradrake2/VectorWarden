@@ -13,6 +13,10 @@ public enum SpecialEffectType
     HomingRange,
     ProjectileSpeed,
     ProjectileSize,
+    AutoAttackCooldown,
+    AutoAttackProjectileCount,
+    AutoAttackDamageMult,
+    CardOptions
 
     // other stuff
 }

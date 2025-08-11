@@ -11,6 +11,7 @@ public class UpgradeMaterialInventoryManager : MonoBehaviour
     void Start()
     {
         Instance = this;
+        PopulateInventory();
     }
 
     // Update is called once per frame

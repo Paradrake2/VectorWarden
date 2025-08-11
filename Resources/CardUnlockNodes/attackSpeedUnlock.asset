@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
+  m_Name: attackSpeedUnlock
+  m_EditorClassIdentifier: 
+  unlockID: attackSpeedUnlock
+  cardUnlockname: 
+  icon: {fileID: -1109151286061468734, guid: 98c13e3c7c238bd45800ec8915d3ffd8, type: 3}
+  prerequisites:
+  - {fileID: 11400000, guid: fc01b8da2da5253428185134ad7c90ad, type: 2}
+  requirements:
+  - item: {fileID: 11400000, guid: 83c7a29c696d0964da7b13ec691d7cb9, type: 2}
+    amount: 10
+  requiredXP: 500
+  isUnlocked: 0
+  unlockedCards:
+  - {fileID: 11400000, guid: 56c37cb6e3516bc45ba5dbeb4c0f12d7, type: 2}
+  - {fileID: 11400000, guid: 6bfd6909f08df6c45a7166d1fe1d2a7d, type: 2}
+  - {fileID: 11400000, guid: 0d0ab19e36f5a444db85a39cfa4df337, type: 2}
+  disabledCards: []

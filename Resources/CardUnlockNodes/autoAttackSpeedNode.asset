@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
+  m_Name: autoAttackSpeedNode
+  m_EditorClassIdentifier: 
+  unlockID: autoAttackSpeed
+  cardUnlockname: 
+  icon: {fileID: 7658509994591555013, guid: b60b29bf694f2f147be556c3b89b9ac2, type: 3}
+  prerequisites:
+  - {fileID: 11400000, guid: 554e7b990501b854cae4191c2123ff1a, type: 2}
+  requirements:
+  - item: {fileID: 11400000, guid: 83c7a29c696d0964da7b13ec691d7cb9, type: 2}
+    amount: 15
+  requiredXP: 1000
+  isUnlocked: 0
+  unlockedCards:
+  - {fileID: 11400000, guid: 8276d539313f69f4f84052b55da0b68a, type: 2}
+  - {fileID: 11400000, guid: 422440c7086d97542ab3900968613a4e, type: 2}
+  - {fileID: 11400000, guid: 6ae644e047930224bb02103218a7a5bc, type: 2}
+  - {fileID: 11400000, guid: 2c03eb579a99cc44eba04f5b0d3b329d, type: 2}
+  - {fileID: 11400000, guid: 3c2c716b92c4a1f468724d29ac247fe5, type: 2}
+  disabledCards: []

@@ -37,10 +37,13 @@ public class EnemySpawn : MonoBehaviour
         else return EnemyRarity.Common;
     }
     public List<EnemyArea> areaEnemyLists;
+    private List<GameObject> activeEnemies = new List<GameObject>();
+
+    public float spawnCheckInterval = 0.2f;
+    private float lastSpawnCheckTime = 0f;
     public void SpawnEnemy(Vector3 position)
     {
-        int areaIndex = DungeonManager.Instance.floor / 10;
-        areaIndex = Mathf.Clamp(areaIndex, 0, areaEnemyLists.Count - 1);
+        int areaIndex = Mathf.Clamp(GameManager.Instance.enemyLevel, 0, areaEnemyLists.Count - 1);
         EnemyArea area = areaEnemyLists[areaIndex];
         var rarityGroups = area.rarityGroups;
         EnemyRarity selectedRarity = ChooseRarity();
@@ -66,11 +69,14 @@ public class EnemySpawn : MonoBehaviour
             chosenEnemy = group.enemies[0];
             Debug.LogWarning("was null");
         }
-        bool isElite = ShouldSpawnElite(DungeonManager.Instance.floor);
+        bool isElite = ShouldSpawnElite(GameManager.Instance.enemyLevel);
         var enemy = Instantiate(chosenEnemy, position, Quaternion.identity);
         enemy.GetComponent<EnemyStats>().SetID(GenerateID());
         enemy.GetComponent<EnemyStats>().SetElite(isElite);
-        enemy.GetComponent<EnemyStats>().FloorMult(DungeonManager.Instance.floor);
+        enemy.GetComponent<EnemyStats>().FloorMult(GameManager.Instance.enemyLevel);
+        activeEnemies.Add(enemy);
+        enemy.GetComponent<Enemy>().OnDeath += () => activeEnemies.Remove(enemy); // Remove from list on death
+
     }
     string GenerateID()
     {
@@ -106,18 +112,52 @@ public class EnemySpawn : MonoBehaviour
         enemyIDs.Add(id);
     }
     private bool ShouldSpawnElite(int floor)
-{
-    float eliteChance = Mathf.Clamp(floor * 0.02f, 0, 0.5f); // Max 50% chance
-    return Random.value < eliteChance;
-}
+    {
+        float eliteChance = Mathf.Clamp(floor * 0.02f, 0, 0.5f); // Max 50% chance
+        return Random.value < eliteChance;
+    }
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Time.time - lastSpawnCheckTime >= spawnCheckInterval)
+        {
+            lastSpawnCheckTime = Time.time;
+            TrySpawnEnemies();
+        }
+    }
+
+    private void TrySpawnEnemies()
+    {
+        if (activeEnemies.Count >= GameManager.Instance.maxEnemies) return;
+
+        int spawnAttempts = 0;
+        int maxSpawnAttempts = 100;
+
+        while (activeEnemies.Count < GameManager.Instance.maxEnemies && spawnAttempts < maxSpawnAttempts)
+        {
+            Vector3 spawnPosition = GetRandomSpawnPosition();
+            SpawnEnemy(spawnPosition);
+            spawnAttempts++;
+        }
+        if (spawnAttempts >= maxSpawnAttempts)
+        {
+            Debug.LogWarning("Reached maximum spawn attempts. Check spawn logic.");
+        }
+    }
+
+    private Vector3 GetRandomSpawnPosition()
+    {
+        Vector3 playerPosition = FindFirstObjectByType<Player>().transform.position;
+
+        float angle = Random.Range(0f, Mathf.PI * 2f);
+        Vector3 direction = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f).normalized;
+
+        float distance = Random.Range(20f, 30f);
+        return playerPosition + direction * distance;
     }
 }

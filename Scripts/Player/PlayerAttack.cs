@@ -107,7 +107,7 @@ public class PlayerAttack : MonoBehaviour
                     Vector3 spawnPosition = firePoint.position + new Vector3(-direction.y, direction.x, 0) * offset;
 
                     GameObject projectile = Instantiate(prefab, spawnPosition, Quaternion.identity);
-
+                    projectile.transform.localScale = new Vector3(playerStats.GetProjectileSize() + 1, playerStats.GetProjectileSize() + 1, 1);
                     // Set rotation based on direction and spriteRotationOffset
                     PlayerProjectile projScript = projectile.GetComponent<PlayerProjectile>();
                     if (projScript != null)

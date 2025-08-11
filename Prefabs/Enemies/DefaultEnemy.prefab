@@ -150,8 +150,8 @@ MonoBehaviour:
   movementSpeedMultiplier: 1.2
   minXP: 200
   maxXP: 500
-  minGold: 0
-  maxGold: 0
+  minGold: 1
+  maxGold: 3
   dropPool:
   - rarity: 0
     items:
@@ -169,6 +169,8 @@ MonoBehaviour:
     items:
     - {fileID: 11400000, guid: caacd75e526c222488eb8178202584bf, type: 2}
     - {fileID: 11400000, guid: af2aa0f87ad166f429de6b9e7312e838, type: 2}
+    - {fileID: 11400000, guid: 22b45c2cf436ebf439ac29a73600cd67, type: 2}
+    - {fileID: 11400000, guid: 83c7a29c696d0964da7b13ec691d7cb9, type: 2}
   - rarity: 1
     items:
     - {fileID: 11400000, guid: a75a1c2430e5e644184452e21ba11925, type: 2}
@@ -246,6 +248,7 @@ MonoBehaviour:
   movement: {fileID: -821830664725293328}
   stats: {fileID: 2834578709467189344}
   playerStats: {fileID: 0}
+  damageIndicator: {fileID: 0}
 --- !u!50 &1910425024513317366
 Rigidbody2D:
   serializedVersion: 5
@@ -348,7 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   stats: {fileID: 2834578709467189344}
-  detectionRange: 10
+  detectionRange: 50
   moveSpeed: 5
   canMove: 1
   mapGenerator: {fileID: 0}

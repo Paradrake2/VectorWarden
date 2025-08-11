@@ -24,9 +24,9 @@ MonoBehaviour:
   noise: 0
   iterations: 0
   maxEnemyDensity: 0.03
-  maxOreDensity: 0.005
+  maxOreDensity: 0
   maxChestDensity: 0.0001
-  maxObstacleWeight: 0.001
+  maxObstacleWeight: 0
   minEnemyDensity: 0.01
   minOreDensity: 0
   minChestDensity: 0

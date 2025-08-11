@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
+  m_Name: autoAttackHomingUnlock
+  m_EditorClassIdentifier: 
+  unlockID: autoAttackHomingUnlock
+  cardUnlockname: 
+  icon: {fileID: 2003311483414086975, guid: 368dff5ecb044a640a8e5581560d44b8, type: 3}
+  prerequisites:
+  - {fileID: 11400000, guid: 5748843e65f9cd6419ae5f4705027dca, type: 2}
+  requirements:
+  - item: {fileID: 11400000, guid: 056db2adf6b1a9c40b432ae476387c7e, type: 2}
+    amount: 10
+  requiredXP: 1000
+  isUnlocked: 0
+  unlockedCards:
+  - {fileID: 11400000, guid: b0e40f9f5302c7b4b8354d19005121b2, type: 2}
+  disabledCards: []

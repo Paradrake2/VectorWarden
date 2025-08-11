@@ -9,11 +9,13 @@ public class InventorySystem : MonoBehaviour
 {
     public List<InventoryItem> itemStacks = new List<InventoryItem>();
     public List<InventoryItem> acquiredItems = new List<InventoryItem>(); // Stuff the player has gotten during the run
-
-    //public List<Augment> ownedAugments = new List<Augment>();
-    public HashSet<String> discoveredRefinedItems = new();
+    public List<Items> acquiredItemsList = new List<Items>();
     public static InventorySystem Instance;
     //public Log log;
+    public void ResetForNewRun()
+    {
+        acquiredItems.Clear();
+    }
     public void RemoveItem(string itemId, int amount)
     {
         var stack = itemStacks.Find(i => i.itemId == itemId);
@@ -104,7 +106,17 @@ public class InventorySystem : MonoBehaviour
             //if (log == null) log = FindFirstObjectByType<Log>();
             //if (log != null) log.AddLogMessage(itemId, amount);
         }
-
+        if (!acquiredItemsList.Contains(ItemRegistry.Instance.GetItemById(itemId)))
+        {
+            if (ItemRegistry.Instance.GetItemById(itemId).itemType == ItemType.Material)
+            {
+                acquiredItemsList.Add(ItemRegistry.Instance.GetItemById(itemId));
+            }
+            else
+            {
+                Debug.LogWarning($"Item with ID {itemId} not found in registry.");
+            }
+        }
     }
     public void AddItemToSpoils(string itemId, int amount)
     {

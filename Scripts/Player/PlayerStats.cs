@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public enum StatType
 {
     MaxHealth,
@@ -40,7 +40,7 @@ public class PlayerStats : MonoBehaviour
     public static PlayerStats Instance;
     public LevelUp levelUp;
 
-    public int accessorySlotNum = 5;
+    public int accessorySlotNum = 5; // Currently deprecated
     public int StartingCardCount = 1;
     public int Level = 1;
     public float XP = 0;
@@ -58,7 +58,6 @@ public class PlayerStats : MonoBehaviour
     public float BaseManaRegeneration = 1f;
     public float BaseProjectileSpeed = 10f;
     public float BaseShield = 0f;
-
     public float DashDistance = 2f;
     public int DashNumber = 2;
     public int BaseCardOptions = 3;
@@ -67,7 +66,6 @@ public class PlayerStats : MonoBehaviour
     public float BaseExplosionRadius = 0;
     public float BaseHomingRange = 0;
     public float BaseProjectileSize = 1f;
-    public float CurrentGold = 0f;
     public float BaseMoveSpeed = 5.0f;
     public float BaseAttackSpeed = 8f; // 8 attacks per second
 
@@ -76,7 +74,9 @@ public class PlayerStats : MonoBehaviour
     public float DamagePerLevel = 1f;
     public float DefensePerLevel = 0.5f;
     public int ShieldPerLevel = 5;
-
+    public float goldAmount;
+    private Dictionary<StatType, float> tempFlat = new();
+    private Dictionary<StatType, float> tempPercent = new();
 
     public bool isDashing = false;
 
@@ -101,7 +101,6 @@ public class PlayerStats : MonoBehaviour
     public float CurrentHomingRange => Mathf.Max(0f, CalculateStat(StatType.HomingRange));
     public float CurrentProjectileSize => CalculateStat(StatType.ProjectileSize);
     public float CurrentPlayerMoveSpeed => CalculateStat(StatType.PlayerMoveSpeed);
-
     public float CurrentHealth;
     public int CurrentShield;
     public float CurrentMana;
@@ -110,6 +109,9 @@ public class PlayerStats : MonoBehaviour
     public float ShieldRegenRate = 5f; // how many seconds it takes to reach full shield
     private float lastShieldRegenTime = -99999f;
     private float shieldRegenBuffer = 0f;
+
+    public float baseAutoAttackCooldown = 5f;
+    public float minAutoAttackCooldown = 0.1f;
 
 
     public float XpToNextLevel => Level * 2000;
@@ -129,7 +131,32 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float inspector_CurrentMaxShield;
 
 
-
+    void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
+    void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
+    public void AddTempFlat(StatType stat, float amount)
+    {
+        if (!tempFlat.ContainsKey(stat)) tempFlat[stat] = 0f;
+        tempFlat[stat] += amount;
+    }
+    public void AddTempPercent(StatType stat, float amount)
+    {
+        if (!tempPercent.ContainsKey(stat)) tempPercent[stat] = 0f;
+        tempPercent[stat] += amount;   // e.g., +0.10f = +10%
+    }
+    public void ClearTempStats()
+    {
+        tempFlat.Clear();
+        tempPercent.Clear();
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name != "Dungeon") return;
+        levelUp = FindFirstObjectByType<LevelUp>(FindObjectsInactive.Include);
+        if (levelUp != null) levelUp.BindPlayerStats(this);
+        else Debug.LogError("LevelUp component not found in the scene.");
+        XP = 0;
+        Level = 1;
+    }
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -156,7 +183,7 @@ public class PlayerStats : MonoBehaviour
         CurrentShield = (int)CalculateMaxShield;
         UIManager.Instance.UpdateShieldText();
     }
-
+    
     void Update()
     {
         // Update inspector fields for debugging
@@ -203,10 +230,25 @@ public class PlayerStats : MonoBehaviour
         XP += amount * CurrentXPGain;
         XPUIManager.Instance.UpdateXPText();
         XPUIManager.Instance.UpdateXPBarFill();
+        if (XP >= XpToNextLevel)
+        {
+            ProcessLevelUps();
+        }
+    }
+    private void ProcessLevelUps()
+    {
+        int levelsGained = 0;
         while (XP >= XpToNextLevel)
         {
             XP -= XpToNextLevel;
-            LevelUp();
+            Level++;
+            levelsGained++;
+            CurrentShield = (int)CalculateMaxShield;
+        }
+        if (levelsGained > 0)
+        {
+            levelUp.EnqueueLevelUps(levelsGained, Level, GetNumCardOptions());
+            UIManager.Instance.UpdateShieldText();
         }
     }
     public List<GameObject> GetActiveProjectiles()
@@ -234,13 +276,27 @@ public class PlayerStats : MonoBehaviour
         }
         return activeEffects;
     }
+    public List<GameObject> GetAutoAttackProjectiles()
+    {
+        List<GameObject> projectiles = new List<GameObject>();
+        foreach (var card in activeSkillCards)
+        {
+            if (card != null && card.skillType == SkillType.AutoAttack && card.projectilePrefab != null)
+            {
+                projectiles.Add(card.projectilePrefab);
+            }
+        }
+        return projectiles;
+    }
     public void LevelUp()
     {
-        Level++;
-        levelUp.LevelUpPlayer(Level, GetNumCardOptions());
 
-        CurrentShield = (int)CalculateMaxShield;
-        UIManager.Instance.UpdateShieldText();
+        XP -= XpToNextLevel;
+        Level++;
+
+
+        Debug.LogWarning("Level up player stats running");
+
     }
     public float GetStat(StatType statType)
     {
@@ -248,13 +304,23 @@ public class PlayerStats : MonoBehaviour
     }
     public int GetNumCardOptions()
     {
-        return BaseCardOptions + BonusCardOptions;
+        int val = BaseCardOptions;
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.CardOptions)
+            {
+                val += (int)effect.value;
+            }
+        }
+        return val + BonusCardOptions;
     }
     float CalculateStat(StatType type)
     {
         float flat = 0f;
         float percent = 1f;
 
+        float tFlat = 0f; tempFlat.TryGetValue(type, out tFlat);
+        float tPct  = 0f; tempPercent.TryGetValue(type, out tPct);
         foreach (var kvp in equippedItems)
         {
             var item = kvp.Value;
@@ -288,8 +354,8 @@ public class PlayerStats : MonoBehaviour
             {
                 if (mod.statType == type)
                 {
-                    flat += mod.flatAmount;
-                    percent += mod.percentAmount;
+                    tFlat += mod.flatAmount;
+                    tPct += mod.percentAmount;
                 }
             }
             // Debug.LogError("Checking card: " + card.skillName);
@@ -300,39 +366,39 @@ public class PlayerStats : MonoBehaviour
                 case StatType.AttackCooldown:
                     if (projData != null)
                     {
-                        percent += projData.attackSpeedModifier;
+                        tPct += projData.attackSpeedModifier;
                         //Debug.LogError("Attack Speed Modifier: " + projData.attackSpeedModifier);
                     }
                     break;
                 case StatType.PierceAmount:
                     if (projData != null)
                     {
-                        flat += projData.pierceAmount;
+                        tFlat += projData.pierceAmount;
                     }
                     break;
                 case StatType.ExplosionRadius:
                     if (projData != null)
                     {
-                        flat += projData.explosionRadius;
+                        tFlat += projData.explosionRadius;
                     }
                     break;
                 case StatType.HomingRange:
                     if (projData != null)
                     {
-                        flat += projData.homingRange;
+                        tFlat += projData.homingRange;
                     }
                     break;
                 case StatType.ProjectileSize:
                     if (projData != null)
                     {
-                        flat += projData.projectileSize - 1f;
+                        tFlat += projData.projectileSize - 1f;
                     }
                     break;
                 case StatType.Damage:
                     if (projData != null)
                     {
-                        flat += projData.baseDamage;
-                        percent += projData.damageMultiplier;
+                        tFlat += projData.baseDamage;
+                        tPct += projData.damageMultiplier;
                     }
                     break;
             }
@@ -362,8 +428,8 @@ public class PlayerStats : MonoBehaviour
             StatType.Shield => BaseShield,
             _ => 0
         };
-        percent = Mathf.Max(0f, percent); // Ensure percent is not negative
-        return (baseValue + flat) * percent;
+        percent = Mathf.Max(0f, percent + tPct); // Ensure percent is not negative
+        return (baseValue + flat + tFlat) * percent;
     }
 
     public bool HasSpecialEffect(SpecialEffectType effectType)
@@ -464,7 +530,7 @@ public class PlayerStats : MonoBehaviour
 
     public int GetPiercingAmount()
     {
-        int val = 0;
+        int val = BasePiercingAmount;
         foreach (var effect in GetActiveSpecialEffects())
         {
             if (effect.effectType == SpecialEffectType.Piercing)
@@ -498,6 +564,54 @@ public class PlayerStats : MonoBehaviour
         }
         return val;
     }
+    public float GetAutoAttackCooldown()
+    {
+        float cooldown = baseAutoAttackCooldown;
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.AutoAttackCooldown)
+            {
+                float r = Mathf.Clamp(effect.value, -0.95f, 0.95f);
+                cooldown *= 1f - r;
+            }
+        }
+        return cooldown;
+    }
+    public int GetAutoAttackProjectileCount()
+    {
+        int count = 1; // Default to 1 projectile
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.AutoAttackProjectileCount)
+            {
+                count += (int)effect.value;
+            }
+        }
+        return count;
+    }
+    public bool HasAutoAttack()
+    {
+        foreach (var card in activeSkillCards)
+        {
+            if (card != null && card.skillType == SkillType.AutoAttack)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public float GetAutoAttackDamageMultiplier()
+    {
+        float multiplier = 1f; // Default multiplier
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.AutoAttackDamageMult)
+            {
+                multiplier += effect.value;
+            }
+        }
+        return multiplier;
+    }
     public int GetShieldRegenRate()
     {
         return Mathf.CeilToInt(CalculateMaxShield / ShieldRegenRate);
@@ -514,5 +628,40 @@ public class PlayerStats : MonoBehaviour
         CurrentMana = CurrentMaxMana;
         CurrentShield = (int)CalculateMaxShield;
         UIManager.Instance.UpdateShieldText();
+    }
+    public void IncreaseCardOptions(int amount)
+    {
+        BonusCardOptions += amount;
+        if (BonusCardOptions < 0)
+        {
+            BonusCardOptions = 0;
+        }
+    }
+    public void GainGold(float amount)
+    {
+        goldAmount += amount;
+    }
+    public void RemoveGold(float amount)
+    {
+        goldAmount -= amount;
+        if (goldAmount < 0)
+        {
+            goldAmount = 0;
+        }
+    }
+    public bool HasEnoughGold(float amount)
+    {
+        return goldAmount >= amount;
+    }
+    public float GetGoldAmount()
+    {
+        return goldAmount;
+    }
+    public void AddCardToOwnedSkillCards(SkillCard card)
+    {
+        if (!ownedSkillCards.Contains(card))
+        {
+            ownedSkillCards.Add(card);
+        }
     }
 }

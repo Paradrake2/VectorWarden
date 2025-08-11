@@ -21,6 +21,10 @@ public class UpgradeUIManager : MonoBehaviour
     public Button equipmentButton;
     public Button startMenuButton;
     public List<GameObject> statUpgradeButtons;
+    public TextMeshProUGUI statsText;
+
+    public Transform GoldConversionPanel;
+    public GoldConversionUIManager goldConversionUIManager;
     void Start()
     {
         playerStats = PlayerStats.Instance;
@@ -29,6 +33,8 @@ public class UpgradeUIManager : MonoBehaviour
             Debug.LogError("PlayerStats instance not found.");
         }
         notEnoughXPPanel.SetActive(false);
+        GoldConversionPanel.gameObject.SetActive(false);
+        Instance = this;
     }
     public void ShowNotEnoughXPPanel(float neededXP)
     {
@@ -63,6 +69,32 @@ public class UpgradeUIManager : MonoBehaviour
         notEnoughItemsPanel.SetActive(false);
     }
 
+    public void UpdateStatsText()
+    {
+        if (statsText == null)
+        {
+            Debug.LogError("StatsText is not assigned.");
+            return;
+        }
+
+        statsText.text = $"Current Stats:\n" +
+                        $"Health: {playerStats.BaseHealth}\n" +
+                        $"Damage: {playerStats.CurrentDamage}\n" +
+                        $"Defense: {playerStats.CurrentDefense}\n" +
+                        $"Shield: {playerStats.CurrentShield}\n" +
+                        $"XP: {playerStats.CurrentXPGain} \n" +
+                        $"Card Options: {playerStats.BaseCardOptions + playerStats.BonusCardOptions} \n";
+    }
+
+    public void ShowGoldConversionPanel()
+    {
+        GoldConversionPanel.gameObject.SetActive(true);
+        goldConversionUIManager.PopulateInventory();
+    }
+    public void HideGoldConversionPanel()
+    {
+        GoldConversionPanel.gameObject.SetActive(false);
+    }
     // Update is called once per frame
     void Update()
     {

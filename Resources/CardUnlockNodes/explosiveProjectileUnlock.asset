@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlockID: explosiveProjectileUnlock
   cardUnlockname: Explosive Projectile
-  icon: {fileID: 2768555999611999483, guid: 46323c318a7252c42a525f0fadd5b3b2, type: 3}
+  icon: {fileID: 1159855217845705885, guid: c6d867d37cf9d124cb2073acf0c50dfd, type: 3}
   prerequisites:
   - {fileID: 11400000, guid: b7e99714446123142b9707f0d05d4105, type: 2}
   requirements:

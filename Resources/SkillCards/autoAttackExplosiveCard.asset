@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: autoAttackExplosiveCard
+  m_EditorClassIdentifier: 
+  skillName: Auto Attack Fireball
+  description: 
+  skillIcon: {fileID: 2768555999611999483, guid: 46323c318a7252c42a525f0fadd5b3b2, type: 3}
+  cardPicture: {fileID: -7596484308406626709, guid: efa96979553f7b044bbf2e00dce1cfd8, type: 3}
+  skillType: 4
+  skillCardRarity: 3
+  statModifiers: []
+  projectilePrefab: {fileID: 4556626976445569952, guid: a8e79d26396bbaf4f896fd808e6889cc, type: 3}
+  minimumLevelRequired: 1
+  specialEffects: []
+  projectileData: {fileID: 11400000, guid: ecfb831972b088749b5df023cbbac9f4, type: 2}
+  unlocked: 0
+  maxValue: 0
+  minValue: 0
+  prerequisites:
+  - {fileID: 11400000, guid: 1aaa3b3c5ae0d2345812e3c8b9c60e33, type: 2}
