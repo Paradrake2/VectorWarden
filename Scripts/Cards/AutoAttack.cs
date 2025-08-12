@@ -11,7 +11,6 @@ public class AutoAttack : MonoBehaviour
     public List<PlayerProjectile> projectiles;
     public PlayerStats playerStats;
     public float attackCooldown = 1f; // Default cooldown
-    private float attackTimer = 0f;
 
     void Start()
     {
@@ -23,18 +22,79 @@ public class AutoAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerStats.HasAutoAttack())
+        foreach (var autoAttack in playerStats.autoAttackDataList)
         {
-            attackTimer -= Time.deltaTime;
-            if (attackTimer <= 0f)
+            float cooldown = Mathf.Max(0.1f, autoAttack.baseAttackCooldown - playerStats.GetAutoAttackCooldown());
+            float auraCooldown = Mathf.Max(0.05f, playerStats.GetAuraAttackCooldown());
+            cooldown -= Time.deltaTime;
+            if (cooldown <= 0f)
             {
-                StartCoroutine(FireAutoAttack());
-                attackTimer = playerStats.GetAutoAttackCooldown();
+                if (autoAttack.attackType == AutoAttackType.Aura)
+                {
+                    cooldown = auraCooldown;
+                }
+                else
+                {
+                    cooldown = Mathf.Max(0.1f, autoAttack.baseAttackCooldown - playerStats.GetAutoAttackCooldown());
+                }
+                StartCoroutine(FireAutoAttack(autoAttack));
             }
         }
     }
-    IEnumerator FireAutoAttack()
+    IEnumerator FireAutoAttack(AutoAttackData autoAttack)
     {
+        int projectileCount = autoAttack.projectileCount + playerStats.GetAutoAttackProjectileCount();
+        switch (autoAttack.attackType)
+        {
+            case AutoAttackType.Projectile:
+                for (int i = 0; i < projectileCount; i++)
+                {
+                    GameObject nearestEnemy = GetNearestEnemy();
+                    if (nearestEnemy != null)
+                    {
+                        Vector3 direction = (nearestEnemy.transform.position - transform.position).normalized;
+                        FireProjectile(direction, autoAttack.projectilePrefab);
+                    }
+                    yield return new WaitForSeconds(0.1f); // Slight delay between projectiles
+                }
+                break;
+            case AutoAttackType.Aura:
+                float auraRadius = autoAttack.auraRadius;
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, auraRadius);
+                // create aura effect
+                foreach (var enemy in hitEnemies)
+                {
+                    EnemyStats enemyStats = enemy.GetComponent<EnemyStats>();
+                    if (enemyStats != null)
+                    {
+                        enemyStats.TakeDamage(playerStats.CurrentDamage * playerStats.GetAuraDamageMult());
+                    }
+                }
+                break;
+            case AutoAttackType.Spread:
+                float angleStep = 360f / projectileCount;
+                float currentAngle = 0f;
+
+                for (int i = 0; i < projectileCount; i++)
+                {
+                    float radian = currentAngle * Mathf.Deg2Rad;
+                    Vector3 direction = new Vector3(Mathf.Cos(radian), Mathf.Sin(radian), 0).normalized;
+                    FireProjectile(direction, autoAttack.projectilePrefab);
+                    currentAngle += angleStep;
+                }
+                break;
+            case AutoAttackType.Shotgun:
+
+                break;
+            case AutoAttackType.Orbital:
+                RotatingAttack(autoAttack, projectileCount);
+                break;
+            default:
+                Debug.LogWarning("Unknown AutoAttackType");
+                yield break;
+        }
+        
+        /*
         var projectilePrefabs = playerStats.GetAutoAttackProjectiles();
         int projectileCount = playerStats.GetAutoAttackProjectileCount();
         float attackDelay = playerStats.GetAutoAttackCooldown();
@@ -54,6 +114,13 @@ public class AutoAttack : MonoBehaviour
                 yield return new WaitForSeconds(0.1f);
             }
         }
+        */
+    }
+    void RotatingAttack(AutoAttackData autoAttack, int projectileCount)
+    {
+        float damage = playerStats.CurrentDamage * playerStats.GetAutoAttackDamageMultiplier();
+        int piercingAmount = Mathf.CeilToInt(damage / 5) + playerStats.GetPiercingAmount(); // how many enemies it can hit before it disappears and has to be regenerated
+
     }
     void FireProjectile(Vector3 direction, GameObject prefab)
     {
@@ -69,7 +136,6 @@ public class AutoAttack : MonoBehaviour
             rb.linearVelocity = direction * playerStats.GetProjectileSpeed();
         }
     }
-
     GameObject GetNearestEnemy()
     {
         float closestDistance = Mathf.Infinity;

@@ -231,10 +231,23 @@ public class EnemyStats : MonoBehaviour
 
         float baseGrowth = 1.2f;
         float scale = Mathf.Pow(baseGrowth, floor - 1);
-        maxHealth *= Mathf.Floor(maxHealth *scale);
+        maxHealth *= Mathf.Floor(maxHealth * scale);
         currentHealth = Mathf.Floor(currentHealth * scale);
         maxHealth = Mathf.Floor(maxHealth * scale);
         damage = Mathf.Floor(damage * scale);
         defense = Mathf.Floor(defense * scale);
+    }
+
+    public void TakeDamage(float amount)
+    {
+        float finalDamage = Mathf.Max(1, amount - defense);
+        currentHealth -= finalDamage;
+        if (currentHealth <= 0)
+        {
+            if (type == EnemyType.Normal)
+            {
+                GetComponent<Enemy>().Die();
+            }
+        }
     }
 }

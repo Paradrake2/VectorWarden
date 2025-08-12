@@ -28,5 +28,5 @@ MonoBehaviour:
   homingRange: 0
   explosionRadius: 0
   pierceAmount: 0
-  knockbackForce: 0
+  knockbackForce: 1
   projectileSize: 1

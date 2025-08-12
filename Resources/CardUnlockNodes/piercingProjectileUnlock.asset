@@ -20,7 +20,7 @@ MonoBehaviour:
   requirements:
   - item: {fileID: 11400000, guid: 377b0a85d719e8242aad405f9825c44d, type: 2}
     amount: 5
-  - item: {fileID: 11400000, guid: 1ead2bd57a09223409941c1c818d4b7e, type: 2}
+  - item: {fileID: 11400000, guid: 83c7a29c696d0964da7b13ec691d7cb9, type: 2}
     amount: 5
   requiredXP: 100
   isUnlocked: 0

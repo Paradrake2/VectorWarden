@@ -249,6 +249,8 @@ MonoBehaviour:
   stats: {fileID: 2834578709467189344}
   playerStats: {fileID: 0}
   damageIndicator: {fileID: 0}
+  knockedBack: 0
+  rb: {fileID: 1910425024513317366}
 --- !u!50 &1910425024513317366
 Rigidbody2D:
   serializedVersion: 5

@@ -15,7 +15,7 @@ MonoBehaviour:
   skillName: rareDefenseSkillCard
   description: Increases defense
   skillIcon: {fileID: -2244557816888022765, guid: 4c759b573dc71e3459a8ed9cf7d04972, type: 3}
-  cardPicture: {fileID: 7153750695464982860, guid: e59ddead468147a469b80685f08b8858, type: 3}
+  cardPicture: {fileID: -7413137725154735487, guid: 34c100fb511cd6d4486ceebfdbae8fda, type: 3}
   skillType: 1
   skillCardRarity: 2
   statModifiers:
@@ -29,3 +29,5 @@ MonoBehaviour:
   unlocked: 1
   maxValue: 0
   minValue: 0
+  prerequisites: []
+  autoAttackDataList: []

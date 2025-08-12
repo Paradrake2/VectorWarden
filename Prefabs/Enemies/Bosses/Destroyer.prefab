@@ -156,7 +156,7 @@ MonoBehaviour:
   previewPrefab: {fileID: 6371842183072096162, guid: fd5aa9608d9d9e94193a2c41ee903737, type: 3}
   player: {fileID: 0}
   health: 999999
-  attackRange: 15
+  attackRange: 50
   attackCooldown: 1.5
   projectileSpeed: 10
 --- !u!114 &2504809439447683730

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: epicAuraRadiusCard
+  m_EditorClassIdentifier: 
+  skillName: Epic Aura Radius
+  description: 
+  skillIcon: {fileID: 3435033996602058034, guid: be2384da1c979d04f8e64b04f5fe2985, type: 3}
+  cardPicture: {fileID: -3826338469656269409, guid: 3cdc7a9ae4deef04a9ed5b80b0c50736, type: 3}
+  skillType: 2
+  skillCardRarity: 3
+  statModifiers: []
+  projectilePrefab: {fileID: 0}
+  minimumLevelRequired: 1
+  specialEffects:
+  - {fileID: 11400000, guid: 330e87b0bf11a684d9bfd701e41f7cf5, type: 2}
+  projectileData: {fileID: 0}
+  unlocked: 0
+  maxValue: 0
+  minValue: 0
+  prerequisites: []
+  autoAttackDataList: []

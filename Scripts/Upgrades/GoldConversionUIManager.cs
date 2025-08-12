@@ -68,7 +68,7 @@ public class GoldConversionUIManager : MonoBehaviour
 
     void UpdateGoldText()
     {
-        goldAmountText.text = playerStats.GetGoldAmount().ToString();
+        goldAmountText.text = NumberFormatUtil.FormatWithSciThreshold(playerStats.GetGoldAmount());
     }
 
     // --- Helpers ---

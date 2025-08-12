@@ -1,5 +1,7 @@
+using System.Collections;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering.Universal.Internal;
 public enum ProjectileType
 {
@@ -7,6 +9,7 @@ public enum ProjectileType
     Explosive,
     Piercing,
     Homing,
+    Orbital,
     None
 }
 
@@ -27,9 +30,20 @@ public class PlayerProjectile : MonoBehaviour
     public float projectileSize = 1f;
     public float damageMultiplier = 1f; // Multiplier for damage based on player stats
     public float lifetime = 2f;
+    private float knockbackForce = 1f; // Default knockback force
 
+    private Vector2 inverseDirection;
     [SerializeField] private float homingTimer = 0f;
     [SerializeField] private const float homingInterval = 0.05f; // How often to check for homing targets
+
+
+    private OrbitalAttack _orbitalOwner;
+    private bool _notifiedOwner;
+    public UnityEvent OnBegin, OnDone;
+    public void SetOrbitalOwner(OrbitalAttack owner)
+    {
+        _orbitalOwner = owner;
+    }
     void Start()
     {
         if (playerStats == null)
@@ -52,7 +66,7 @@ public class PlayerProjectile : MonoBehaviour
             explosionRadius = projectileData.explosionRadius + playerStats.GetExplosionRadius();
             homingRange = projectileData.homingRange + playerStats.GetHomingRange();
             projectileSize = projectileData.projectileSize + playerStats.GetProjectileSize();
-
+            knockbackForce = projectileData.knockbackForce;
         }
         else
         {
@@ -109,6 +123,7 @@ public class PlayerProjectile : MonoBehaviour
     public void InitializeProjectile(Vector2 direction, float speed, float damageAmount, ProjectileType type, ProjectileData data = null)
     {
         moveDirection = direction.normalized;
+        inverseDirection = -moveDirection;
         if (data != null)
         {
             projectileData = data;
@@ -147,7 +162,7 @@ public class PlayerProjectile : MonoBehaviour
         */
         gameObject.transform.localScale = new Vector3(projectileSize, projectileSize, 1f);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb != null)
+        if (rb != null && projectileType != ProjectileType.Orbital)
         {
             rb.linearVelocity = moveDirection * projectileSpeed; // Assuming the projectile moves in the direction it's facing
         }
@@ -160,9 +175,10 @@ public class PlayerProjectile : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyStats enemyStats = collision.gameObject.GetComponent<EnemyStats>();
+            collision.GetComponent<Enemy>()?.ApplyKnockback(-inverseDirection, knockbackForce * (1 - enemyStats.getKnockbackResistance()));
             if (enemyStats != null && explosionRadius <= 0f)
             {
-                enemyStats.currentHealth -= damage;
+                CalcEnemyDamage(damage, enemyStats);
                 if (enemyStats.currentHealth <= 0)
                 {
                     if (collision.GetComponent<Enemy>() != null)
@@ -181,15 +197,43 @@ public class PlayerProjectile : MonoBehaviour
                 Debug.Log("Lifesteal applied");
                 playerStats.GainHealth(damage * playerStats.GetLifestealAmount());
             }
-            if (playerStats.GetExplosionRadius() + explosionRadius > 0f) Explode();
-            if (pierceAmount < 0) Destroy(gameObject);
+            if (playerStats.GetExplosionRadius() + explosionRadius > 0f)
+            {
+                Explode();
+                Vector3 popupPosition = transform.position;
+                ExplosionRadiusManager.Instance.SpawnRadiusIndicator(popupPosition, explosionRadius);
+            }
+            if (pierceAmount < 0) DestroyGameobject();
         }
         else if (collision.gameObject.CompareTag("Wall"))
         {
-            Destroy(gameObject);
+            DestroyGameobject();
         }
     }
+    void DestroyGameobject()
+    {
+        if (projectileType == ProjectileType.Orbital)
+        {
+            NotifyOwnerOnce();
+        }
+        Destroy(gameObject);
+    }
+    private void NotifyOwnerOnce()
+    {
+        if (_notifiedOwner) return;
+        _notifiedOwner = true;
+        _orbitalOwner?.OnOrbitalExpired(this);
+    }
 
+    void CalcEnemyDamage(float dmgAmount, EnemyStats stats)
+    {
+        float defense = stats.defense;
+        float finalDamage = Mathf.Max(1, dmgAmount - defense);
+        Vector3 popupPosition = stats.transform.position + Vector3.up * 1.2f;
+        DamagePopup.Spawn(finalDamage, popupPosition, Color.red);
+        stats.currentHealth -= finalDamage;
+    }
+    
     void Explode()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
@@ -202,6 +246,7 @@ public class PlayerProjectile : MonoBehaviour
                 if (enemyStats != null)
                 {
                     enemyStats.currentHealth -= damage;
+                    
                     Debug.Log("BOOM");
                     if (enemyStats.currentHealth <= 0)
                     {

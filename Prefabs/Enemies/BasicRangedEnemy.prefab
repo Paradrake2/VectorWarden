@@ -246,6 +246,8 @@ MonoBehaviour:
   stats: {fileID: 2461246160683010473}
   playerStats: {fileID: 0}
   damageIndicator: {fileID: 0}
+  knockedBack: 0
+  rb: {fileID: 4673663967307510916}
 --- !u!114 &5255666367628965395
 MonoBehaviour:
   m_ObjectHideFlags: 0

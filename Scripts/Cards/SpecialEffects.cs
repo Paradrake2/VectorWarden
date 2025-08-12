@@ -16,7 +16,10 @@ public enum SpecialEffectType
     AutoAttackCooldown,
     AutoAttackProjectileCount,
     AutoAttackDamageMult,
-    CardOptions
+    CardOptions,
+    AuraDamageMult,
+    AuraRadius,
+    AuraAttackCooldown,
 
     // other stuff
 }

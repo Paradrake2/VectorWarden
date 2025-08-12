@@ -71,7 +71,7 @@ public class Floormaster : MonoBehaviour
 
     Vector3 GetSpawnPosition()
     {
-        Vector3 playerPosition = FindFirstObjectByType<PlayerStats>().transform.position;
+        Vector3 playerPosition = FindFirstObjectByType<Player>().transform.position;
         float angle = Random.Range(0f, Mathf.PI * 2); // Get random direction on unit circle
         Vector3 direction = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0).normalized;
         float distance = Random.Range(15f, 30f);

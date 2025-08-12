@@ -5,6 +5,7 @@ public class UpgradeButtons : MonoBehaviour
 {
     public void LaunchRun()
     {
+        PlayerStats.Instance.ClearTempStats();
         SceneManager.LoadScene("Dungeon");
     }
     void Start()

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: redOrbitalCard
+  m_EditorClassIdentifier: 
+  skillName: Red Orbital
+  description: 
+  skillIcon: {fileID: -4937209161576367049, guid: 8518cbc5c646041478889cba78c6ae4a, type: 3}
+  cardPicture: {fileID: 8042452438246427238, guid: 47d402cc297bc6b4cafc945936769ffc, type: 3}
+  skillType: 4
+  skillCardRarity: 3
+  statModifiers: []
+  projectilePrefab: {fileID: 0}
+  minimumLevelRequired: 1
+  specialEffects: []
+  projectileData: {fileID: 11400000, guid: 9f86ce03459f61448970494d55545151, type: 2}
+  unlocked: 1
+  maxValue: 0
+  minValue: 0
+  prerequisites: []
+  autoAttackDataList:
+  - {fileID: 11400000, guid: 099f5397231f08b4394d288ea3022742, type: 2}

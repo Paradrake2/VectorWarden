@@ -38,6 +38,7 @@ public class SkillCard : ScriptableObject
     public float minValue;
 
     public List<SkillCard> prerequisites;
+    public List<AutoAttackData> autoAttackDataList;
 }
 
 

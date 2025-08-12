@@ -37,6 +37,7 @@ public class PlayerStats : MonoBehaviour
     public List<SkillCard> activeSkillCards = new List<SkillCard>();
     public List<SpecialEffectType> activeSpecialEffects = new List<SpecialEffectType>();
     public List<SkillCard> ownedSkillCards = new List<SkillCard>(); // Skill cards that have been acquired that the player can then take into battle
+    public List<AutoAttackData> autoAttackDataList = new List<AutoAttackData>();
     public static PlayerStats Instance;
     public LevelUp levelUp;
 
@@ -147,6 +148,8 @@ public class PlayerStats : MonoBehaviour
     {
         tempFlat.Clear();
         tempPercent.Clear();
+        CurrentHealth = CurrentMaxHealth;
+        CurrentShield = (int)CalculateMaxShield;
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -183,7 +186,7 @@ public class PlayerStats : MonoBehaviour
         CurrentShield = (int)CalculateMaxShield;
         UIManager.Instance.UpdateShieldText();
     }
-    
+
     void Update()
     {
         // Update inspector fields for debugging
@@ -276,28 +279,6 @@ public class PlayerStats : MonoBehaviour
         }
         return activeEffects;
     }
-    public List<GameObject> GetAutoAttackProjectiles()
-    {
-        List<GameObject> projectiles = new List<GameObject>();
-        foreach (var card in activeSkillCards)
-        {
-            if (card != null && card.skillType == SkillType.AutoAttack && card.projectilePrefab != null)
-            {
-                projectiles.Add(card.projectilePrefab);
-            }
-        }
-        return projectiles;
-    }
-    public void LevelUp()
-    {
-
-        XP -= XpToNextLevel;
-        Level++;
-
-
-        Debug.LogWarning("Level up player stats running");
-
-    }
     public float GetStat(StatType statType)
     {
         return CalculateStat(statType);
@@ -320,7 +301,7 @@ public class PlayerStats : MonoBehaviour
         float percent = 1f;
 
         float tFlat = 0f; tempFlat.TryGetValue(type, out tFlat);
-        float tPct  = 0f; tempPercent.TryGetValue(type, out tPct);
+        float tPct = 0f; tempPercent.TryGetValue(type, out tPct);
         foreach (var kvp in equippedItems)
         {
             var item = kvp.Value;
@@ -482,25 +463,27 @@ public class PlayerStats : MonoBehaviour
     }
     public float GetCriticalChance()
     {
+        float val = 0f;
         foreach (var effect in GetActiveSpecialEffects())
         {
             if (effect.effectType == SpecialEffectType.CriticalChance)
             {
-                return effect.value;
+                val += effect.value;
             }
         }
-        return 0f; // Default value if no effect is active
+        return val; // Default value if no effect is active
     }
     public float GetCriticalDamage()
     {
+        float val = 0f;
         foreach (var effect in GetActiveSpecialEffects())
         {
             if (effect.effectType == SpecialEffectType.CriticalDamage)
             {
-                return effect.value;
+                val += effect.value;
             }
         }
-        return 0f; // Default value if no effect is active
+        return val; // Default value if no effect is active
     }
     public float GetExplosionRadius()
     {
@@ -664,4 +647,46 @@ public class PlayerStats : MonoBehaviour
             ownedSkillCards.Add(card);
         }
     }
+    public float GetAuraRadius()
+    {
+        float val = 0f;
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.AuraRadius)
+            {
+                val += effect.value;
+            }
+        }
+        return val;
+    }
+    public float GetAuraDamageMult()
+    {
+        float val = 0.1f;
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.AuraDamageMult)
+            {
+                val += effect.value;
+            }
+        }
+        return val;
+    }
+    public float GetAuraAttackCooldown()
+    {
+        float cooldown = 1f;
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.AuraAttackCooldown)
+            {
+                float r = Mathf.Clamp(effect.value, -0.95f, 0.95f);
+                cooldown *= 1f - r;
+            }
+        }
+        return cooldown;
+    }
+    public void AddAutoAttackToList(AutoAttackData data)
+    {
+        autoAttackDataList.Add(data);
+    }
+
 }

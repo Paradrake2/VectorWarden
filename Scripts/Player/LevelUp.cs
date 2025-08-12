@@ -112,15 +112,9 @@ public class LevelUp : MonoBehaviour
                 }
             }
         }
-
-        if (playerLevel % 5 == 0 && filteredByLevel.Any(card => card.skillType == SkillType.Projectile)) // only runs if there are available projectile cards and the player level is a multiple of 5
-        {
-
-            filteredByLevel = filteredByLevel.FindAll(card => card.skillType == SkillType.Projectile);
-        }
-        filteredByLevel.RemoveAll(card =>
-            card.skillType == SkillType.Projectile &&
-            playerStats.activeSkillCards.Any(active => active == card));
+        //filteredByLevel.RemoveAll(card =>
+          //  card.skillType == SkillType.Projectile &&
+            //playerStats.activeSkillCards.Any(active => active == card));
         List<SkillCard> cardOptionsList = new List<SkillCard>();
         List<SkillCard> availablePool = new List<SkillCard>(filteredByLevel);
         for (int i = 0; i < cardOptions; i++)
@@ -170,10 +164,11 @@ public class LevelUp : MonoBehaviour
         {
             Destroy(child.gameObject); // Clear the level up panel
         }
+        
         levelUpPanel.SetActive(false);
         cardStatsText.gameObject.SetActive(false);
         isPanelOpen = false;
-        //Time.timeScale = 1; // Resume the game
+
         pendingLevelUps--;
         if (pendingLevelUps > 0)
         {
@@ -186,6 +181,20 @@ public class LevelUp : MonoBehaviour
         {
             Time.timeScale = 1;
         }
+
+
+        if (skillCard.autoAttackDataList != null && skillCard.autoAttackDataList.Count > 0)
+        {
+            foreach (var list in skillCard.autoAttackDataList)
+            {
+                if (list != null)
+                {
+                    playerStats.AddAutoAttackToList(list);
+                }
+            }
+        }
+
+
         playerStats.AddCardToOwnedSkillCards(skillCard); // Adds the card to the list of cards the player has used
         skillIconUIManager.UpdateSkillIcons();
         XPUIManager.Instance.UpdateXPBarFill();

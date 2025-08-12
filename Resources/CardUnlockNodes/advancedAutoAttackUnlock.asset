@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
+  m_Name: advancedAutoAttackUnlock
+  m_EditorClassIdentifier: 
+  unlockID: advancedAutoAttackUnlock
+  cardUnlockname: 
+  icon: {fileID: -5668804815215064262, guid: b820627d98035444491c2bc1ea9c7e28, type: 3}
+  prerequisites:
+  - {fileID: 11400000, guid: e5e538d71b7df534a8226b40799ae883, type: 2}
+  - {fileID: 11400000, guid: c4ab59f0f19e51740bef1c921585f234, type: 2}
+  - {fileID: 11400000, guid: 82e67be637b44a049b28ab82ab235655, type: 2}
+  - {fileID: 11400000, guid: 16061a922dd126044bdb98bbe28f7ee7, type: 2}
+  - {fileID: 11400000, guid: c3799a57b8cd248419ac36cf44bdb406, type: 2}
+  - {fileID: 11400000, guid: 3b95a2ec52000b043bef917f36c2c147, type: 2}
+  - {fileID: 11400000, guid: e5e538d71b7df534a8226b40799ae883, type: 2}
+  requirements:
+  - item: {fileID: 11400000, guid: de26043be739cb4468c8aac0ac31a729, type: 2}
+    amount: 10
+  - item: {fileID: 11400000, guid: 22b45c2cf436ebf439ac29a73600cd67, type: 2}
+    amount: 10
+  requiredXP: 5000
+  isUnlocked: 0
+  unlockedCards: []
+  disabledCards: []

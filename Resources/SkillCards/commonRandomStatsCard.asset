@@ -26,3 +26,5 @@ MonoBehaviour:
   unlocked: 0
   maxValue: 1
   minValue: 3
+  prerequisites: []
+  autoAttackDataList: []

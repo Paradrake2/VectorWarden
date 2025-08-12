@@ -27,5 +27,5 @@ MonoBehaviour:
   unlocked: 0
   maxValue: 0
   minValue: 0
-  prerequisites:
-  - {fileID: 11400000, guid: 1aaa3b3c5ae0d2345812e3c8b9c60e33, type: 2}
+  prerequisites: []
+  autoAttackDataList: []
