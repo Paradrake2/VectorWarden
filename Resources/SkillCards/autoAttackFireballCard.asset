@@ -17,7 +17,7 @@ MonoBehaviour:
   skillIcon: {fileID: 2768555999611999483, guid: 46323c318a7252c42a525f0fadd5b3b2, type: 3}
   cardPicture: {fileID: -6666749411694160975, guid: 3a86aeb9df89e2c4594b24afa347408c, type: 3}
   skillType: 4
-  skillCardRarity: 3
+  skillCardRarity: 2
   statModifiers: []
   projectilePrefab: {fileID: 0}
   minimumLevelRequired: 1

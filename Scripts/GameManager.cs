@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public EnemySpawn enemySpawn;
     public TextMeshProUGUI timerText;
-    public int maxEnemies = 40;
+    public int maxEnemies = 100;
     public int enemyLevel = 1;
     private float elapsedTime = 0f;
 
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     }
     public void SpawnEnemy(Vector3 position)
     {
-        enemySpawn.SpawnEnemy(position);
+        //enemySpawn.SpawnEnemy(position);
     }
     public void IncreaseEnemyLevel()
     {

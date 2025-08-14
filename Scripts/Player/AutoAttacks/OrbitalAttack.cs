@@ -83,7 +83,6 @@ public class OrbitalAttack : MonoBehaviour
         projData.SetOrbitalOwner(this);
 
         FindPlayer(); // in case player is null for whatever reason
-        newProjectile.transform.SetParent(player.transform);
         activeProjectiles.Add(newProjectile);
         regenTimer = regenCooldown;
     }
@@ -111,6 +110,7 @@ public class OrbitalAttack : MonoBehaviour
         activeProjectiles.RemoveAll(item => item == null);
         if (orbitalPrefabs.Count == 0) return;
         baseAngle += rotationSpeed * Time.deltaTime;
+        Vector3 playerPos = player.transform.position;
 
         int n = activeProjectiles.Count;
         if (n == 0) return;
@@ -121,7 +121,7 @@ public class OrbitalAttack : MonoBehaviour
             float ang = baseAngle + i * step;
             Vector3 offset = new Vector3(Mathf.Cos(ang * Mathf.Deg2Rad), Mathf.Sin(ang * Mathf.Deg2Rad), 0) * radius;
             Transform t = activeProjectiles[i].transform;
-            t.localPosition = offset;
+            t.localPosition = playerPos + offset;
             t.rotation = Quaternion.Euler(0, 0, ang);
         }
     }

@@ -63,12 +63,9 @@ public class Enemy : MonoBehaviour
         }
         playerStats.GainXP(UnityEngine.Random.Range(stats.minXP, stats.maxXP));
         playerStats.GainGold(Mathf.CeilToInt(UnityEngine.Random.Range(stats.minGold, stats.maxGold)));
+        EnemySpawn.Instance.EnemyDied();
         Destroy(gameObject);
     }
 
-    void ShowDamage(float damage)
-    {
-        // Instantiate a damage indicator
-    }
 
 }

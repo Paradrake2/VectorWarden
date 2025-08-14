@@ -207,6 +207,17 @@ public class EnemyStats : MonoBehaviour
             currentHealth = maxHealth;
         }
     }
+    public void AdjustStats(int strengthIndex)
+    {
+        if (strengthIndex <= 0) return;
+
+        float baseGrowth = EnemySpawn.Instance.EnemyScaleFactor;
+        float scale = Mathf.Pow(baseGrowth, strengthIndex - 1);
+        currentHealth = Mathf.Floor(currentHealth * scale);
+        maxHealth = Mathf.Floor(maxHealth * scale);
+        damage = Mathf.Floor(damage * scale);
+        defense = Mathf.Floor(defense * scale);
+    }
     private void AddAuraEffect()
     {
         GameObject aura = new GameObject("Aura");
@@ -248,6 +259,25 @@ public class EnemyStats : MonoBehaviour
             {
                 GetComponent<Enemy>().Die();
             }
+            if (type == EnemyType.Boss)
+            {
+                GetComponent<Boss>().Die();
+            }
+        }
+    }
+    public void Die()
+    {
+        if (type == EnemyType.Normal)
+        {
+            GetComponent<Enemy>().Die();
+        }
+        else if (type == EnemyType.Boss)
+        {
+            GetComponent<Boss>().Die();
+        }
+        else
+        {
+            Debug.LogWarning("Unknown enemy type on death.");
         }
     }
 }

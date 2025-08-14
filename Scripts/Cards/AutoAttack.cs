@@ -12,10 +12,11 @@ public class AutoAttack : MonoBehaviour
     public PlayerStats playerStats;
     public float attackCooldown = 1f; // Default cooldown
 
+    Dictionary<AutoAttackData, float> attackTimers = new Dictionary<AutoAttackData, float>();
     void Start()
     {
         playerStats = PlayerStats.Instance;
-        attackCooldown = Mathf.Max(0.1f, 5f - playerStats.GetAutoAttackCooldown());
+        //attackCooldown = Mathf.Max(0.1f, 5f - playerStats.GetAutoAttackCooldown());
     }
 
 
@@ -24,26 +25,23 @@ public class AutoAttack : MonoBehaviour
     {
         foreach (var autoAttack in playerStats.autoAttackDataList)
         {
-            float cooldown = Mathf.Max(0.1f, autoAttack.baseAttackCooldown - playerStats.GetAutoAttackCooldown());
-            float auraCooldown = Mathf.Max(0.05f, playerStats.GetAuraAttackCooldown());
-            cooldown -= Time.deltaTime;
-            if (cooldown <= 0f)
+            if (!attackTimers.ContainsKey(autoAttack))
             {
-                if (autoAttack.attackType == AutoAttackType.Aura)
-                {
-                    cooldown = auraCooldown;
-                }
-                else
-                {
-                    cooldown = Mathf.Max(0.1f, autoAttack.baseAttackCooldown - playerStats.GetAutoAttackCooldown());
-                }
+                attackTimers[autoAttack] = 0f;
+            }
+            attackTimers[autoAttack] -= Time.deltaTime;
+            if (attackTimers[autoAttack] <= 0f)
+            {
                 StartCoroutine(FireAutoAttack(autoAttack));
+                float cd = Mathf.Max(0.1f, playerStats.GetAutoAttackCooldown(autoAttack));
+                attackTimers[autoAttack] = cd; // Reset the timer
             }
         }
     }
     IEnumerator FireAutoAttack(AutoAttackData autoAttack)
     {
-        int projectileCount = autoAttack.projectileCount + playerStats.GetAutoAttackProjectileCount();
+        int projectileCount = playerStats.GetAutoAttackProjectileCount(autoAttack);
+        Debug.Log($"Firing AutoAttack: {autoAttack.attackType} with {projectileCount} projectiles");
         switch (autoAttack.attackType)
         {
             case AutoAttackType.Projectile:
@@ -87,41 +85,15 @@ public class AutoAttack : MonoBehaviour
 
                 break;
             case AutoAttackType.Orbital:
-                RotatingAttack(autoAttack, projectileCount);
+                //RotatingAttack(autoAttack, projectileCount);
                 break;
             default:
                 Debug.LogWarning("Unknown AutoAttackType");
                 yield break;
         }
         
-        /*
-        var projectilePrefabs = playerStats.GetAutoAttackProjectiles();
-        int projectileCount = playerStats.GetAutoAttackProjectileCount();
-        float attackDelay = playerStats.GetAutoAttackCooldown();
-
-        List<GameObject> selectedProjectiles = new List<GameObject>();
-        for (int i = 0; i < projectileCount; i++)
-        {
-            GameObject randomProjectile = projectilePrefabs[Random.Range(0, projectilePrefabs.Count)];
-            selectedProjectiles.Add(randomProjectile);
-        }
-        foreach (var prefab in selectedProjectiles)
-        {
-            for (int i = 0; i < projectileCount; i++)
-            {
-                Vector3 direction = (GetNearestEnemy().transform.position - transform.position).normalized;
-                FireProjectile(direction, prefab);
-                yield return new WaitForSeconds(0.1f);
-            }
-        }
-        */
     }
-    void RotatingAttack(AutoAttackData autoAttack, int projectileCount)
-    {
-        float damage = playerStats.CurrentDamage * playerStats.GetAutoAttackDamageMultiplier();
-        int piercingAmount = Mathf.CeilToInt(damage / 5) + playerStats.GetPiercingAmount(); // how many enemies it can hit before it disappears and has to be regenerated
-
-    }
+    
     void FireProjectile(Vector3 direction, GameObject prefab)
     {
         GameObject projectile = Instantiate(prefab, transform.position, Quaternion.identity);

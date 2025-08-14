@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
+  m_Name: legendaryBaseCardUnlock
+  m_EditorClassIdentifier: 
+  unlockID: legendaryBaseCardUnlock
+  cardUnlockname: 
+  icon: {fileID: -368421971765993527, guid: 81c1f71e4fb26a7458c13388b4778058, type: 3}
+  prerequisites:
+  - {fileID: 11400000, guid: 32cdd00a8b938704a8aea4322b00ef55, type: 2}
+  requirements:
+  - item: {fileID: 11400000, guid: de26043be739cb4468c8aac0ac31a729, type: 2}
+    amount: 5
+  - item: {fileID: 11400000, guid: 22b45c2cf436ebf439ac29a73600cd67, type: 2}
+    amount: 20
+  - item: {fileID: 11400000, guid: 83c7a29c696d0964da7b13ec691d7cb9, type: 2}
+    amount: 50
+  requiredXP: 5000
+  isUnlocked: 0
+  unlockedCards:
+  - {fileID: 11400000, guid: 34c4081776bf9bc43a6c1e26a73ee723, type: 2}
+  - {fileID: 11400000, guid: 70b9b99da4d80f34aa1f1fb6d150d0c2, type: 2}
+  disabledCards: []

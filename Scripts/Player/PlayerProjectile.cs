@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
@@ -197,7 +199,7 @@ public class PlayerProjectile : MonoBehaviour
                 Debug.Log("Lifesteal applied");
                 playerStats.GainHealth(damage * playerStats.GetLifestealAmount());
             }
-            if (playerStats.GetExplosionRadius() + explosionRadius > 0f)
+            if (playerStats.GetExplosionRadius() + explosionRadius > 0f && projectileType == ProjectileType.Explosive)
             {
                 Explode();
                 Vector3 popupPosition = transform.position;
@@ -250,7 +252,7 @@ public class PlayerProjectile : MonoBehaviour
                     Debug.Log("BOOM");
                     if (enemyStats.currentHealth <= 0)
                     {
-                        enemy.GetComponent<Enemy>().Die();
+                        enemyStats.Die();
                     }
                 }
             }

@@ -162,7 +162,7 @@ public class MapGenerator : MonoBehaviour
             Vector3Int cellPos = tilemap.WorldToCell(pos);
             TileBase tile = tilemap.GetTile(cellPos);
 
-            if (tile != null && IsInsideFloorRadius(cellPos, radius)) enemySpawn.SpawnEnemy(pos);
+            //if (tile != null && IsInsideFloorRadius(cellPos, radius)) enemySpawn.SpawnEnemy(pos);
         }
     }
 

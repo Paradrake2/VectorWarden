@@ -547,9 +547,9 @@ public class PlayerStats : MonoBehaviour
         }
         return val;
     }
-    public float GetAutoAttackCooldown()
+    public float GetAutoAttackCooldown(AutoAttackData aad)
     {
-        float cooldown = baseAutoAttackCooldown;
+        float cooldown = aad.baseAttackCooldown;
         foreach (var effect in GetActiveSpecialEffects())
         {
             if (effect.effectType == SpecialEffectType.AutoAttackCooldown)
@@ -560,9 +560,9 @@ public class PlayerStats : MonoBehaviour
         }
         return cooldown;
     }
-    public int GetAutoAttackProjectileCount()
+    public int GetAutoAttackProjectileCount(AutoAttackData aad)
     {
-        int count = 1; // Default to 1 projectile
+        int count = aad.projectileCount; // Default to 1 projectile
         foreach (var effect in GetActiveSpecialEffects())
         {
             if (effect.effectType == SpecialEffectType.AutoAttackProjectileCount)
@@ -687,6 +687,24 @@ public class PlayerStats : MonoBehaviour
     public void AddAutoAttackToList(AutoAttackData data)
     {
         autoAttackDataList.Add(data);
+    }
+    // Reload the list of auto attacks from active skill cards
+    public void ReloadAutoAttackList()
+    {
+        autoAttackDataList.Clear();
+        foreach (var card in activeSkillCards)
+        {
+            if (card != null && card.skillType == SkillType.AutoAttack)
+            {
+                foreach (var a in card.autoAttackDataList)
+                {
+                    if (!autoAttackDataList.Contains(a))
+                    {
+                        autoAttackDataList.Add(a);
+                    }
+                }
+            }
+        }
     }
 
 }

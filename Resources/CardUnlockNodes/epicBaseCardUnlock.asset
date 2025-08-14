@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
+  m_Name: epicBaseCardUnlock
+  m_EditorClassIdentifier: 
+  unlockID: epicBaseCardUnlock
+  cardUnlockname: 
+  icon: {fileID: 4327275314939297982, guid: a865b744964807e49bab505de07ec5aa, type: 3}
+  prerequisites:
+  - {fileID: 11400000, guid: 835154d210d45f54684cae29ace084a0, type: 2}
+  requirements:
+  - item: {fileID: 11400000, guid: 83c7a29c696d0964da7b13ec691d7cb9, type: 2}
+    amount: 10
+  - item: {fileID: 11400000, guid: 22b45c2cf436ebf439ac29a73600cd67, type: 2}
+    amount: 5
+  requiredXP: 1250
+  isUnlocked: 0
+  unlockedCards:
+  - {fileID: 11400000, guid: a10b0e990972392428ce544ebd67f377, type: 2}
+  - {fileID: 11400000, guid: 0e406e8377f680549b8cfa17926cff4c, type: 2}
+  disabledCards: []

@@ -33,6 +33,7 @@ public class Boss : MonoBehaviour
         playerStats.GainXP(Random.Range(stats.minXP, stats.maxXP));
         Destroy(gameObject);
         UIManager.Instance.HideBossHealthbar();
+        EnemySpawn.Instance.NextWave();
         // Open path to the next floor
     }
 }

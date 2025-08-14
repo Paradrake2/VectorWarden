@@ -112,9 +112,6 @@ public class LevelUp : MonoBehaviour
                 }
             }
         }
-        //filteredByLevel.RemoveAll(card =>
-          //  card.skillType == SkillType.Projectile &&
-            //playerStats.activeSkillCards.Any(active => active == card));
         List<SkillCard> cardOptionsList = new List<SkillCard>();
         List<SkillCard> availablePool = new List<SkillCard>(filteredByLevel);
         for (int i = 0; i < cardOptions; i++)

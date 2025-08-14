@@ -148,22 +148,20 @@ MonoBehaviour:
   damageMultiplier: 1.5
   xpMultiplier: 4
   movementSpeedMultiplier: 1.2
-  minXP: 200
-  maxXP: 500
+  minXP: 50
+  maxXP: 200
   minGold: 1
   maxGold: 3
   dropPool:
   - rarity: 0
     items:
     - {fileID: 11400000, guid: d1265f38431876048a8972fcc1120f42, type: 2}
-  - rarity: 1
-    items:
-    - {fileID: 11400000, guid: 83c7a29c696d0964da7b13ec691d7cb9, type: 2}
-  - rarity: 3
+  - rarity: 4
     items:
     - {fileID: 11400000, guid: a75a1c2430e5e644184452e21ba11925, type: 2}
     - {fileID: 11400000, guid: 056db2adf6b1a9c40b432ae476387c7e, type: 2}
     - {fileID: 11400000, guid: 377b0a85d719e8242aad405f9825c44d, type: 2}
+    - {fileID: 11400000, guid: 83c7a29c696d0964da7b13ec691d7cb9, type: 2}
   eliteDropPool:
   - rarity: 0
     items:
@@ -294,7 +292,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

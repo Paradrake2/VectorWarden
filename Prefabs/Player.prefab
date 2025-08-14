@@ -321,7 +321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48713c71ebe946f40954b50e963f9cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectiles: []
+  projectiles:
+  - {fileID: 0}
   playerStats: {fileID: 0}
   attackCooldown: 1
 --- !u!114 &-7154466989960511154
@@ -338,7 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStats: {fileID: 0}
   player: {fileID: 5582542207946383491}
-  orbitalPrefab: {fileID: 652720703885718538, guid: 7ea2bcf225f6807418104b4405047cde, type: 3}
+  orbitalPrefabs: []
   maxProjectiles: 2
   radius: 1.8
   rotationSpeed: 180
