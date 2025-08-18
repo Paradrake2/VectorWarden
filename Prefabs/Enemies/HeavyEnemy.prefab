@@ -107,8 +107,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rarity: 1
   type: 0
-  maxHealth: 200
-  currentHealth: 200
+  maxHealth: 150
+  currentHealth: 150
   damage: 40
   defense: 2
   knockback: 0

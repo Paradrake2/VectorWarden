@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e9d9038d9ac8ce4d880ff2cfd462884, type: 3}
-  m_Name: piercingProjectile
+  m_Name: autoHomingProjectile
   m_EditorClassIdentifier: 
-  projectileName: piercingProjectile
-  prefab: {fileID: 6025584721492761981, guid: d1055fa54d5337945adbcfa61e2c106e, type: 3}
-  baseSpeed: 7
-  baseDamage: 0
-  icon: {fileID: -5504328289122038786, guid: 0d617a92910a1e3488f110dc2fa4575a, type: 3}
-  projectileType: 2
-  spriteRotationOffset: 90
-  lifetime: 5
-  speedMultiplier: 1.5
-  damageMultiplier: 0.25
-  attackSpeedModifier: 0.1
-  isHoming: 0
+  projectileName: autoHomingProjectile
+  prefab: {fileID: 1351455713899765974, guid: 93daffda68a46c44bbf4b31661624652, type: 3}
+  baseSpeed: 2
+  baseDamage: 5
+  icon: {fileID: 2003311483414086975, guid: 368dff5ecb044a640a8e5581560d44b8, type: 3}
+  projectileType: 3
+  spriteRotationOffset: -90
+  lifetime: 6
+  speedMultiplier: 1
+  damageMultiplier: 0.2
+  attackSpeedModifier: 0
+  isHoming: 1
   isExplosive: 0
   shotgunStyle: 0
   homingSpeed: 0
-  homingRange: 0
+  homingRange: 2
   explosionRadius: 0
-  pierceAmount: 5
+  pierceAmount: 0
   knockbackForce: 0
   projectileSize: 1
   projectileAdd: 0
   projectileUpgrade: {fileID: 0}
-  projectileOrigin: 0
+  projectileOrigin: 1

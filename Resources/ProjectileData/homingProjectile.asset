@@ -24,9 +24,14 @@ MonoBehaviour:
   damageMultiplier: 0.2
   attackSpeedModifier: 0
   isHoming: 1
+  isExplosive: 0
+  shotgunStyle: 0
   homingSpeed: 0
   homingRange: 2
   explosionRadius: 0
   pierceAmount: 0
   knockbackForce: 0
   projectileSize: 1
+  projectileAdd: 0
+  projectileUpgrade: {fileID: 0}
+  projectileOrigin: 0

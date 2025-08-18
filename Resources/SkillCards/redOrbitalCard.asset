@@ -19,7 +19,7 @@ MonoBehaviour:
   skillType: 4
   skillCardRarity: 3
   statModifiers: []
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 652720703885718538, guid: 7ea2bcf225f6807418104b4405047cde, type: 3}
   minimumLevelRequired: 1
   specialEffects: []
   projectileData: {fileID: 11400000, guid: 9f86ce03459f61448970494d55545151, type: 2}

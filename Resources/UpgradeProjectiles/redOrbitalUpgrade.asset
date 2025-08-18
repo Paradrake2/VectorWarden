@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 446393756125c1e4e9559694193b3153, type: 3}
+  m_Name: redOrbitalUpgrade
+  m_EditorClassIdentifier: 
+  projectileData: {fileID: 11400000, guid: 9f86ce03459f61448970494d55545151, type: 2}
+  maxLevel: 4
+  tiers:
+  - damageMultiplier: 1.5
+    speedMultiplier: 1
+    sizeMult: 1.5
+    flatDamage: 0
+    flatSpeed: 0
+    explosionRadius: 0
+    knockbackAddition: 0
+    piercingAddition: 3
+    projectileAdd: 1
+    homingRange: 0
+    attackSpeedModifier: 0
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 0
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}
+  - damageMultiplier: 2
+    speedMultiplier: 1
+    sizeMult: 2
+    flatDamage: 10
+    flatSpeed: 0
+    explosionRadius: 0
+    knockbackAddition: 0
+    piercingAddition: 5
+    projectileAdd: 2
+    homingRange: 0
+    attackSpeedModifier: 0
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 0
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}
+  - damageMultiplier: 2.25
+    speedMultiplier: 1
+    sizeMult: 2.25
+    flatDamage: 10
+    flatSpeed: 0
+    explosionRadius: 0
+    knockbackAddition: 0
+    piercingAddition: 10
+    projectileAdd: 3
+    homingRange: 0
+    attackSpeedModifier: 0
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 0
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}
+  - damageMultiplier: 2.75
+    speedMultiplier: 1
+    sizeMult: 2.5
+    flatDamage: 10
+    flatSpeed: 0
+    explosionRadius: 0
+    knockbackAddition: 0
+    piercingAddition: 25
+    projectileAdd: 4
+    homingRange: 0
+    attackSpeedModifier: 0
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 0
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}

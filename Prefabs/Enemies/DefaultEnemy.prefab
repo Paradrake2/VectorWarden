@@ -131,8 +131,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rarity: 0
   type: 0
-  maxHealth: 50
-  currentHealth: 50
+  maxHealth: 30
+  currentHealth: 30
   damage: 10
   defense: 0
   knockback: 0
@@ -148,8 +148,8 @@ MonoBehaviour:
   damageMultiplier: 1.5
   xpMultiplier: 4
   movementSpeedMultiplier: 1.2
-  minXP: 50
-  maxXP: 200
+  minXP: 1000
+  maxXP: 2000
   minGold: 1
   maxGold: 3
   dropPool:

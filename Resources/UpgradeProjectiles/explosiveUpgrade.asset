@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 446393756125c1e4e9559694193b3153, type: 3}
+  m_Name: explosiveUpgrade
+  m_EditorClassIdentifier: 
+  projectileData: {fileID: 11400000, guid: ecfb831972b088749b5df023cbbac9f4, type: 2}
+  maxLevel: 7
+  tiers:
+  - damageMultiplier: 1
+    speedMultiplier: 1
+    sizeMult: 1
+    flatDamage: 0
+    flatSpeed: 0
+    explosionRadius: 0
+    knockbackAddition: 0
+    piercingAddition: 0
+    projectileAdd: 0
+    homingRange: 0
+    attackSpeedModifier: 0
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 1
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}
+  - damageMultiplier: 1.5
+    speedMultiplier: 1.5
+    sizeMult: 1.5
+    flatDamage: 5
+    flatSpeed: 0
+    explosionRadius: 0
+    knockbackAddition: 0
+    piercingAddition: 0
+    projectileAdd: 1
+    homingRange: 0
+    attackSpeedModifier: 0
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 1
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}
+  - damageMultiplier: 2
+    speedMultiplier: 1.5
+    sizeMult: 2
+    flatDamage: 12
+    flatSpeed: 3
+    explosionRadius: 0
+    knockbackAddition: 0
+    piercingAddition: 0
+    projectileAdd: 2
+    homingRange: 0
+    attackSpeedModifier: 0
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 1
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}
+  - damageMultiplier: 2
+    speedMultiplier: 1.5
+    sizeMult: 2
+    flatDamage: 20
+    flatSpeed: 3
+    explosionRadius: 0
+    knockbackAddition: 0
+    piercingAddition: 1
+    projectileAdd: 2
+    homingRange: 0
+    attackSpeedModifier: 0
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 1
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}
+  - damageMultiplier: 2.5
+    speedMultiplier: 2
+    sizeMult: 2
+    flatDamage: 20
+    flatSpeed: 3
+    explosionRadius: 0.25
+    knockbackAddition: 0
+    piercingAddition: 1
+    projectileAdd: 3
+    homingRange: 0
+    attackSpeedModifier: 0.1
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 1
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}
+  - damageMultiplier: 2.5
+    speedMultiplier: 2
+    sizeMult: 2
+    flatDamage: 20
+    flatSpeed: 3
+    explosionRadius: 0.5
+    knockbackAddition: 0.5
+    piercingAddition: 1
+    projectileAdd: 3
+    homingRange: 0
+    attackSpeedModifier: 0.2
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 1
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}
+  - damageMultiplier: 3
+    speedMultiplier: 2
+    sizeMult: 3
+    flatDamage: 35
+    flatSpeed: 3
+    explosionRadius: 1.5
+    knockbackAddition: 1
+    piercingAddition: 2
+    projectileAdd: 4
+    homingRange: 0
+    attackSpeedModifier: 0
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 1
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}

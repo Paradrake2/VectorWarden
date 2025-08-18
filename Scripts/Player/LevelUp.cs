@@ -20,7 +20,6 @@ public class LevelUp : MonoBehaviour
     private int pendingLevelUps = 0;
     private bool isPanelOpen = false;
     public static LevelUp Instance;
-    private bool placeholder = true; // this will be used later, maybe. Currently can be used to prevent all projectile cards from being destroyed when the player selects a new projectile card
     public void BindPlayerStats(PlayerStats stats)
     {
         playerStats = stats;
@@ -106,7 +105,22 @@ public class LevelUp : MonoBehaviour
         {
             if (playerLevel >= card.minimumLevelRequired && card.unlocked)
             {
-                if (card.prerequisites == null || card.prerequisites.All(prereq => playerStats.activeSkillCards.Contains(prereq)))
+                bool prerequisitesMet = card.prerequisites == null || card.prerequisites.All(prereq => playerStats.activeSkillCards.Contains(prereq));
+
+                // Filter out projectile cards at max level
+                bool notMaxProjectile = true;
+                if ((card.skillType == SkillType.Projectile || card.skillType == SkillType.AutoAttack)&& card.projectileData != null)
+                {
+                    var upgrade = ProjectileLevelTracker.Instance.upgradeAssets
+                        .FirstOrDefault(u => u.projectileData == card.projectileData);
+                    int currentLevel = ProjectileLevelTracker.Instance.GetLevel(card.projectileData);
+                    if (upgrade != null && currentLevel >= upgrade.maxLevel - 1)
+                    {
+                        notMaxProjectile = false;
+                    }
+                }
+
+                if (prerequisitesMet && notMaxProjectile)
                 {
                     filteredByLevel.Add(card);
                 }
@@ -149,12 +163,17 @@ public class LevelUp : MonoBehaviour
     }
     public void SelectSkillCard(SkillCard skillCard)
     {
-        if (skillCard.skillType == SkillType.Projectile && placeholder)
+        if (skillCard.skillType == SkillType.Projectile || skillCard.skillType == SkillType.AutoAttack)
         {
-            playerStats.activeSkillCards.RemoveAll(card => card.skillType == SkillType.Projectile);
-
+            //playerStats.activeSkillCards.RemoveAll(card => card.skillType == SkillType.Projectile);
+            if (playerStats.activeSkillCards.Contains(skillCard))
+            {
+                UpgradeProjectile(skillCard.projectileData);
+            }
         }
-        playerStats.activeSkillCards.Add(skillCard);
+        bool addToCardList = true;
+        if (playerStats.activeSkillCards.Contains(skillCard) && (skillCard.skillType == SkillType.Projectile || skillCard.skillType == SkillType.AutoAttack)) addToCardList = false;
+        if (addToCardList) playerStats.activeSkillCards.Add(skillCard);
         UpdatePlayerStats();
 
         foreach (Transform child in levelUpPanel.transform)
@@ -190,11 +209,15 @@ public class LevelUp : MonoBehaviour
                 }
             }
         }
-
-
+        
         playerStats.AddCardToOwnedSkillCards(skillCard); // Adds the card to the list of cards the player has used
+        
         skillIconUIManager.UpdateSkillIcons();
         XPUIManager.Instance.UpdateXPBarFill();
+    }
+    void UpgradeProjectile(ProjectileData projData)
+    {
+        ProjectileLevelTracker.Instance.AddLevel(projData);
     }
     public void RandomStatBoost(SkillCard card)
     {
@@ -226,11 +249,11 @@ public class LevelUp : MonoBehaviour
             float boostValue = UnityEngine.Random.Range(card.minValue, card.maxValue);
             switch (chosenStat)
             {
-                case StatType.MaxHealth:      playerStats.AddTempFlat(StatType.MaxHealth, boostValue); break;
-                case StatType.Damage:         playerStats.AddTempFlat(StatType.Damage,    boostValue); break;
-                case StatType.Defense:        playerStats.AddTempFlat(StatType.Defense,   boostValue); break;
-                case StatType.PlayerMoveSpeed:playerStats.AddTempPercent(StatType.PlayerMoveSpeed, boostValue/100f); break;
-                case StatType.AttackCooldown: playerStats.AddTempFlat(StatType.AttackCooldown, -boostValue/70f); break; // matches your old logic
+                case StatType.MaxHealth: playerStats.AddTempFlat(StatType.MaxHealth, boostValue); break;
+                case StatType.Damage: playerStats.AddTempFlat(StatType.Damage, boostValue); break;
+                case StatType.Defense: playerStats.AddTempFlat(StatType.Defense, boostValue); break;
+                case StatType.PlayerMoveSpeed: playerStats.AddTempPercent(StatType.PlayerMoveSpeed, boostValue / 100f); break;
+                case StatType.AttackCooldown: playerStats.AddTempFlat(StatType.AttackCooldown, -boostValue / 70f); break; // matches your old logic
 
                     /*
                 case StatType.ExplosionRadius:

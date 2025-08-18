@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public int maxEnemies = 100;
     public int enemyLevel = 1;
     private float elapsedTime = 0f;
+    
 
     void Awake()
     {

@@ -78,7 +78,7 @@ public class OrbitalAttack : MonoBehaviour
         GameObject newProjectile = Instantiate(orbitalPrefab, transform.position, Quaternion.identity);
         PlayerProjectile projData = newProjectile.GetComponent<PlayerProjectile>();
 
-        projData.InitializeProjectile(Vector2.zero, 0, damage, ProjectileType.Orbital);
+        projData.InitializeProjectile(Vector2.zero, 0, damage, ProjectileType.Orbital, projData.projectileData, playerStats);
         projData.pierceAmount = pierce;
         projData.SetOrbitalOwner(this);
 

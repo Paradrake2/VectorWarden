@@ -40,7 +40,13 @@ public class AutoAttack : MonoBehaviour
     }
     IEnumerator FireAutoAttack(AutoAttackData autoAttack)
     {
-        int projectileCount = playerStats.GetAutoAttackProjectileCount(autoAttack);
+        int level = ProjectileLevelTracker.Instance.GetLevel(autoAttack.projectilePrefab.GetComponent<PlayerProjectile>().projectileData);
+        var pp = autoAttack.projectilePrefab.GetComponent<PlayerProjectile>();
+        var data = pp?.projectileData;
+        ProjectileUpgrade projUp = data?.projectileUpgrade;
+
+
+        int projectileCount = playerStats.GetAutoAttackProjectileCount(autoAttack) + (projUp?.tiers[level].projectileAdd ?? 0) + 1; // +1 for the base projectile
         Debug.Log($"Firing AutoAttack: {autoAttack.attackType} with {projectileCount} projectiles");
         switch (autoAttack.attackType)
         {
@@ -53,7 +59,7 @@ public class AutoAttack : MonoBehaviour
                         Vector3 direction = (nearestEnemy.transform.position - transform.position).normalized;
                         FireProjectile(direction, autoAttack.projectilePrefab);
                     }
-                    yield return new WaitForSeconds(0.1f); // Slight delay between projectiles
+                    yield return new WaitForSeconds(0.05f); // Slight delay between projectiles
                 }
                 break;
             case AutoAttackType.Aura:
@@ -82,7 +88,7 @@ public class AutoAttack : MonoBehaviour
                 }
                 break;
             case AutoAttackType.Shotgun:
-
+                Shotgun(projectileCount, autoAttack);
                 break;
             case AutoAttackType.Orbital:
                 //RotatingAttack(autoAttack, projectileCount);
@@ -93,14 +99,28 @@ public class AutoAttack : MonoBehaviour
         }
         
     }
+
     
+    void Shotgun(int projectileCount, AutoAttackData autoAttack)
+    {
+        GameObject nearestEnemy = GetNearestEnemy();
+        float spread = 3.3f * projectileCount;
+        for (int i = 0; i < projectileCount; i++)
+        {
+            float randomAngle = Random.Range(-spread / 2, spread / 2);
+            Quaternion rotation = Quaternion.Euler(0, 0, randomAngle);
+            Vector2 rotatedDirection = rotation * (nearestEnemy.transform.position - transform.position).normalized;
+            FireProjectile(rotatedDirection, autoAttack.projectilePrefab);
+        }
+    }
     void FireProjectile(Vector3 direction, GameObject prefab)
     {
         GameObject projectile = Instantiate(prefab, transform.position, Quaternion.identity);
         PlayerProjectile projData = projectile.GetComponent<PlayerProjectile>();
+        
         if (projData != null)
         {
-            projData.InitializeProjectile(direction, playerStats.GetProjectileSpeed(), playerStats.CurrentDamage * playerStats.GetAutoAttackDamageMultiplier(), projData.projectileType);
+            projData.InitializeProjectile(direction, playerStats.GetProjectileSpeed(), playerStats.CurrentDamage * playerStats.GetAutoAttackDamageMultiplier(), projData.projectileType, projData.projectileData, playerStats);
         }
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         if (rb != null)

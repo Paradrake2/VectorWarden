@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e9d9038d9ac8ce4d880ff2cfd462884, type: 3}
-  m_Name: explosiveProjectile
+  m_Name: autoExplosiveData
   m_EditorClassIdentifier: 
-  projectileName: explosiveProjectile
-  prefab: {fileID: 4556626976445569952, guid: a8e79d26396bbaf4f896fd808e6889cc, type: 3}
+  projectileName: autoExplosiveProjectile
+  prefab: {fileID: 4556626976445569952, guid: c7bdd5b62afdba64b98deb2d7ac28938, type: 3}
   baseSpeed: 0
   baseDamage: 10
-  icon: {fileID: 2768555999611999483, guid: 46323c318a7252c42a525f0fadd5b3b2, type: 3}
+  icon: {fileID: 4077489352653642963, guid: 812c0823c5f59d3438930f0cba628736, type: 3}
   projectileType: 1
   spriteRotationOffset: -90
   lifetime: 5
@@ -24,7 +24,7 @@ MonoBehaviour:
   damageMultiplier: 0.5
   attackSpeedModifier: -0.5
   isHoming: 0
-  isExplosive: 1
+  isExplosive: 0
   shotgunStyle: 0
   homingSpeed: 0
   homingRange: 0
@@ -33,5 +33,5 @@ MonoBehaviour:
   knockbackForce: 1.5
   projectileSize: 1
   projectileAdd: 0
-  projectileUpgrade: {fileID: 11400000, guid: b603cb71139bfd64b93e0e468a8902c7, type: 2}
-  projectileOrigin: 0
+  projectileUpgrade: {fileID: 0}
+  projectileOrigin: 1

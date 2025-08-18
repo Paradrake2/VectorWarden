@@ -21,12 +21,17 @@ MonoBehaviour:
   spriteRotationOffset: 0
   lifetime: 100000000
   speedMultiplier: 0
-  damageMultiplier: 1
+  damageMultiplier: 0
   attackSpeedModifier: 0
   isHoming: 0
+  isExplosive: 0
+  shotgunStyle: 0
   homingSpeed: 0
   homingRange: 0
   explosionRadius: 0
   pierceAmount: 10
   knockbackForce: 1
   projectileSize: 1
+  projectileAdd: 0
+  projectileUpgrade: {fileID: 11400000, guid: 619bd5d39f80abb4599eb6ee525fcf67, type: 2}
+  projectileOrigin: 2

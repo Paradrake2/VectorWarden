@@ -85,7 +85,7 @@ public class DestroyerBasic : MonoBehaviour
         int attackCount = Random.Range(10, 15); // Random number of attacks
         for (int i = 0; i < attackCount; i++)
         {
-            Debug.LogWarning("Rapid Fire Attack: " + i);
+//            Debug.LogWarning("Rapid Fire Attack: " + i);
             // Find a random projectile to use
             bossAIComponents.FireProjectile(projectile, transform.position, player.transform.position, player.GetComponent<PlayerMovement>().SmoothedVelocity);
             yield return new WaitForSeconds(0.16f);

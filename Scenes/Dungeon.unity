@@ -753,12 +753,7 @@ MonoBehaviour:
     baseProjectileSpeed: 0
     projectilePrefab: {fileID: 0}
     modifiers: []
-  activeSkillCards:
-  - {fileID: 11400000, guid: 6c585b2fd2ba784489ff8f7db6dfddca, type: 2}
-  - {fileID: 11400000, guid: 106f4a6047c97df408794b4def923d2b, type: 2}
-  - {fileID: 11400000, guid: 106f4a6047c97df408794b4def923d2b, type: 2}
-  - {fileID: 11400000, guid: 34c4081776bf9bc43a6c1e26a73ee723, type: 2}
-  - {fileID: 11400000, guid: 5a79c0e05f4968d40960980925e9e3d3, type: 2}
+  activeSkillCards: []
   activeSpecialEffects: 
   ownedSkillCards: []
   autoAttackDataList: []
@@ -767,7 +762,7 @@ MonoBehaviour:
   StartingCardCount: 1
   Level: 1
   XP: 0
-  BaseHealth: 100000
+  BaseHealth: 1000
   BaseDefense: 0
   BaseDamage: 10
   PureDamage: 0
@@ -804,6 +799,7 @@ MonoBehaviour:
   ShieldRegenRate: 5
   baseAutoAttackCooldown: 5
   minAutoAttackCooldown: 0.1
+  defaultSkillCard: {fileID: 11400000, guid: 010e322a03370d648b5375297fdc1fdb, type: 2}
   inspector_CurrentHealth: 0
   inspector_CurrentMana: 0
   inspector_CurrentDamage: 0
@@ -3161,8 +3157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -119.34238}
-  m_SizeDelta: {x: 634.9247, y: 114.5448}
+  m_AnchoredPosition: {x: 0, y: -285.9143}
+  m_SizeDelta: {x: 634.9247, y: 447.6887}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &832283307
 MonoBehaviour:
@@ -3211,8 +3207,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.4
-  m_fontSizeBase: 28.4
+  m_fontSize: 22.36
+  m_fontSizeBase: 22.36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3396,6 +3392,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882279853}
   m_CullTransparentMesh: 1
+--- !u!1 &930993210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 930993212}
+  - component: {fileID: 930993211}
+  m_Layer: 0
+  m_Name: ProjectileTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &930993211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930993210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b533807bd12801049ae5787379c6ec94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeAssets:
+  - {fileID: 11400000, guid: cc7c7bd98e9c84e4398613605565f5c4, type: 2}
+  - {fileID: 11400000, guid: b603cb71139bfd64b93e0e468a8902c7, type: 2}
+  - {fileID: 11400000, guid: 619bd5d39f80abb4599eb6ee525fcf67, type: 2}
+  - {fileID: 11400000, guid: 0792319ef16a1074890d607fd6134e18, type: 2}
+  - {fileID: 11400000, guid: 52375ced31cbf104fab94ac84329be6d, type: 2}
+  - {fileID: 11400000, guid: 9938b4a985b8b9d40909ef5cedff6784, type: 2}
+--- !u!4 &930993212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930993210}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2029.9288, y: 50.583576, z: -15.139717}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &979341449
 GameObject:
   m_ObjectHideFlags: 0
@@ -6879,3 +6926,4 @@ SceneRoots:
   - {fileID: 4752893908521360187}
   - {fileID: 350054147}
   - {fileID: 1713605547}
+  - {fileID: 930993212}

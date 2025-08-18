@@ -45,11 +45,31 @@ public class SkillCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 desc += $"{mod.statType}: {mod.flatAmount} (Flat), {mod.percentAmount * 100}% (Percent)\n";
             }
         }
-        if (skillCard.skillType == SkillType.Projectile)
+        if (skillCard.skillType == SkillType.Projectile || skillCard.skillType == SkillType.AutoAttack)
         {
             GameObject projectilePrefab = skillCard.projectilePrefab;
             ProjectileData data = projectilePrefab.GetComponent<PlayerProjectile>().projectileData;
-
+            if (ProjectileLevelTracker.Instance.GetTier(data) is ProjectileUpgrade.Tier tier)
+            {
+                if (tier.damageMultiplier != 1f) desc += $"DMG x{tier.damageMultiplier} ";
+                if (tier.speedMultiplier != 1f) desc += $"SPD x{tier.speedMultiplier} ";
+                if (tier.sizeMult != 1f) desc += $"Size x{tier.sizeMult} ";
+                if (tier.flatDamage != 0f) desc += $"Flat DMG +{tier.flatDamage} ";
+                if (tier.flatSpeed != 0f) desc += $"Flat SPD +{tier.flatSpeed} ";
+                if (tier.explosionRadius != 0f) desc += $"Explosion +{tier.explosionRadius} ";
+                if (tier.knockbackAddition != 0f) desc += $"Knockback +{tier.knockbackAddition} ";
+                if (tier.piercingAddition != 0) desc += $"Pierce +{tier.piercingAddition} ";
+                if (tier.projectileAdd != 0) desc += $"Projectiles +{tier.projectileAdd} ";
+                if (tier.homingRange != 0f) desc += $"Homing +{tier.homingRange} ";
+                if (tier.attackSpeedModifier != 0f) desc += $"AtkSpeed +{tier.attackSpeedModifier} ";
+                if (tier.unlockExplosive) desc += $"Explosive ";
+                if (tier.unlockHoming) desc += $"Homing ";
+                if (tier.shotgunStyle) desc += $"Shotgun ";
+            }
+            else
+            {
+                desc += "No upgrade data available.\n";
+            }
             if (data.attackSpeedModifier != 0f) desc += $"Attack speed modifer: {data.attackSpeedModifier}\n";
             if (data.damageMultiplier != 1f) desc += $"Damage multiplier: {data.damageMultiplier + 1}\n";
             if (data.baseSpeed != 0f) desc += $"Projectile speed: {data.baseSpeed}\n";

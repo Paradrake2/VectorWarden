@@ -116,7 +116,7 @@ public class PlayerStats : MonoBehaviour
 
 
     public float XpToNextLevel => Level * 2000;
-
+    public SkillCard defaultSkillCard;
     [Header("Current Stats (Read Only)")]
     [SerializeField] private float inspector_CurrentHealth;
     [SerializeField] private float inspector_CurrentMana;
@@ -216,7 +216,18 @@ public class PlayerStats : MonoBehaviour
                 UIManager.Instance.UpdateShieldText();
             }
         }
-
+        if (activeSkillCards.Count == 0)
+        {
+            AddDefaultSkillCard();
+        }
+    }
+    // Replace this with a function for the player to choose default attacks on run start
+    void AddDefaultSkillCard()
+    {
+        if (defaultSkillCard != null)
+        {
+            activeSkillCards.Add(defaultSkillCard);
+        }
     }
     public void GainHealth(float amount)
     {
@@ -259,7 +270,7 @@ public class PlayerStats : MonoBehaviour
         List<GameObject> projectiles = new List<GameObject>();
         foreach (var card in activeSkillCards)
         {
-            if (card != null && card.projectilePrefab != null)
+            if (card != null && card.projectilePrefab != null && !projectiles.Contains(card.projectilePrefab))
                 projectiles.Add(card.projectilePrefab);
         }
         return projectiles;

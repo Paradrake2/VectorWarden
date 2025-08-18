@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e9d9038d9ac8ce4d880ff2cfd462884, type: 3}
-  m_Name: piercingProjectile
+  m_Name: autoPiercingProjectile
   m_EditorClassIdentifier: 
-  projectileName: piercingProjectile
-  prefab: {fileID: 6025584721492761981, guid: d1055fa54d5337945adbcfa61e2c106e, type: 3}
+  projectileName: autoPiercingProjectile
+  prefab: {fileID: 6025584721492761981, guid: bd23475e53c71b446a7b54aaf2603146, type: 3}
   baseSpeed: 7
   baseDamage: 0
   icon: {fileID: -5504328289122038786, guid: 0d617a92910a1e3488f110dc2fa4575a, type: 3}
@@ -34,4 +34,4 @@ MonoBehaviour:
   projectileSize: 1
   projectileAdd: 0
   projectileUpgrade: {fileID: 0}
-  projectileOrigin: 0
+  projectileOrigin: 1
