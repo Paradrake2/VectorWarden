@@ -6412,7 +6412,7 @@ PrefabInstance:
     - target: {fileID: 6606885705511855168, guid: 15db02c6433e03e4a99ae2126faa8dc7, type: 3}
       propertyPath: cardNode
       value: 
-      objectReference: {fileID: 11400000, guid: 32cdd00a8b938704a8aea4322b00ef55, type: 2}
+      objectReference: {fileID: 11400000, guid: f17e0febba23bdd4a9baf01d7e12b699, type: 2}
     - target: {fileID: 6606885705511855168, guid: 15db02c6433e03e4a99ae2126faa8dc7, type: 3}
       propertyPath: upgradeManager
       value: 
@@ -11669,8 +11669,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1727343770}
   - component: {fileID: 1727343771}
+  - component: {fileID: 1727343772}
   m_Layer: 0
-  m_Name: UpgradeXPHolder
+  m_Name: UpgradeStaticDon'tDestroyOnLoadObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11704,6 +11705,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UpgradeXPAmount: 0
+--- !u!114 &1727343772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727343769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4759363ee5920f7419f1fe77f74e915a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1756526047
 GameObject:
   m_ObjectHideFlags: 0

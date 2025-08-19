@@ -36,7 +36,7 @@ public class CardUnlockUIManager : MonoBehaviour
     {
         UnlockSkillCards(node);
         DisableSkillCards(node);
-        node.isUnlocked = true;
+        UnlockState.Instance.NodeUnlock(node);
         RemoveRequirements();
         UpgradeMaterialInventoryManager.Instance.PopulateInventory();
         UpdateSkillUpgradeButtons();
@@ -47,7 +47,7 @@ public class CardUnlockUIManager : MonoBehaviour
     {
         foreach (var card in cardNode.unlockedCards)
         {
-            card.unlocked = true;
+            UnlockState.Instance.UnlockCard(card);
         }
     }
     public void DisableSkillCards(CardUnlockNode cardNode)

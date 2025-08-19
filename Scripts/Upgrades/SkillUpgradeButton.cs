@@ -69,7 +69,7 @@ public class SkillUpgradeButton : MonoBehaviour
     {
         foreach (var prerequisite in cardNode.prerequisites)
         {
-            if (!prerequisite.isUnlocked)
+            if (!UnlockState.Instance.IsNodeUnlocked(prerequisite))
             {
                 return false; // Prerequisite not met
             }
@@ -83,7 +83,7 @@ public class SkillUpgradeButton : MonoBehaviour
     }
     public void UpdateShader()
     {
-
+        bool unlocked = UnlockState.Instance.IsNodeUnlocked(cardNode);
         if (HasRequiredItems() && HasRequiredXP() && HasPrerequisites())
         {
             shader.gameObject.SetActive(false);
@@ -92,7 +92,7 @@ public class SkillUpgradeButton : MonoBehaviour
         {
             shader.gameObject.SetActive(true);
         }
-        if (cardNode.isUnlocked)
+        if (unlocked)
         {
             shader.gameObject.SetActive(true);
             shader.color = new Color32(227, 227, 5, 200);

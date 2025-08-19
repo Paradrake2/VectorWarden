@@ -103,7 +103,7 @@ public class LevelUp : MonoBehaviour
         List<SkillCard> filteredByLevel = new List<SkillCard>();
         foreach (var card in allCards)
         {
-            if (playerLevel >= card.minimumLevelRequired && card.unlocked)
+            if (playerLevel >= card.minimumLevelRequired && (card.unlocked || (UnlockState.Instance != null && UnlockState.Instance.IsCardUnlocked(card))))
             {
                 bool prerequisitesMet = card.prerequisites == null || card.prerequisites.All(prereq => playerStats.activeSkillCards.Contains(prereq));
 

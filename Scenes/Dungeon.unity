@@ -767,7 +767,7 @@ MonoBehaviour:
     projectilePrefab: {fileID: 0}
     modifiers: []
   activeSkillCards:
-  - {fileID: 11400000, guid: 8d52e3fe98882364eb7130ff5f290a1f, type: 2}
+  - {fileID: 11400000, guid: 6c585b2fd2ba784489ff8f7db6dfddca, type: 2}
   activeSpecialEffects: 
   ownedSkillCards: []
   autoAttackDataList: []

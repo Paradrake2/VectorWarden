@@ -18,6 +18,6 @@ MonoBehaviour:
   prerequisites: []
   requirements: []
   requiredXP: 0
-  isUnlocked: 1
+  isUnlocked: 0
   unlockedCards: []
   disabledCards: []
