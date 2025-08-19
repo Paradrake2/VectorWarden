@@ -56,6 +56,7 @@ public class OrbitalAttack : MonoBehaviour
         {
             if (hasOrbitals)
             {
+                CalcProjectileNum();
                 while (activeProjectiles.Count < maxProjectiles)
                 {
                     SpawnOne(orbitalPrefabs[0]);
@@ -69,6 +70,15 @@ public class OrbitalAttack : MonoBehaviour
             }
         }
     }
+    void CalcProjectileNum()
+    {
+        foreach (var autoAttack in playerStats.autoAttackDataList)
+        {
+            if (autoAttack.attackType != AutoAttackType.Orbital) continue;
+            int level = ProjectileLevelTracker.Instance.GetLevel(autoAttack.projectilePrefab.GetComponent<PlayerProjectile>().projectileData);
+            maxProjectiles = autoAttack.projectileCount + (autoAttack.projectilePrefab.GetComponent<PlayerProjectile>().projectileData.projectileUpgrade?.tiers[level].projectileAdd ?? 0);
+        }
+    }
     void SpawnOne(GameObject orbitalPrefab)
     {
         FindPlayer();
@@ -79,7 +89,9 @@ public class OrbitalAttack : MonoBehaviour
         PlayerProjectile projData = newProjectile.GetComponent<PlayerProjectile>();
 
         projData.InitializeProjectile(Vector2.zero, 0, damage, ProjectileType.Orbital, projData.projectileData, playerStats);
-        projData.pierceAmount = pierce;
+        int level = ProjectileLevelTracker.Instance.GetLevel(projData.projectileData);
+        projData.pierceAmount = pierce + (projData.projectileData.projectileUpgrade?.tiers[level].piercingAddition ?? 0);
+        Debug.Log(projData.pierceAmount);
         projData.SetOrbitalOwner(this);
 
         FindPlayer(); // in case player is null for whatever reason
@@ -98,7 +110,6 @@ public class OrbitalAttack : MonoBehaviour
         
             maxProjectiles = autoAttack.projectileCount;
             hasOrbitals = true;
-            Debug.Log("Has orbitals");
             if (!orbitalPrefabs.Contains(autoAttack.projectilePrefab) && autoAttack.projectilePrefab != null)
                 orbitalPrefabs.Add(autoAttack.projectilePrefab);
 

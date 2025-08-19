@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5273978126981407623}
   - component: {fileID: 7469481940383693469}
   m_Layer: 0
-  m_Name: testProjectile
+  m_Name: autoPlayerFirebal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,22 +166,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 0}
-  projectileData: {fileID: 11400000, guid: e71050960cf29bc4cbe29133c4a00d02, type: 2}
+  projectileData: {fileID: 11400000, guid: 2f6bf72408c42944fa0d2fd5cf8518b1, type: 2}
   projectileSpeed: 0
   damage: 0
   projectileType: 0
   spriteRotationOffset: -90
   pierceAmount: 0
   explosionRadius: 0
-  homingRange: 5
-  projectileSize: 1
-  damageMultiplier: 1
+  homingRange: 0
   lifetime: 5
-  shotgunStyle: 0
-  homingTimer: 0
-  OnBegin:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDone:
-    m_PersistentCalls:
-      m_Calls: []

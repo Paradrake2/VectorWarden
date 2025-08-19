@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: auraCard
+  m_EditorClassIdentifier: 
+  skillName: 'Aura '
+  description: 
+  skillIcon: {fileID: 1077241217462295534, guid: 38719c5b6cbe38246babf604d790947e, type: 3}
+  cardPicture: {fileID: 6843397331301736842, guid: b543d69efbf1be647bdd6ab4953048d4, type: 3}
+  skillType: 4
+  skillCardRarity: 3
+  statModifiers: []
+  projectilePrefab: {fileID: 372286614326809169, guid: 17968ebb8303bf54baf8a79188166e40, type: 3}
+  minimumLevelRequired: 1
+  specialEffects: []
+  projectileData: {fileID: 11400000, guid: 60c7968c85256344781bf6c6c1e0f9c1, type: 2}
+  unlocked: 0
+  maxValue: 0
+  minValue: 0
+  prerequisites: []
+  autoAttackDataList:
+  - {fileID: 11400000, guid: bac5cdc8a3052d24d9c92d2086e02811, type: 2}

@@ -5,12 +5,15 @@ using UnityEngine;
 public class UpgradeManager : MonoBehaviour
 {
     public static UpgradeManager Instance;
+    public UpgradeXPHolder uxh;
     public UpgradeUIManager upgradeUIManager;
     public PlayerStats playerStats;
     public float UpgradeXPAmount;
     public TextMeshProUGUI xpText;
     void Start()
     {
+        uxh = UpgradeXPHolder.Instance;
+        UpgradeXPAmount = uxh.GetUpgradeXPAmount();
         Instance = this;
         playerStats = PlayerStats.Instance;
         ConvertToXP();

@@ -10,23 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 446393756125c1e4e9559694193b3153, type: 3}
-  m_Name: test
+  m_Name: autoFireball
   m_EditorClassIdentifier: 
-  projectileData: {fileID: 11400000, guid: e71050960cf29bc4cbe29133c4a00d02, type: 2}
-  maxLevel: 7
+  projectileData: {fileID: 11400000, guid: 0dcf300756cfbe24684d94c8b3251444, type: 2}
+  maxLevel: 2
   tiers:
-  - damageMultiplier: 1.1
+  - damageMultiplier: 1
     speedMultiplier: 1
     sizeMult: 1
     flatDamage: 0
     flatSpeed: 0
     explosionRadius: 0
     knockbackAddition: 0
-    piercingAddition: 0
-    projectileAdd: 0
+    piercingAddition: 1
+    projectileAdd: 1
     homingRange: 0
     attackSpeedModifier: 0
-    bounceNum: 0
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 0
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}
+  - damageMultiplier: 2
+    speedMultiplier: 2
+    sizeMult: 2
+    flatDamage: 0
+    flatSpeed: 0
+    explosionRadius: 0
+    knockbackAddition: 0
+    piercingAddition: 2
+    projectileAdd: 2
+    homingRange: 0
+    attackSpeedModifier: 0
     unlockExplosive: 0
     unlockHoming: 0
     shotgunStyle: 0

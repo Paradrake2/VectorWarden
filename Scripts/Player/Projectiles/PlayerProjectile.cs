@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering.Universal.Internal;
@@ -61,7 +59,7 @@ public class PlayerProjectile : MonoBehaviour
     }
     void Start()
     {
-
+        /*
         if (projectileData != null)
         {
             projectileSpeed = projectileData.baseSpeed + (playerStats.GetProjectileSpeed() * (1 + projectileData.speedMultiplier));
@@ -81,6 +79,7 @@ public class PlayerProjectile : MonoBehaviour
         {
             Debug.LogError("ProjectileData not assigned in PlayerProjectile.");
         }
+        */
 
         Destroy(gameObject, lifetime);
     }
@@ -121,7 +120,7 @@ public class PlayerProjectile : MonoBehaviour
                         //Debug.Log("projectileData.speedMultiplier)" + projectileData.speedMultiplier);
                         //Debug.Log("Final speed: " + speed);
                     }
-                    
+
                     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                     transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + spriteRotationOffset));
                 }
@@ -149,7 +148,7 @@ public class PlayerProjectile : MonoBehaviour
         if (playerStats != null)
         {
             pierceAmount = playerStats.GetPiercingAmount() + (int)projectileData.pierceAmount;
-            explosionRadius = playerStats.GetExplosionRadius()+ projectileData.explosionRadius;
+            explosionRadius = playerStats.GetExplosionRadius() + projectileData.explosionRadius;
             homingRange = playerStats.GetHomingRange() + projectileData.homingRange;
             projectileSize = playerStats.GetProjectileSize() + projectileData.projectileSize;
         }
@@ -171,7 +170,7 @@ public class PlayerProjectile : MonoBehaviour
         if (ProjectileLevelTracker.Instance.GetLevel(data) != 0) // Check projectile tier
         {
             Debug.LogWarning($"Projectile tier {ProjectileLevelTracker.Instance.GetLevel(data)} detected, applying upgrades.");
-            ApplyUpgradedStats(data.projectileUpgrade, ProjectileLevelTracker.Instance.GetLevel(data)); 
+            ApplyUpgradedStats(data.projectileUpgrade, ProjectileLevelTracker.Instance.GetLevel(data));
         }
         gameObject.transform.localScale = new Vector3(projectileSize, projectileSize, 1f);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
@@ -189,6 +188,7 @@ public class PlayerProjectile : MonoBehaviour
 
         projectileSpeed = projectileSpeed * upgrade.tiers[tier].speedMultiplier;
         damage = damage * upgrade.tiers[tier].damageMultiplier + upgrade.tiers[tier].flatDamage;
+        Debug.Log(damage);
         projectileSize = projectileSize * upgrade.tiers[tier].sizeMult;
         pierceAmount = pierceAmount + upgrade.tiers[tier].piercingAddition;
         explosionRadius = explosionRadius + upgrade.tiers[tier].explosionRadius;
@@ -215,14 +215,7 @@ public class PlayerProjectile : MonoBehaviour
                 CalcEnemyDamage(damage, enemyStats);
                 if (enemyStats.currentHealth <= 0)
                 {
-                    if (collision.GetComponent<Enemy>() != null)
-                    {
-                        collision.GetComponent<Enemy>().Die();
-                    }
-                    else if (collision.GetComponent<Boss>() != null)
-                    {
-                        collision.GetComponent<Boss>().Die();
-                    }
+                    ColliderDie(collision);
                 }
             }
             pierceAmount--;
@@ -242,6 +235,24 @@ public class PlayerProjectile : MonoBehaviour
         else if (collision.gameObject.CompareTag("Wall"))
         {
             DestroyGameobject();
+        }
+    }
+    void ColliderDie(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
+            if (enemyStats != null)
+            {
+                if (collision.GetComponent<Enemy>() != null)
+                {
+                    collision.GetComponent<Enemy>().Die();
+                }
+                else if (collision.GetComponent<Boss>() != null)
+                {
+                    collision.GetComponent<Boss>().Die();
+                }
+            }
         }
     }
     void DestroyGameobject()
@@ -267,7 +278,7 @@ public class PlayerProjectile : MonoBehaviour
         DamagePopup.Spawn(finalDamage, popupPosition, Color.red);
         stats.currentHealth -= finalDamage;
     }
-    
+
     void Explode()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
@@ -282,7 +293,7 @@ public class PlayerProjectile : MonoBehaviour
                     CalcEnemyDamage(damage, enemyStats);
                     Vector3 popupPosition = enemy.transform.position + Vector3.up * 1.2f;
                     DamagePopup.Spawn(damage, popupPosition, Color.red);
-//                    Debug.Log("BOOM");
+                    //                    Debug.Log("BOOM");
                     if (enemyStats.currentHealth <= 0)
                     {
                         enemyStats.Die();

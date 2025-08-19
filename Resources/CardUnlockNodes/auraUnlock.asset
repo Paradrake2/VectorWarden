@@ -24,5 +24,6 @@ MonoBehaviour:
     amount: 2
   requiredXP: 1000
   isUnlocked: 0
-  unlockedCards: []
+  unlockedCards:
+  - {fileID: 11400000, guid: fbf00fa9362ded1479ade47bf2e8a3ff, type: 2}
   disabledCards: []

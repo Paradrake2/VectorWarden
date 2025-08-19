@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: testAreaCard
+  m_EditorClassIdentifier: 
+  skillName: testArea
+  description: 
+  skillIcon: {fileID: 2373229290053220609, guid: 029f295fb42993d488012a80300b67f0, type: 3}
+  cardPicture: {fileID: 7747909874499330141, guid: 74ca24e7619e1ae4c96de28bff13b836, type: 3}
+  skillType: 4
+  skillCardRarity: 0
+  statModifiers: []
+  projectilePrefab: {fileID: 6670500428637364174, guid: 8e232199633041845b38f544fdada857, type: 3}
+  minimumLevelRequired: 1
+  specialEffects: []
+  projectileData: {fileID: 11400000, guid: 0dcf300756cfbe24684d94c8b3251444, type: 2}
+  unlocked: 1
+  maxValue: 0
+  minValue: 0
+  prerequisites: []
+  autoAttackDataList:
+  - {fileID: 11400000, guid: a5aa6e5c3556a444b8e0e25ba0de30de, type: 2}

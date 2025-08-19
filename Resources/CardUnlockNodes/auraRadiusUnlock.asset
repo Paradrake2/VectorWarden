@@ -10,23 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
-  m_Name: lifestealUnlock
+  m_Name: auraRadiusUnlock
   m_EditorClassIdentifier: 
-  unlockID: lifestealUnlock
+  unlockID: auraRadiusUnlock
   cardUnlockname: 
-  icon: {fileID: -7401396626558740647, guid: ff7fe799d514bf74daf307920f761da6, type: 3}
+  icon: {fileID: 3435033996602058034, guid: be2384da1c979d04f8e64b04f5fe2985, type: 3}
   prerequisites:
-  - {fileID: 11400000, guid: 54dae99e2ad89c6469ec14cbdb26d229, type: 2}
+  - {fileID: 11400000, guid: e93bed1a835c2f744be893ab8458c7c4, type: 2}
   requirements:
-  - item: {fileID: 11400000, guid: 83c7a29c696d0964da7b13ec691d7cb9, type: 2}
-    amount: 10
   - item: {fileID: 11400000, guid: 22b45c2cf436ebf439ac29a73600cd67, type: 2}
-    amount: 10
-  - item: {fileID: 11400000, guid: de26043be739cb4468c8aac0ac31a729, type: 2}
     amount: 5
-  requiredXP: 3000
+  requiredXP: 2000
   isUnlocked: 0
   unlockedCards:
-  - {fileID: 11400000, guid: 93cd041336efa284595208e87bc5b9db, type: 2}
-  - {fileID: 11400000, guid: ae0978b8271896549999a95331b382ba, type: 2}
+  - {fileID: 11400000, guid: 1a6d0b4fc392204419e8ffd5100b6a5e, type: 2}
+  - {fileID: 11400000, guid: 6c102ac0b487c3f4b84153c3b38b2503, type: 2}
+  - {fileID: 11400000, guid: b51c095c4cfb459428653097325819a2, type: 2}
+  - {fileID: 11400000, guid: a8b23d71345d94f46bf2c126339af69f, type: 2}
   disabledCards: []

@@ -50,7 +50,7 @@ public class AutoAttack : MonoBehaviour
         Debug.Log($"Firing AutoAttack: {autoAttack.attackType} with {projectileCount} projectiles");
         switch (autoAttack.attackType)
         {
-            case AutoAttackType.Projectile:
+            case AutoAttackType.Projectile: // Basic auto attack, fires a projectile at the closest enemy
                 for (int i = 0; i < projectileCount; i++)
                 {
                     GameObject nearestEnemy = GetNearestEnemy();
@@ -63,44 +63,71 @@ public class AutoAttack : MonoBehaviour
                 }
                 break;
             case AutoAttackType.Aura:
-                float auraRadius = autoAttack.auraRadius;
-                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, auraRadius);
-                // create aura effect
-                foreach (var enemy in hitEnemies)
-                {
-                    EnemyStats enemyStats = enemy.GetComponent<EnemyStats>();
-                    if (enemyStats != null)
-                    {
-                        enemyStats.TakeDamage(playerStats.CurrentDamage * playerStats.GetAuraDamageMult());
-                    }
-                }
+                AuraAttack(autoAttack);
                 break;
             case AutoAttackType.Spread:
-                float angleStep = 360f / projectileCount;
-                float currentAngle = 0f;
-
-                for (int i = 0; i < projectileCount; i++)
-                {
-                    float radian = currentAngle * Mathf.Deg2Rad;
-                    Vector3 direction = new Vector3(Mathf.Cos(radian), Mathf.Sin(radian), 0).normalized;
-                    FireProjectile(direction, autoAttack.projectilePrefab);
-                    currentAngle += angleStep;
-                }
+                Spread(autoAttack.projectileCount, autoAttack.projectileCount2, autoAttack.shotInterval, autoAttack.projectilePrefab);
                 break;
             case AutoAttackType.Shotgun:
                 Shotgun(projectileCount, autoAttack);
                 break;
             case AutoAttackType.Orbital:
-                //RotatingAttack(autoAttack, projectileCount);
+                // This is handled in the OrbitalAttack class. It has its own logic because there is a lot more that goes into it that simply firing a projectile. This is just here as a placeholder
+                break;
+            case AutoAttackType.Area:
                 break;
             default:
                 Debug.LogWarning("Unknown AutoAttackType");
                 yield break;
         }
-        
     }
+    void AuraAttack(AutoAttackData aa)
+    {
+        float auraRadius = aa.auraRadius;
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, auraRadius);
+        StartCoroutine(ShowAura(aa.projectilePrefab, auraRadius));
+        foreach (var enemy in hitEnemies)
+        {
+            Debug.Log($"Aura hit enemy: {enemy.name}");
+            EnemyStats enemyStats = enemy.GetComponent<EnemyStats>();
+            if (enemyStats != null)
+            {
+                enemyStats.TakeDamage(playerStats.CurrentDamage);
+                Vector3 popupPosition = enemy.transform.position + Vector3.up * 1.2f;
+                DamagePopup.Spawn(playerStats.CurrentDamage, popupPosition, Color.red);
+            }
+        }
+    }
+    IEnumerator ShowAura(GameObject prefab, float radius)
+    {
+        Player player = FindFirstObjectByType<Player>();
+        GameObject aura = Instantiate(prefab, player.transform.position, Quaternion.identity);
+        aura.transform.localScale = new Vector3(radius, radius, 1);
+        yield return new WaitForSeconds(0.2f);
+        Destroy(aura);
+    }
+    void Spread(int streams, int shotsPerStream, float perShotInterval, GameObject prefab)
+    {
+        float angleStep = 360f / Mathf.Max(1, streams);
+        float currentAngle = 45f;
 
-    
+        for (int i = 0; i < streams; i++)
+        {
+            float radian = currentAngle * Mathf.Deg2Rad;
+            Vector3 direction = new Vector3(Mathf.Cos(radian), Mathf.Sin(radian), 0).normalized;
+            StartCoroutine(FireStream(direction, shotsPerStream, perShotInterval, prefab));
+            //FireProjectile(direction, autoAttack.projectilePrefab);
+            currentAngle += angleStep;
+        }
+    }
+    IEnumerator FireStream(Vector2 dir, int count, float interval, GameObject prefab)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            FireProjectile(dir, prefab);
+            yield return new WaitForSeconds(interval);
+        }
+    }
     void Shotgun(int projectileCount, AutoAttackData autoAttack)
     {
         GameObject nearestEnemy = GetNearestEnemy();

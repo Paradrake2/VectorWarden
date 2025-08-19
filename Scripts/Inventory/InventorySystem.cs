@@ -5,11 +5,19 @@ using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
+public class DebugItem
+{
+    public Items item;
+    public int quantity;
+}
+
 public class InventorySystem : MonoBehaviour
 {
     public List<InventoryItem> itemStacks = new List<InventoryItem>();
     public List<InventoryItem> acquiredItems = new List<InventoryItem>(); // Stuff the player has gotten during the run
     public List<Items> acquiredItemsList = new List<Items>();
+     public List<DebugItem> debugItems = new List<DebugItem>(); // For testing purposes, to quickly add items
     public static InventorySystem Instance;
     //public Log log;
     public void ResetForNewRun()
@@ -57,6 +65,17 @@ public class InventorySystem : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Dungeon")
         {
             //log = FindFirstObjectByType<Log>();
+            foreach (var debugItem in debugItems)
+            {
+                if (debugItem.item != null)
+                {
+                    AddItem(debugItem.item.ID, debugItem.quantity);
+                }
+                else
+                {
+                    Debug.LogWarning("Debug item has no item assigned.");
+                }
+            }
         }
     }
     void Awake()

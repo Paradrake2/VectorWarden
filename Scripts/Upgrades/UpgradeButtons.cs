@@ -7,6 +7,7 @@ public class UpgradeButtons : MonoBehaviour
     {
         PlayerStats.Instance.ClearTempStats();
         SceneManager.LoadScene("Dungeon");
+        UpgradeXPHolder.Instance.SetUpgradeXPAmount(UpgradeManager.Instance.GetUpgradeXPAmount());
     }
     void Start()
     {

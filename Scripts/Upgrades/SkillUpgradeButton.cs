@@ -83,6 +83,7 @@ public class SkillUpgradeButton : MonoBehaviour
     }
     public void UpdateShader()
     {
+
         if (HasRequiredItems() && HasRequiredXP() && HasPrerequisites())
         {
             shader.gameObject.SetActive(false);
@@ -90,6 +91,13 @@ public class SkillUpgradeButton : MonoBehaviour
         else
         {
             shader.gameObject.SetActive(true);
+        }
+        if (cardNode.isUnlocked)
+        {
+            shader.gameObject.SetActive(true);
+            shader.color = new Color32(227, 227, 5, 200);
+            GetComponent<Button>().interactable = false;
+
         }
     }
     /*

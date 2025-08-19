@@ -27,7 +27,7 @@ public class ProjectileUpgrade : ScriptableObject
         public int projectileAdd = 0;
         public float homingRange = 0f;
         public float attackSpeedModifier = 0f;
-
+        
         [Header("Unlocks / Flags")]
         public bool unlockExplosive = false;
         public bool unlockHoming = false;

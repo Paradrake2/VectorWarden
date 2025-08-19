@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 446393756125c1e4e9559694193b3153, type: 3}
+  m_Name: auraUpgrade
+  m_EditorClassIdentifier: 
+  projectileData: {fileID: 11400000, guid: 60c7968c85256344781bf6c6c1e0f9c1, type: 2}
+  maxLevel: 3
+  tiers:
+  - damageMultiplier: 1
+    speedMultiplier: 0
+    sizeMult: 1
+    flatDamage: 5
+    flatSpeed: 0
+    explosionRadius: 0
+    knockbackAddition: 0
+    piercingAddition: 0
+    projectileAdd: 0
+    homingRange: 0
+    attackSpeedModifier: 0
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 0
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}
+  - damageMultiplier: 2
+    speedMultiplier: 0
+    sizeMult: 3
+    flatDamage: 5
+    flatSpeed: 0
+    explosionRadius: 0
+    knockbackAddition: 0
+    piercingAddition: 0
+    projectileAdd: 0
+    homingRange: 0
+    attackSpeedModifier: 0
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 0
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}
+  - damageMultiplier: 3
+    speedMultiplier: 0
+    sizeMult: 5
+    flatDamage: 5
+    flatSpeed: 0
+    explosionRadius: 0
+    knockbackAddition: 0
+    piercingAddition: 0
+    projectileAdd: 0
+    homingRange: 0
+    attackSpeedModifier: 0
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 0
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}

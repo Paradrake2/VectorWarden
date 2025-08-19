@@ -36,11 +36,11 @@ public class CardUnlockUIManager : MonoBehaviour
     {
         UnlockSkillCards(node);
         DisableSkillCards(node);
-        RemoveRequirements();
-        UpdateSkillUpgradeButtons();
         node.isUnlocked = true;
-        node = null;
+        RemoveRequirements();
         UpgradeMaterialInventoryManager.Instance.PopulateInventory();
+        UpdateSkillUpgradeButtons();
+        node = null;
         ClearConfirmPanel();
     }
     public void UnlockSkillCards(CardUnlockNode cardNode)
@@ -91,7 +91,7 @@ public class CardUnlockUIManager : MonoBehaviour
     {
         foreach (var requirement in node.requirements)
         {
-            InventorySystem.Instance.RemoveItem(requirement.item.itemName, requirement.amount);
+            InventorySystem.Instance.RemoveItem(requirement.item.ID, requirement.amount);
         }
         UpgradeManager.Instance.RemoveXP(node.requiredXP);
     }
