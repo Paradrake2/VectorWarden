@@ -17,10 +17,10 @@ MonoBehaviour:
   baseSpeed: 0
   baseDamage: 0
   icon: {fileID: 2768555999611999483, guid: 46323c318a7252c42a525f0fadd5b3b2, type: 3}
-  projectileType: 6
+  projectileType: 5
   spriteRotationOffset: -90
   lifetime: 5
-  speedMultiplier: 1
+  speedMultiplier: 0
   damageMultiplier: 1
   attackSpeedModifier: 1
   isHoming: 0
@@ -33,6 +33,13 @@ MonoBehaviour:
   knockbackForce: 0
   projectileSize: 1
   projectileAdd: 0
-  bounceNum: 4
+  float1: 1
+  float2: 0
+  float3: 0
+  float4: 0
+  int1: 0
+  int2: 0
+  int3: 0
+  int4: 0
   projectileUpgrade: {fileID: 11400000, guid: cc7c7bd98e9c84e4398613605565f5c4, type: 2}
   projectileOrigin: 4

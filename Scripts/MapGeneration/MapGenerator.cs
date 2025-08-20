@@ -60,12 +60,13 @@ public class MapGenerator : MonoBehaviour
         float oreDensity = Random.Range(template.minOreDensity, template.maxOreDensity);
         float chestDensity = Random.Range(template.minChestDensity, template.maxChestDensity);
 
+        List<EnemySpawn.EnemyWave> enemyWaves = template.enemyWaves;
         RoomType roomType = template.roomType;
         map = new bool[width, height];
 
-        GenerateArenaMap(radius, enemyDensity, obstacleDensity, oreDensity, chestDensity, roomType);
-
         playerSpawnPosition = GenerateRandomPosition();
+        GenerateArenaMap(radius, enemyDensity, obstacleDensity, oreDensity, chestDensity, roomType, enemyWaves);
+
         //OnDrawGizmos();
     }
     /*
@@ -122,7 +123,7 @@ public class MapGenerator : MonoBehaviour
     }
 
     // Arena generation
-    void GenerateArenaMap(int radius, float enemyDensity, float obstacleDensity, float oreDensity, float chestDensity, RoomType roomType)
+    void GenerateArenaMap(int radius, float enemyDensity, float obstacleDensity, float oreDensity, float chestDensity, RoomType roomType, List<EnemySpawn.EnemyWave> enemyWaves)
     {
         arenaOffset = new Vector2Int(-radius, -radius);
         Vector2 center = new Vector2(0, 0);
@@ -164,6 +165,7 @@ public class MapGenerator : MonoBehaviour
 
             //if (tile != null && IsInsideFloorRadius(cellPos, radius)) enemySpawn.SpawnEnemy(pos);
         }
+        enemySpawn.SetEnemyWaves(enemyWaves);
     }
 
     bool IsInsideFloorRadius(Vector3Int cellPos, int radius)

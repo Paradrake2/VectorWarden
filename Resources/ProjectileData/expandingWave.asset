@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e9d9038d9ac8ce4d880ff2cfd462884, type: 3}
-  m_Name: autoFireball
+  m_Name: expandingWave
   m_EditorClassIdentifier: 
-  projectileName: autoFireball
-  prefab: {fileID: 6670500428637364174, guid: 8e232199633041845b38f544fdada857, type: 3}
-  baseSpeed: 0
+  projectileName: expandingWave
+  prefab: {fileID: 8303755714516079531, guid: b90edf34a0771db4faabafced6d3c58a, type: 3}
+  baseSpeed: 8
   baseDamage: 0
-  icon: {fileID: 2768555999611999483, guid: 46323c318a7252c42a525f0fadd5b3b2, type: 3}
-  projectileType: 0
-  spriteRotationOffset: -90
-  lifetime: 5
+  icon: {fileID: 3535798218288483953, guid: 8039c13c56bfbff489a0fc248bc210fd, type: 3}
+  projectileType: 6
+  spriteRotationOffset: 0
+  lifetime: 10
   speedMultiplier: 1
   damageMultiplier: 1
   attackSpeedModifier: 0
@@ -29,9 +29,17 @@ MonoBehaviour:
   homingSpeed: 0
   homingRange: 0
   explosionRadius: 0
-  pierceAmount: 0
+  pierceAmount: 5
   knockbackForce: 0
-  projectileSize: 0
+  projectileSize: 1
   projectileAdd: 0
-  projectileUpgrade: {fileID: 0}
-  projectileOrigin: 1
+  float1: 1
+  float2: 0
+  float3: 0
+  float4: 0
+  int1: 0
+  int2: 0
+  int3: 0
+  int4: 0
+  projectileUpgrade: {fileID: 11400000, guid: 9faeb427885c2da43a1307326ebf268f, type: 2}
+  projectileOrigin: 4

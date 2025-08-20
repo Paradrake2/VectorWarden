@@ -34,6 +34,7 @@ public class Boss : MonoBehaviour
         Destroy(gameObject);
         UIManager.Instance.HideBossHealthbar();
         EnemySpawn.Instance.NextWave();
+        FindFirstObjectByType<DungeonManager>().EnemyKilled();
         // Open path to the next floor
     }
 }

@@ -20,6 +20,8 @@ public class DropPool
 public enum EnemyType
 {
     Normal,
+    Healer,
+    Buffer,
     Boss
 }
 public class EnemyStats : MonoBehaviour
@@ -54,6 +56,17 @@ public class EnemyStats : MonoBehaviour
     public List<DropPool> dropPool = new();
     public List<DropPool> eliteDropPool = new();
     public PlayerStats playerStats;
+
+    [Header("Healing")]
+    public float healRadius = 5f;
+    public float healAmount = 10f;
+    public float healCooldown = 2.5f;
+
+    [Header("Buffer")]
+    public float bufferRadius = 5f;
+    public float hpMult = 1.5f;
+    public float damageMult = 1.5f;
+    public float defenseMult = 1.5f;
 
     public string id;
     void Awake()
@@ -279,5 +292,12 @@ public class EnemyStats : MonoBehaviour
         {
             Debug.LogWarning("Unknown enemy type on death.");
         }
+    }
+    public void AddHealth(float amount)
+    {
+        currentHealth += amount;
+        currentHealth = Mathf.Min(currentHealth, maxHealth);
+        Vector3 popupPosition = transform.position + Vector3.up * 1.2f;
+        DamagePopup.Spawn(amount, popupPosition, Color.green);
     }
 }

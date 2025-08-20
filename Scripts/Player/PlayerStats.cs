@@ -45,6 +45,8 @@ public class PlayerStats : MonoBehaviour
     public int StartingCardCount = 1;
     public int Level = 1;
     public float XP = 0;
+
+    // Base stats
     public float BaseHealth = 100;
     public float BaseDefense = 0;
     public float BaseDamage = 1;
@@ -69,6 +71,8 @@ public class PlayerStats : MonoBehaviour
     public float BaseProjectileSize = 1f;
     public float BaseMoveSpeed = 5.0f;
     public float BaseAttackSpeed = 8f; // 8 attacks per second
+    public float ExpansionSpeed = 1f;
+    public int SplitProjectileNum = 0;
 
     // Stats per level up
     public float HealthPerLevel = 10f;
@@ -717,5 +721,32 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
+
+    public float GetExpansionSpeed()
+    {
+        float val = ExpansionSpeed;
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.ExpansionRate)
+            {
+                val += effect.value;
+            }
+        }
+        return val;
+    }
+
+    public int GetSplitProjectileNum()
+    {
+        int val = SplitProjectileNum;
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.SplitNum)
+            {
+                val += (int)effect.value;
+            }
+        }
+        return val;
+    }
+
 
 }

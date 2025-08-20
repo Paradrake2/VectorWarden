@@ -57,7 +57,7 @@ public class AutoAttack : MonoBehaviour
                     if (nearestEnemy != null)
                     {
                         Vector3 direction = (nearestEnemy.transform.position - transform.position).normalized;
-                        FireProjectile(direction, autoAttack.projectilePrefab);
+                        FireProjectile(direction, autoAttack.projectilePrefab, transform.position);
                     }
                     yield return new WaitForSeconds(0.05f); // Slight delay between projectiles
                 }
@@ -75,10 +75,30 @@ public class AutoAttack : MonoBehaviour
                 // This is handled in the OrbitalAttack class. It has its own logic because there is a lot more that goes into it that simply firing a projectile. This is just here as a placeholder
                 break;
             case AutoAttackType.Area:
+                AreaAttack(autoAttack);
                 break;
             default:
                 Debug.LogWarning("Unknown AutoAttackType");
                 yield break;
+        }
+    }
+    void AreaAttack(AutoAttackData aa)
+    {
+        EnemyStats[] enemies = FindObjectsByType<EnemyStats>(FindObjectsSortMode.None);
+        List<Vector3> spawnPos = new List<Vector3>();
+        for (int i = 0; i < aa.projectilePrefab.GetComponent<PlayerProjectile>().projectileData.projectileAdd; i++)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, enemies.Length);
+            Vector3 enemyPosition = enemies[randomIndex].transform.position;
+            if (!spawnPos.Contains(enemyPosition))
+            {
+                spawnPos.Add(enemyPosition);
+                Debug.Log(enemyPosition);
+            }
+        }
+        foreach (Vector3 pos in spawnPos)
+        {
+            FireProjectile(pos, aa.projectilePrefab, pos);
         }
     }
     void AuraAttack(AutoAttackData aa)
@@ -124,7 +144,7 @@ public class AutoAttack : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
-            FireProjectile(dir, prefab);
+            FireProjectile(dir, prefab, transform.position);
             yield return new WaitForSeconds(interval);
         }
     }
@@ -137,14 +157,14 @@ public class AutoAttack : MonoBehaviour
             float randomAngle = Random.Range(-spread / 2, spread / 2);
             Quaternion rotation = Quaternion.Euler(0, 0, randomAngle);
             Vector2 rotatedDirection = rotation * (nearestEnemy.transform.position - transform.position).normalized;
-            FireProjectile(rotatedDirection, autoAttack.projectilePrefab);
+            FireProjectile(rotatedDirection, autoAttack.projectilePrefab, transform.position);
         }
     }
-    void FireProjectile(Vector3 direction, GameObject prefab)
+    void FireProjectile(Vector3 direction, GameObject prefab, Vector3 position)
     {
-        GameObject projectile = Instantiate(prefab, transform.position, Quaternion.identity);
+        GameObject projectile = Instantiate(prefab, position, Quaternion.identity);
         PlayerProjectile projData = projectile.GetComponent<PlayerProjectile>();
-        
+
         if (projData != null)
         {
             projData.InitializeProjectile(direction, playerStats.GetProjectileSpeed(), playerStats.CurrentDamage * playerStats.GetAutoAttackDamageMultiplier(), projData.projectileType, projData.projectileData, playerStats);
@@ -161,7 +181,7 @@ public class AutoAttack : MonoBehaviour
         Transform closestEnemy = null;
 
         List<EnemyStats> enemies = FindObjectsByType<EnemyStats>(FindObjectsSortMode.None).ToList();
-    
+
         foreach (var enemy in enemies)
         {
             float distance = Vector3.Distance(transform.position, enemy.gameObject.transform.position);
@@ -174,4 +194,40 @@ public class AutoAttack : MonoBehaviour
 
         return closestEnemy != null ? closestEnemy.gameObject : null;
     }
+    /*
+    public void AreaAttack()
+    {
+        EnemyStats[] enemies = FindObjectsByType<EnemyStats>(FindObjectsSortMode.None);
+        List<Vector3> spawnPos = new List<Vector3>();
+        for (int i = 0; i < projectileData.projectileAdd; i++)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, enemies.Length);
+            Vector3 enemyPosition = enemies[randomIndex].transform.position;
+            if (!spawnPos.Contains(enemyPosition))
+            {
+                spawnPos.Add(enemyPosition);
+                Debug.Log(enemyPosition);
+            }
+        }
+        foreach (Vector3 pos in spawnPos)
+        {
+            StartCoroutine(SpawnAreaAttack(pos));
+        }
+    }
+
+    private IEnumerator SpawnAreaAttack(Vector3 position)
+    {
+        GameObject projectile = Instantiate(projectileData.prefab, position, Quaternion.identity);
+        PlayerProjectile projData = projectile.GetComponent<PlayerProjectile>();
+        SetupAreaAttackStats(projData, projectile);
+        Destroy(projectile, projectileData.float1);
+        yield return null;
+    }
+
+    private void SetupAreaAttackStats(PlayerProjectile projData, GameObject projectile)
+    {
+        projData.damage = damage;
+        projectile.transform.localScale = new Vector3(projectileSize, projectileSize, 1f);
+    }
+    */
 }

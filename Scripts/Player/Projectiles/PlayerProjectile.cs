@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering.Universal.Internal;
@@ -11,6 +12,7 @@ public enum ProjectileType
     Homing,
     Orbital,
     Area,
+    Expanding,
     None
 }
 
@@ -33,7 +35,8 @@ public class PlayerProjectile : MonoBehaviour
     public float lifetime = 2f;
     private float knockbackForce = 1f; // Default knockback force
     public bool shotgunStyle = false;
-
+    private float expansionRate = 0;
+    private Rigidbody2D rb;
     private Vector2 inverseDirection;
     [SerializeField] private float homingTimer = 0f;
     [SerializeField] private const float homingInterval = 0.05f; // How often to check for homing targets
@@ -59,28 +62,6 @@ public class PlayerProjectile : MonoBehaviour
     }
     void Start()
     {
-        /*
-        if (projectileData != null)
-        {
-            projectileSpeed = projectileData.baseSpeed + (playerStats.GetProjectileSpeed() * (1 + projectileData.speedMultiplier));
-            damage = projectileData.baseDamage + playerStats.CurrentDamage;
-            projectileType = projectileData.projectileType;
-            spriteRotationOffset = projectileData.spriteRotationOffset;
-            lifetime = projectileData.lifetime;
-            damageMultiplier = projectileData.damageMultiplier;
-            pierceAmount = (int)(projectileData.pierceAmount + playerStats.GetPiercingAmount());
-            explosionRadius = projectileData.explosionRadius + playerStats.GetExplosionRadius();
-            homingRange = projectileData.homingRange + playerStats.GetHomingRange();
-            projectileSize = projectileData.projectileSize + playerStats.GetProjectileSize();
-            knockbackForce = projectileData.knockbackForce;
-            shotgunStyle = projectileData.shotgunStyle;
-        }
-        else
-        {
-            Debug.LogError("ProjectileData not assigned in PlayerProjectile.");
-        }
-        */
-
         Destroy(gameObject, lifetime);
     }
 
@@ -143,22 +124,9 @@ public class PlayerProjectile : MonoBehaviour
             projectileSpeed = speed;
         }
         damage = damageAmount;
-        projectileType = type;
+        projectileType = data.projectileType;
 
-        if (playerStats != null)
-        {
-            pierceAmount = playerStats.GetPiercingAmount() + (int)projectileData.pierceAmount;
-            explosionRadius = playerStats.GetExplosionRadius() + projectileData.explosionRadius;
-            homingRange = playerStats.GetHomingRange() + projectileData.homingRange;
-            projectileSize = playerStats.GetProjectileSize() + projectileData.projectileSize;
-        }
-        else
-        {
-            pierceAmount = projectileData != null ? (int)projectileData.pierceAmount : 0;
-            explosionRadius = projectileData != null ? projectileData.explosionRadius : 0f;
-            homingRange = projectileData != null ? projectileData.homingRange : 0f;
-            projectileSize = projectileData != null ? projectileData.projectileSize : 1f;
-        }
+        SetupStats(data, playerStats);
         /*
         if (projectileData.isHoming && homingRange > 0f)
         {
@@ -167,20 +135,67 @@ public class PlayerProjectile : MonoBehaviour
             homingCollider.isTrigger = true; // Make it a trigger to detect targets without physical collision
         }
         */
+
+
+
         if (ProjectileLevelTracker.Instance.GetLevel(data) != 0) // Check projectile tier
         {
             Debug.LogWarning($"Projectile tier {ProjectileLevelTracker.Instance.GetLevel(data)} detected, applying upgrades.");
             ApplyUpgradedStats(data.projectileUpgrade, ProjectileLevelTracker.Instance.GetLevel(data));
         }
         gameObject.transform.localScale = new Vector3(projectileSize, projectileSize, 1f);
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        if (rb != null && projectileType != ProjectileType.Orbital)
-        {
-            rb.linearVelocity = moveDirection * projectileSpeed; // Assuming the projectile moves in the direction it's facing
-        }
-
+        rb = GetComponent<Rigidbody2D>();
+        HandleType(projectileType, moveDirection);
         float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + spriteRotationOffset));
+    }
+    void HandleType(ProjectileType type, Vector2 moveDirection)
+    {
+        switch (type)
+        {
+            case ProjectileType.Normal:
+                rb.linearVelocity = moveDirection * projectileSpeed; // Assuming the projectile moves in the direction it's facing
+                break;
+            case ProjectileType.Explosive:
+                rb.linearVelocity = moveDirection * projectileSpeed; // Assuming the projectile moves in the direction it's facing
+                break;
+            case ProjectileType.Piercing:
+                rb.linearVelocity = moveDirection * projectileSpeed; // Assuming the projectile moves in the direction it's facing
+                break;
+            case ProjectileType.Homing:
+                rb.linearVelocity = moveDirection * projectileSpeed; // Assuming the projectile moves in the direction it's facing
+                break;
+            case ProjectileType.Orbital:
+                // Orbital projectile behavior
+                break;
+            case ProjectileType.Area:
+                break;
+            case ProjectileType.Expanding:
+                rb.linearVelocity = moveDirection * projectileSpeed; // Assuming the projectile moves in the direction it's facing
+                StartCoroutine(ExpandOverTime(expansionRate));
+                break;
+            default:
+                Debug.LogWarning("Unhandled projectile type: " + type);
+                break;
+        }
+    }
+    void SetupStats(ProjectileData projectileData, PlayerStats playerStats)
+    {
+        if (playerStats != null)
+        {
+            pierceAmount = playerStats.GetPiercingAmount() + (int)projectileData.pierceAmount;
+            explosionRadius = playerStats.GetExplosionRadius() + projectileData.explosionRadius;
+            homingRange = playerStats.GetHomingRange() + projectileData.homingRange;
+            projectileSize = playerStats.GetProjectileSize() + projectileData.projectileSize;
+            expansionRate = projectileData.float1 + playerStats.GetExpansionSpeed();
+        }
+        else
+        {
+            pierceAmount = projectileData != null ? (int)projectileData.pierceAmount : 0;
+            explosionRadius = projectileData != null ? projectileData.explosionRadius : 0f;
+            homingRange = projectileData != null ? projectileData.homingRange : 0f;
+            projectileSize = projectileData != null ? projectileData.projectileSize : 1f;
+        }
     }
     void ApplyUpgradedStats(ProjectileUpgrade upgrade, int tier)
     {
@@ -202,6 +217,11 @@ public class PlayerProjectile : MonoBehaviour
         if (upgrade.tiers[tier].unlockExplosive)
         {
             projectileData.isExplosive = true;
+        }
+        if (projectileType == ProjectileType.Expanding)
+        {
+            // Use float1 as expansion rate
+            expansionRate = expansionRate + upgrade.tiers[tier].float1;
         }
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -317,6 +337,16 @@ public class PlayerProjectile : MonoBehaviour
                 rb.linearVelocity = moveDirection * projectileSpeed;
                 Debug.Log($"Homing towards target: {target.name} with speed: {projectileSpeed}");
             }
+        }
+    }
+
+    IEnumerator ExpandOverTime(float expansionRate)
+    {
+        while (true)
+        {
+            projectileSize += expansionRate * Time.deltaTime;
+            transform.localScale = new Vector3(projectileSize, projectileSize, 1f);
+            yield return null;
         }
     }
 

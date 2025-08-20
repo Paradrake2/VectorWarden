@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e9d9038d9ac8ce4d880ff2cfd462884, type: 3}
-  m_Name: autoFireball
+  m_Name: spreadProjectile1Data
   m_EditorClassIdentifier: 
-  projectileName: autoFireball
-  prefab: {fileID: 6670500428637364174, guid: 8e232199633041845b38f544fdada857, type: 3}
+  projectileName: spreadProjectile1Data
+  prefab: {fileID: 2371359704672042746, guid: 85642b9f5fd40024dab049f4976a4e19, type: 3}
   baseSpeed: 0
   baseDamage: 0
-  icon: {fileID: 2768555999611999483, guid: 46323c318a7252c42a525f0fadd5b3b2, type: 3}
+  icon: {fileID: -7944026577763936809, guid: 6f151aef90433034699d9aa1931b6e7d, type: 3}
   projectileType: 0
   spriteRotationOffset: -90
   lifetime: 5
   speedMultiplier: 1
-  damageMultiplier: 1
+  damageMultiplier: 0.8
   attackSpeedModifier: 0
   isHoming: 0
   isExplosive: 0
@@ -31,7 +31,7 @@ MonoBehaviour:
   explosionRadius: 0
   pierceAmount: 0
   knockbackForce: 0
-  projectileSize: 0
+  projectileSize: 1
   projectileAdd: 0
-  projectileUpgrade: {fileID: 0}
+  projectileUpgrade: {fileID: 11400000, guid: 16749dd906c5b524d88f4d253fc571d6, type: 2}
   projectileOrigin: 1

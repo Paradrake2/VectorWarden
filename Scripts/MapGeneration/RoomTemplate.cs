@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum RoomType
@@ -37,5 +38,6 @@ public class RoomTemplate : ScriptableObject
     public float minOreDensity = 0f;
     public float minChestDensity = 0f;
     public float minObstacleWeight = 0f;
+    public List<EnemySpawn.EnemyWave> enemyWaves = new List<EnemySpawn.EnemyWave>();
 
 }

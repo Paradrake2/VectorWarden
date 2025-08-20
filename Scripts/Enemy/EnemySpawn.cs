@@ -61,6 +61,7 @@ public class EnemySpawn : MonoBehaviour
     Transform player;
 
     float spawnTimer;
+    bool initialized = false;
 
     void Awake()
     {
@@ -68,15 +69,70 @@ public class EnemySpawn : MonoBehaviour
     }
     void Start()
     {
-        CalculateWaveQuota();
+        //CalculateWaveQuota();
         player = FindFirstObjectByType<Player>().transform;
-        SpawnEnemies(); // Initial spawn of enemies
+        //SpawnEnemies(); // Initial spawn of enemies
     }
+    public void InitializeEnemyWaves(List<EnemyWave> waves)
+    {
+        enemyWaves = CloneWaves(waves);
+        currentWaveIndex = 0;
+        enemiesAlive = 0;
+        maxEnemiesReached = false;
+        spawnTimer = 0f;
 
+        foreach (var w in enemyWaves)
+        {
+            w.spawnedEnemiesCount = 0;
+            foreach (var g in w.enemyGroups)
+            {
+                g.spawnCount = 0;
+            }
+        }
+
+        CalculateWaveQuota();
+        initialized = true;
+        Debug.Log(initialized + "  " + enemyWaves.Count + "  " + enemyWaves);
+        if (player == null) player = FindFirstObjectByType<Player>().transform;
+        SpawnEnemies();
+    }
+    List<EnemyWave> CloneWaves(List<EnemyWave> waves)
+    {
+        var clonedWaves = new List<EnemyWave>();
+        foreach (var wave in waves)
+        {
+            var clonedWave = new EnemyWave
+            {
+                waveName = wave.waveName,
+                enemyGroups = new List<EnemyGroup>(),
+                enemiesInWave = wave.enemiesInWave,
+                spawnInterval = wave.spawnInterval,
+                spawnedEnemiesCount = wave.spawnedEnemiesCount
+            };
+            foreach (var group in wave.enemyGroups)
+            {
+                var clonedGroup = new EnemyGroup
+                {
+                    enemyName = group.enemyName,
+                    enemyCount = group.enemyCount,
+                    spawnCount = group.spawnCount,
+                    enemyPrefab = group.enemyPrefab
+                };
+                clonedWave.enemyGroups.Add(clonedGroup);
+            }
+            clonedWaves.Add(clonedWave);
+        }
+        return clonedWaves;
+    }
+    public void SetEnemyWaves(List<EnemyWave> waves)
+    {
+        InitializeEnemyWaves(waves);
+        Debug.Log("Enemy waves initialized with " + enemyWaves.Count + " waves.");
+    }
     void Update()
     {
+        if (!initialized || enemyWaves == null || enemyWaves.Count == 0) return;
         spawnTimer += Time.deltaTime;
-
         if (spawnTimer >= enemyWaves[currentWaveIndex].spawnInterval)
         {
             spawnTimer = 0f;

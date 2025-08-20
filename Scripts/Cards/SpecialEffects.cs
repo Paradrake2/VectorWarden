@@ -20,6 +20,10 @@ public enum SpecialEffectType
     AuraDamageMult,
     AuraRadius,
     AuraAttackCooldown,
+    ExpansionRate, // For expanding projectiles
+    SplitNum, // For splitting projectiles
+    
+
 
     // other stuff
 }

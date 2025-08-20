@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,7 @@ public class DungeonManager : MonoBehaviour
     public GameObject playerPrefab;
     public int enemiesKilled = 0;
     public int floormasterThreshold = 30;
+    public TextMeshProUGUI killCountText;
     public int floor;
 
     private void Awake()
@@ -44,10 +46,7 @@ public class DungeonManager : MonoBehaviour
     public void EnemyKilled()
     {
         enemiesKilled++;
-        if (enemiesKilled >= floormasterThreshold)
-        {
-            Floormaster.Instance.SpawnFloormaster();
-        }
+        killCountText.text = "Enemies Killed: " + enemiesKilled;
     }
     void OnEnable()
     {

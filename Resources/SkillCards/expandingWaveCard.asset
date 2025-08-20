@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: expandingWaveCard
+  m_EditorClassIdentifier: 
+  skillName: 'Expanding Wave '
+  description: 
+  skillIcon: {fileID: -1683523301283450482, guid: d9f5ab2e000731b4e9d7eb3605639f2f, type: 3}
+  cardPicture: {fileID: 7807670167649830286, guid: 70ddee63b464383438f170ed2bb39491, type: 3}
+  skillType: 0
+  skillCardRarity: 2
+  statModifiers: []
+  projectilePrefab: {fileID: 8303755714516079531, guid: b90edf34a0771db4faabafced6d3c58a, type: 3}
+  minimumLevelRequired: 1
+  specialEffects: []
+  projectileData: {fileID: 11400000, guid: 29d1de8ea5487fa47912e33876d5b825, type: 2}
+  unlocked: 0
+  maxValue: 0
+  minValue: 0
+  prerequisites: []
+  autoAttackDataList: []

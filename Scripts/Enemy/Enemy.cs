@@ -65,6 +65,7 @@ public class Enemy : MonoBehaviour
         playerStats.GainGold(Mathf.CeilToInt(UnityEngine.Random.Range(stats.minGold, stats.maxGold)));
         EnemySpawn.Instance.EnemyDied();
         Destroy(gameObject);
+        FindFirstObjectByType<DungeonManager>().EnemyKilled();
     }
 
 

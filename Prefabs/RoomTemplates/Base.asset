@@ -31,3 +31,13 @@ MonoBehaviour:
   minOreDensity: 0
   minChestDensity: 0
   minObstacleWeight: 0
+  enemyWaves:
+  - waveName: starterWave
+    enemyGroups:
+    - enemyName: starterEnemy
+      enemyCount: 100
+      spawnCount: 0
+      enemyPrefab: {fileID: 7942617858057425736, guid: 345383ac70840684cb5e648cfc1a2ebe, type: 3}
+    enemiesInWave: 100
+    spawnInterval: 6
+    spawnedEnemiesCount: 0

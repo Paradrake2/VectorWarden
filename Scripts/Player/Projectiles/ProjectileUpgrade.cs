@@ -27,7 +27,7 @@ public class ProjectileUpgrade : ScriptableObject
         public int projectileAdd = 0;
         public float homingRange = 0f;
         public float attackSpeedModifier = 0f;
-        
+
         [Header("Unlocks / Flags")]
         public bool unlockExplosive = false;
         public bool unlockHoming = false;
@@ -36,6 +36,15 @@ public class ProjectileUpgrade : ScriptableObject
         [Header("Custom Hooks")]
         public GameObject onHitVFX;
         public AudioClip onHitSFX;
+        [Header("Misc Stats")]
+        public float float1;
+        public float float2;
+        public float float3;
+        public float float4;
+        public int int1;
+        public int int2;
+        public int int3;
+        public int int4;
     }
 
     public Tier GetTier(int level)

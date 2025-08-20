@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
-  m_Name: testCard
+  m_Name: spreadCard
   m_EditorClassIdentifier: 
-  skillName: test
+  skillName: Spread Attack
   description: 
-  skillIcon: {fileID: 2373229290053220609, guid: 029f295fb42993d488012a80300b67f0, type: 3}
-  cardPicture: {fileID: 7747909874499330141, guid: 74ca24e7619e1ae4c96de28bff13b836, type: 3}
+  skillIcon: {fileID: -7928535885456405522, guid: bc1246700ca41eb4883b9c24f03f1128, type: 3}
+  cardPicture: {fileID: -1666510397504540733, guid: 3cb0c04fe3c665647be5f21bf5fd475e, type: 3}
   skillType: 4
-  skillCardRarity: 0
+  skillCardRarity: 2
   statModifiers: []
-  projectilePrefab: {fileID: 3686898426130692968, guid: a683d2479d5fb3a4cae0943dbb5d4bdf, type: 3}
+  projectilePrefab: {fileID: 2371359704672042746, guid: 85642b9f5fd40024dab049f4976a4e19, type: 3}
   minimumLevelRequired: 1
   specialEffects: []
-  projectileData: {fileID: 11400000, guid: 92d0ab40f3d0f1c408b0a481662f223f, type: 2}
+  projectileData: {fileID: 11400000, guid: b64213b5bcd01a84c8fc2f832d4fd5ff, type: 2}
   unlocked: 0
   maxValue: 0
   minValue: 0
   prerequisites: []
   autoAttackDataList:
-  - {fileID: 11400000, guid: 6a7ede5c51298014f8380983e01604fb, type: 2}
+  - {fileID: 11400000, guid: 9e56a28cda407c449b371aaf4ffc916f, type: 2}

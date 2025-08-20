@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 446393756125c1e4e9559694193b3153, type: 3}
-  m_Name: autoPiercingUpgrade
+  m_Name: spreadProjectile1
   m_EditorClassIdentifier: 
-  projectileData: {fileID: 11400000, guid: 4f58de10ed57e664fa3195112b75e355, type: 2}
+  projectileData: {fileID: 11400000, guid: b64213b5bcd01a84c8fc2f832d4fd5ff, type: 2}
   maxLevel: 7
   tiers:
-  - damageMultiplier: 1.2
+  - damageMultiplier: 1
     speedMultiplier: 1
     sizeMult: 1
-    flatDamage: 5
-    flatSpeed: 3
+    flatDamage: 0
+    flatSpeed: 0
     explosionRadius: 0
     knockbackAddition: 0
-    piercingAddition: 1
+    piercingAddition: 0
     projectileAdd: 0
     homingRange: 0
     attackSpeedModifier: 0
@@ -31,155 +31,99 @@ MonoBehaviour:
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
-    float1: 0
-    float2: 0
-    float3: 0
-    float4: 0
-    int1: 0
-    int2: 0
-    int3: 0
-    int4: 0
+  - damageMultiplier: 1
+    speedMultiplier: 1.25
+    sizeMult: 1
+    flatDamage: 5
+    flatSpeed: 3
+    explosionRadius: 0
+    knockbackAddition: 0
+    piercingAddition: 1
+    projectileAdd: 1
+    homingRange: 0
+    attackSpeedModifier: 1.2
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 0
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}
+  - damageMultiplier: 1.5
+    speedMultiplier: 1.25
+    sizeMult: 1
+    flatDamage: 8
+    flatSpeed: 4
+    explosionRadius: 0
+    knockbackAddition: 0
+    piercingAddition: 1
+    projectileAdd: 2
+    homingRange: 0
+    attackSpeedModifier: 1.4
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 0
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}
   - damageMultiplier: 2
     speedMultiplier: 1.25
     sizeMult: 1.25
-    flatDamage: 10
-    flatSpeed: 8
+    flatDamage: 12
+    flatSpeed: 4
     explosionRadius: 0
     knockbackAddition: 0
     piercingAddition: 2
-    projectileAdd: 1
+    projectileAdd: 3
     homingRange: 0
-    attackSpeedModifier: 0.9
+    attackSpeedModifier: 1.4
     unlockExplosive: 0
     unlockHoming: 0
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
-    float1: 0
-    float2: 0
-    float3: 0
-    float4: 0
-    int1: 0
-    int2: 0
-    int3: 0
-    int4: 0
   - damageMultiplier: 2.25
-    speedMultiplier: 1.25
+    speedMultiplier: 1.5
     sizeMult: 1.5
     flatDamage: 15
-    flatSpeed: 8
+    flatSpeed: 5
     explosionRadius: 0
     knockbackAddition: 0
     piercingAddition: 3
-    projectileAdd: 1
+    projectileAdd: 3
     homingRange: 0
-    attackSpeedModifier: 0.7
+    attackSpeedModifier: 1.4
     unlockExplosive: 0
     unlockHoming: 0
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
-    float1: 0
-    float2: 0
-    float3: 0
-    float4: 0
-    int1: 0
-    int2: 0
-    int3: 0
-    int4: 0
   - damageMultiplier: 2.75
     speedMultiplier: 1.5
     sizeMult: 1.75
-    flatDamage: 15
-    flatSpeed: 8
+    flatDamage: 20
+    flatSpeed: 5
+    explosionRadius: 0
+    knockbackAddition: 0
+    piercingAddition: 3
+    projectileAdd: 4
+    homingRange: 0
+    attackSpeedModifier: 1.4
+    unlockExplosive: 0
+    unlockHoming: 0
+    shotgunStyle: 0
+    onHitVFX: {fileID: 0}
+    onHitSFX: {fileID: 0}
+  - damageMultiplier: 3
+    speedMultiplier: 2
+    sizeMult: 1.75
+    flatDamage: 20
+    flatSpeed: 5
     explosionRadius: 0
     knockbackAddition: 0
     piercingAddition: 4
-    projectileAdd: 2
+    projectileAdd: 6
     homingRange: 0
-    attackSpeedModifier: 0.6
+    attackSpeedModifier: 2
     unlockExplosive: 0
     unlockHoming: 0
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
-    float1: 0
-    float2: 0
-    float3: 0
-    float4: 0
-    int1: 0
-    int2: 0
-    int3: 0
-    int4: 0
-  - damageMultiplier: 3.25
-    speedMultiplier: 1.5
-    sizeMult: 1.75
-    flatDamage: 15
-    flatSpeed: 8
-    explosionRadius: 0
-    knockbackAddition: 0
-    piercingAddition: 5
-    projectileAdd: 3
-    homingRange: 0
-    attackSpeedModifier: 0.6
-    unlockExplosive: 0
-    unlockHoming: 0
-    shotgunStyle: 0
-    onHitVFX: {fileID: 0}
-    onHitSFX: {fileID: 0}
-    float1: 0
-    float2: 0
-    float3: 0
-    float4: 0
-    int1: 0
-    int2: 0
-    int3: 0
-    int4: 0
-  - damageMultiplier: 4
-    speedMultiplier: 2
-    sizeMult: 2
-    flatDamage: 15
-    flatSpeed: 8
-    explosionRadius: 0
-    knockbackAddition: 0
-    piercingAddition: 7
-    projectileAdd: 3
-    homingRange: 0
-    attackSpeedModifier: 0.6
-    unlockExplosive: 0
-    unlockHoming: 0
-    shotgunStyle: 0
-    onHitVFX: {fileID: 0}
-    onHitSFX: {fileID: 0}
-    float1: 0
-    float2: 0
-    float3: 0
-    float4: 0
-    int1: 0
-    int2: 0
-    int3: 0
-    int4: 0
-  - damageMultiplier: 5
-    speedMultiplier: 2.25
-    sizeMult: 2.5
-    flatDamage: 50
-    flatSpeed: 8
-    explosionRadius: 0
-    knockbackAddition: 0
-    piercingAddition: 20
-    projectileAdd: 4
-    homingRange: 0
-    attackSpeedModifier: 0.4
-    unlockExplosive: 0
-    unlockHoming: 0
-    shotgunStyle: 0
-    onHitVFX: {fileID: 0}
-    onHitSFX: {fileID: 0}
-    float1: 0
-    float2: 0
-    float3: 0
-    float4: 0
-    int1: 0
-    int2: 0
-    int3: 0
-    int4: 0
