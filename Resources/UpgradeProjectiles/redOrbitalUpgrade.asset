@@ -15,7 +15,8 @@ MonoBehaviour:
   projectileData: {fileID: 11400000, guid: 9f86ce03459f61448970494d55545151, type: 2}
   maxLevel: 4
   tiers:
-  - damageMultiplier: 1.5
+  - projectilePrefab: {fileID: 652720703885718538, guid: 7ea2bcf225f6807418104b4405047cde, type: 3}
+    damageMultiplier: 1.5
     speedMultiplier: 1
     sizeMult: 1.5
     flatDamage: 0
@@ -31,7 +32,16 @@ MonoBehaviour:
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
-  - damageMultiplier: 2
+    float1: 0
+    float2: 0
+    float3: 0
+    float4: 0
+    int1: 0
+    int2: 0
+    int3: 0
+    int4: 0
+  - projectilePrefab: {fileID: 652720703885718538, guid: 7ea2bcf225f6807418104b4405047cde, type: 3}
+    damageMultiplier: 2
     speedMultiplier: 1
     sizeMult: 2
     flatDamage: 10
@@ -47,7 +57,16 @@ MonoBehaviour:
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
-  - damageMultiplier: 2.25
+    float1: 0
+    float2: 0
+    float3: 0
+    float4: 0
+    int1: 0
+    int2: 0
+    int3: 0
+    int4: 0
+  - projectilePrefab: {fileID: 652720703885718538, guid: 7ea2bcf225f6807418104b4405047cde, type: 3}
+    damageMultiplier: 2.25
     speedMultiplier: 1
     sizeMult: 2.25
     flatDamage: 10
@@ -63,14 +82,23 @@ MonoBehaviour:
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
-  - damageMultiplier: 2.75
+    float1: 0
+    float2: 0
+    float3: 0
+    float4: 0
+    int1: 0
+    int2: 0
+    int3: 0
+    int4: 0
+  - projectilePrefab: {fileID: 5389440308061985170, guid: 57f7f9849eac0e24398aa8cb521c80ab, type: 3}
+    damageMultiplier: 2.75
     speedMultiplier: 1
     sizeMult: 2.5
     flatDamage: 10
     flatSpeed: 0
     explosionRadius: 0
     knockbackAddition: 0
-    piercingAddition: 25
+    piercingAddition: 999
     projectileAdd: 4
     homingRange: 0
     attackSpeedModifier: 0
@@ -79,3 +107,11 @@ MonoBehaviour:
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
+    float1: 0
+    float2: 0
+    float3: 0
+    float4: 0
+    int1: 0
+    int2: 0
+    int3: 0
+    int4: 0

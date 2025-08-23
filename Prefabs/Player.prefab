@@ -341,6 +341,6 @@ MonoBehaviour:
   player: {fileID: 5582542207946383491}
   orbitalPrefabs: []
   maxProjectiles: 2
-  radius: 1.8
+  radius: 4
   rotationSpeed: 180
   regenCooldown: 0.75

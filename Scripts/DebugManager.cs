@@ -16,6 +16,22 @@ public class DebugManager : MonoBehaviour
     {
         PlayerStats.Instance.ReloadAutoAttackList();
     }
+    public void IncreaseWaveIndex()
+    {
+        EnemySpawn.Instance.NextWave();
+    }
+    public void LevelupPlayer()
+    {
+        PlayerStats.Instance.GainXP(PlayerStats.Instance.XpToNextLevel);
+    }
+    public void KillAllEnemies()
+    {
+        EnemySpawn.Instance.KillAllEnemies();
+    }
+    public void AddDebugItems()
+    {
+        InventorySystem.Instance.AddDebugItems();
+    }
     public void ToggleDebugPanel()
     {
         if (debugPanel != null)

@@ -169,6 +169,11 @@ public class LevelUp : MonoBehaviour
             if (playerStats.activeSkillCards.Contains(skillCard))
             {
                 UpgradeProjectile(skillCard.projectileData);
+                
+                if (skillCard.projectileData.projectileType == ProjectileType.Orbital)
+                {
+                    OrbitalAttack.Instance.RefreshOrbitals();
+                }
             }
         }
         bool addToCardList = true;
@@ -274,8 +279,8 @@ public class LevelUp : MonoBehaviour
     }
     void UpdatePlayerStats()
     {
-        playerStats.CurrentHealth = playerStats.CurrentMaxHealth;
-        playerStats.CurrentMana = playerStats.CurrentMaxMana;
+        //playerStats.CurrentHealth = playerStats.CurrentMaxHealth;
+        //playerStats.CurrentMana = playerStats.CurrentMaxMana;
         UIManager.Instance.UpdateShieldText();
         UIManager.Instance.UpdateHealthText();
         UIManager.Instance.UpdateDamageText();

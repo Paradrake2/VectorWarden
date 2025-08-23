@@ -33,5 +33,13 @@ MonoBehaviour:
   knockbackForce: 1
   projectileSize: 1
   projectileAdd: 0
+  float1: 4
+  float2: 0
+  float3: 0
+  float4: 0
+  int1: 0
+  int2: 0
+  int3: 0
+  int4: 0
   projectileUpgrade: {fileID: 11400000, guid: 619bd5d39f80abb4599eb6ee525fcf67, type: 2}
   projectileOrigin: 2

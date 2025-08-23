@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
+  m_Name: redOrbitalProjectileUnlock
+  m_EditorClassIdentifier: 
+  unlockID: redOrbitalProjectile
+  cardUnlockname: 
+  icon: {fileID: -4937209161576367049, guid: 8518cbc5c646041478889cba78c6ae4a, type: 3}
+  prerequisites:
+  - {fileID: 11400000, guid: c3ad6f3136755b04493f2e5cefdd88e4, type: 2}
+  requirements:
+  - item: {fileID: 11400000, guid: de26043be739cb4468c8aac0ac31a729, type: 2}
+    amount: 5
+  - item: {fileID: 11400000, guid: 22b45c2cf436ebf439ac29a73600cd67, type: 2}
+    amount: 10
+  requiredXP: 5000
+  isUnlocked: 0
+  unlockedCards:
+  - {fileID: 11400000, guid: db73509338b15e2488255c088e0acf37, type: 2}
+  disabledCards: []

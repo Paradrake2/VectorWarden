@@ -5,13 +5,13 @@ public class EnemyAI_Healer : MonoBehaviour
 {
     public EnemyStats enemyStats;
     public GameObject healEffectPrefab;
+    public float healPrefabLifetime = 0.5f;
     private float healTimer = 0;
     void Start()
     {
         enemyStats = GetComponent<EnemyStats>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (healTimer <= 0)
@@ -45,7 +45,8 @@ public class EnemyAI_Healer : MonoBehaviour
     {
         GameObject healEffect = Instantiate(healEffectPrefab, transform.position, Quaternion.identity);
         healEffect.transform.localScale = new Vector3(enemyStats.healRadius, enemyStats.healRadius, 1);
-        yield return new WaitForSeconds(0.5f);
+        healEffect.GetComponent<EnemyProjectileDestroy>().lifetime = healPrefabLifetime; // This makes sure the heal prefab is destroyed even if the enemy is killed first
+        yield return new WaitForSeconds(healPrefabLifetime);
         Destroy(healEffect);
     }
 }

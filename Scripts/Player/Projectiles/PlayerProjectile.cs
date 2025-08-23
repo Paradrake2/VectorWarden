@@ -183,19 +183,23 @@ public class PlayerProjectile : MonoBehaviour
     {
         if (playerStats != null)
         {
-            pierceAmount = playerStats.GetPiercingAmount() + (int)projectileData.pierceAmount;
+            pierceAmount = playerStats.GetPiercingAmount() + projectileData.pierceAmount;
             explosionRadius = playerStats.GetExplosionRadius() + projectileData.explosionRadius;
             homingRange = playerStats.GetHomingRange() + projectileData.homingRange;
             projectileSize = playerStats.GetProjectileSize() + projectileData.projectileSize;
-            expansionRate = projectileData.float1 + playerStats.GetExpansionSpeed();
+            if (projectileData.projectileType == ProjectileType.Expanding)
+            {
+                expansionRate = projectileData.float1 + playerStats.GetExpansionSpeed();
+            }
         }
         else
         {
-            pierceAmount = projectileData != null ? (int)projectileData.pierceAmount : 0;
+            pierceAmount = projectileData != null ? projectileData.pierceAmount : 0;
             explosionRadius = projectileData != null ? projectileData.explosionRadius : 0f;
             homingRange = projectileData != null ? projectileData.homingRange : 0f;
             projectileSize = projectileData != null ? projectileData.projectileSize : 1f;
         }
+        
     }
     void ApplyUpgradedStats(ProjectileUpgrade upgrade, int tier)
     {
@@ -321,7 +325,7 @@ public class PlayerProjectile : MonoBehaviour
                 }
             }
         }
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     public void SetHomingTarget(Transform target)

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1094556280162484174}
   - component: {fileID: 7816502805801268360}
+  - component: {fileID: -4318954204960241851}
   m_Layer: 0
   m_Name: HealEffectPrefab
   m_TagString: Untagged
@@ -87,3 +88,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-4318954204960241851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710309572933374470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a888a9f891b4a04ea5fbf23ce2eb630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 5

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
+  m_Name: xpGainCardUnlock
+  m_EditorClassIdentifier: 
+  unlockID: xpGainCardUnlock
+  cardUnlockname: 
+  icon: {fileID: -961109491054227297, guid: 2498028ce37cde748835998a7c1ebbce, type: 3}
+  prerequisites:
+  - {fileID: 11400000, guid: dd3ddf74d9828754ca6c8f50e9b56496, type: 2}
+  requirements:
+  - item: {fileID: 11400000, guid: de26043be739cb4468c8aac0ac31a729, type: 2}
+    amount: 5
+  - item: {fileID: 11400000, guid: 22b45c2cf436ebf439ac29a73600cd67, type: 2}
+    amount: 15
+  requiredXP: 5000
+  isUnlocked: 0
+  unlockedCards:
+  - {fileID: 11400000, guid: 2b617f414bba727499ecb976d9740f76, type: 2}
+  - {fileID: 11400000, guid: c262a7b9f40ed554fb1139bc9b7e163d, type: 2}
+  - {fileID: 11400000, guid: 51a343282c887aa4499770f54486e41e, type: 2}
+  - {fileID: 11400000, guid: 88a6a3b9574cb4145b9a7486c9499abb, type: 2}
+  disabledCards: []

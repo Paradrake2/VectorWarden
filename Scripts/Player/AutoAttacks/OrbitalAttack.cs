@@ -9,7 +9,7 @@ public class OrbitalAttack : MonoBehaviour
     public List<GameObject> orbitalPrefabs = new List<GameObject>();
 
     public int maxProjectiles = 2; // default number of projectiles
-    public float radius = 1.8f; // offset from player
+    public float radius = 4f; // offset from player
     public float rotationSpeed = 180f; // degrees per second
     public float regenCooldown = 0.75f; // how many seconds between projectile regenerations
 
@@ -75,7 +75,7 @@ public class OrbitalAttack : MonoBehaviour
         foreach (var autoAttack in playerStats.autoAttackDataList)
         {
             if (autoAttack.attackType != AutoAttackType.Orbital) continue;
-            int level = ProjectileLevelTracker.Instance.GetLevel(autoAttack.projectilePrefab.GetComponent<PlayerProjectile>().projectileData);
+            int level = ProjectileLevelTracker.Instance.GetLevel(autoAttack.projectilePrefab.GetComponent<PlayerProjectile>().projectileData) + playerStats.GetOrbitalProjectileNum();
             maxProjectiles = autoAttack.projectileCount + (autoAttack.projectilePrefab.GetComponent<PlayerProjectile>().projectileData.projectileUpgrade?.tiers[level].projectileAdd ?? 0);
         }
     }
@@ -107,12 +107,29 @@ public class OrbitalAttack : MonoBehaviour
         foreach (var autoAttack in playerStats.autoAttackDataList)
         {
             if (autoAttack.attackType != AutoAttackType.Orbital) continue;
-        
+
             maxProjectiles = autoAttack.projectileCount;
             hasOrbitals = true;
-            if (!orbitalPrefabs.Contains(autoAttack.projectilePrefab) && autoAttack.projectilePrefab != null)
-                orbitalPrefabs.Add(autoAttack.projectilePrefab);
 
+            var projData = autoAttack.projectilePrefab.GetComponent<PlayerProjectile>().projectileData;
+            int level = ProjectileLevelTracker.Instance.GetLevel(projData);
+            var upgrade = projData.projectileUpgrade;
+            if (projData == null) continue;
+            var computedStats = ProjectileStatComposer.ComposeStats(projData);
+            Debug.Log(upgrade.tiers[level].projectilePrefab);
+            Debug.Log(orbitalPrefabs.Contains(upgrade.tiers[level].projectilePrefab));
+            Debug.Log(autoAttack.projectilePrefab != null);
+            Debug.Log(upgrade.tiers[level].projectilePrefab != null);
+            if (!orbitalPrefabs.Contains(upgrade.tiers[level].projectilePrefab) && autoAttack.projectilePrefab != null && upgrade.tiers[level].projectilePrefab != null)
+            {
+                //RefreshOrbitals();
+                orbitalPrefabs.Add(upgrade.tiers[level].projectilePrefab);
+                Debug.Log("BING");
+            }
+            else
+            {
+                //orbitalPrefabs.Add(autoAttack.projectilePrefab);
+            }
         }
     }
     void Update()
@@ -125,7 +142,10 @@ public class OrbitalAttack : MonoBehaviour
 
         int n = activeProjectiles.Count;
         if (n == 0) return;
-
+        if (orbitalPrefabs[0] != null)
+        {
+            radius = orbitalPrefabs[0].GetComponent<PlayerProjectile>().projectileData.float1;
+        }
         float step = 360f / n;
         for (int i = 0; i < n; i++)
         {
@@ -135,5 +155,14 @@ public class OrbitalAttack : MonoBehaviour
             t.localPosition = playerPos + offset;
             t.rotation = Quaternion.Euler(0, 0, ang);
         }
+    }
+    public void RefreshOrbitals()
+    {
+        foreach (var orb in activeProjectiles)
+        {
+            if (orb) Destroy(orb);
+        }
+        activeProjectiles.Clear();
+        orbitalPrefabs.Clear();
     }
 }

@@ -292,6 +292,7 @@ public class EnemyStats : MonoBehaviour
         {
             Debug.LogWarning("Unknown enemy type on death.");
         }
+        EnemySpawn.Instance.activeEnemies.Remove(gameObject);
     }
     public void AddHealth(float amount)
     {

@@ -13,6 +13,7 @@ public class ProjectileUpgrade : ScriptableObject
     [System.Serializable]
     public class Tier
     {
+        public GameObject projectilePrefab;
         [Header("Stat multipliers")]
         public float damageMultiplier = 1f;
         public float speedMultiplier = 1f;

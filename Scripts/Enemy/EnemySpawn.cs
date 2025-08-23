@@ -55,7 +55,7 @@ public class EnemySpawn : MonoBehaviour
     public int enemiesAlive = 0; // How many enemies are currently alive
     public int maxEnemiesAllowed;
     public bool maxEnemiesReached;
-
+    public List<GameObject> activeEnemies = new List<GameObject>();
     public float EnemyScaleFactor = 1.2f; // How much the enemies scale in strength. Eventually the player will be able to adjust this to increase the amount of rewards they gain
 
     Transform player;
@@ -142,6 +142,7 @@ public class EnemySpawn : MonoBehaviour
     }
     public void NextWave()
     {
+        Debug.Log("Advancing to next wave");
         if (currentWaveIndex < enemyWaves.Count - 1)
         {
             currentWaveIndex++;
@@ -149,9 +150,9 @@ public class EnemySpawn : MonoBehaviour
             spawnTimer = 0f; // Reset spawn timer for the new wave
         }
         if (enemyStrengthIndex < 10) enemyStrengthIndex++;
-        else {enemyStrengthIndex = Mathf.CeilToInt(enemyStrengthIndex * 1.2f); }
+        else { enemyStrengthIndex = Mathf.CeilToInt(enemyStrengthIndex * 1.2f); }
     }
-    
+
     void CalculateWaveQuota()
     {
         int currentWaveQuota = 0;
@@ -275,9 +276,16 @@ public class EnemySpawn : MonoBehaviour
         float eliteChance = Mathf.Clamp(floor * 0.02f, 0, 0.5f); // Max 50% chance
         return Random.value < eliteChance;
     }
+
+    public void KillAllEnemies()
+    {
+        foreach (var enemy in activeEnemies)
+        {
+            Destroy(enemy);
+        }
+        activeEnemies.Clear();
+    }
 }
-
-
 
     
     // Below is the previous enemy spawning system, before it was revamped. It's kept here for reference

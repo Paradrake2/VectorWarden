@@ -22,6 +22,7 @@ public enum SpecialEffectType
     AuraAttackCooldown,
     ExpansionRate, // For expanding projectiles
     SplitNum, // For splitting projectiles
+    OrbitalProjectileAdd
     
 
 

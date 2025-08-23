@@ -34,6 +34,7 @@ public class ProjectileData : ScriptableObject
     public int pierceAmount;
     public float knockbackForce;
     public float projectileSize;
+
     public int projectileAdd = 0; // Number of additional projectiles to spawn
 
     // Values for non standard projectiles

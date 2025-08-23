@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rarity: 0
-  type: 1
+  type: 3
   maxHealth: 6000
   currentHealth: 6000
   damage: 200
@@ -128,11 +128,24 @@ MonoBehaviour:
   movementSpeedMultiplier: 1.2
   minXP: 5000
   maxXP: 7000
-  minGold: 0
-  maxGold: 0
-  dropPool: []
-  eliteDropPool: []
+  minGold: 4000
+  maxGold: 5000
+  dropPool:
+  - rarity: 4
+    items:
+    - {fileID: 11400000, guid: 391c67b7dea63f44886ade7e7f5984fa, type: 2}
+  eliteDropPool:
+  - rarity: 6
+    items:
+    - {fileID: 11400000, guid: 391c67b7dea63f44886ade7e7f5984fa, type: 2}
   playerStats: {fileID: 0}
+  healRadius: 5
+  healAmount: 10
+  healCooldown: 2.5
+  bufferRadius: 5
+  hpMult: 1.5
+  damageMult: 1.5
+  defenseMult: 1.5
   id: 
 --- !u!114 &952972921634598699
 MonoBehaviour:
@@ -156,7 +169,7 @@ MonoBehaviour:
   previewPrefab: {fileID: 6371842183072096162, guid: fd5aa9608d9d9e94193a2c41ee903737, type: 3}
   player: {fileID: 0}
   health: 999999
-  attackRange: 50
+  attackRange: 100
   attackCooldown: 1.5
   projectileSpeed: 10
 --- !u!114 &2504809439447683730
@@ -183,6 +196,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 056db2adf6b1a9c40b432ae476387c7e, type: 2}
     - {fileID: 11400000, guid: 377b0a85d719e8242aad405f9825c44d, type: 2}
     amount: 10
+  - item:
+    - {fileID: 11400000, guid: 311054172197f8f43845484d3e71c7ad, type: 2}
+    amount: 1
   healthBar: {fileID: 0}
 --- !u!114 &4914560760885680291
 MonoBehaviour:

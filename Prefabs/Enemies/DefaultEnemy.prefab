@@ -175,6 +175,13 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 056db2adf6b1a9c40b432ae476387c7e, type: 2}
     - {fileID: 11400000, guid: 377b0a85d719e8242aad405f9825c44d, type: 2}
   playerStats: {fileID: 0}
+  healRadius: 5
+  healAmount: 10
+  healCooldown: 2.5
+  bufferRadius: 5
+  hpMult: 1.5
+  damageMult: 1.5
+  defenseMult: 1.5
   id: 
 --- !u!212 &5055540027187088586
 SpriteRenderer:

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: legendaryOrbitalProjectileAddCard
+  m_EditorClassIdentifier: 
+  skillName: Legendary Orbital Projectile Add
+  description: 
+  skillIcon: {fileID: -1282505326114848664, guid: b3525add10445094f81b9888504f8937, type: 3}
+  cardPicture: {fileID: -4941108874759184336, guid: 83ca00ece23b9f84eb104309643d96c4, type: 3}
+  skillType: 2
+  skillCardRarity: 4
+  statModifiers: []
+  projectilePrefab: {fileID: 0}
+  minimumLevelRequired: 1
+  specialEffects:
+  - {fileID: 11400000, guid: d89a7c9ba6d51f241b05bb5629b4a759, type: 2}
+  projectileData: {fileID: 0}
+  unlocked: 0
+  maxValue: 0
+  minValue: 0
+  prerequisites:
+  - {fileID: 11400000, guid: db73509338b15e2488255c088e0acf37, type: 2}
+  autoAttackDataList: []

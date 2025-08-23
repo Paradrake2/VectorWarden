@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba16567b797a0d49b1497a41fa776c9, type: 3}
+  m_Name: rareOrbitalProjectileAddCard
+  m_EditorClassIdentifier: 
+  skillName: Rare Orbital Projectile Add
+  description: 
+  skillIcon: {fileID: -1282505326114848664, guid: b3525add10445094f81b9888504f8937, type: 3}
+  cardPicture: {fileID: -1030661446138130861, guid: 371f2a9fd441a234ab536f34e7660622, type: 3}
+  skillType: 2
+  skillCardRarity: 2
+  statModifiers: []
+  projectilePrefab: {fileID: 0}
+  minimumLevelRequired: 1
+  specialEffects:
+  - {fileID: 11400000, guid: 225159e82116a944fb1be147e5b62dca, type: 2}
+  projectileData: {fileID: 0}
+  unlocked: 0
+  maxValue: 0
+  minValue: 0
+  prerequisites:
+  - {fileID: 11400000, guid: db73509338b15e2488255c088e0acf37, type: 2}
+  autoAttackDataList: []

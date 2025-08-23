@@ -73,6 +73,7 @@ public class PlayerStats : MonoBehaviour
     public float BaseAttackSpeed = 8f; // 8 attacks per second
     public float ExpansionSpeed = 1f;
     public int SplitProjectileNum = 0;
+    public int OrbitalProjectileNum = 0;
 
     // Stats per level up
     public float HealthPerLevel = 10f;
@@ -275,7 +276,11 @@ public class PlayerStats : MonoBehaviour
         foreach (var card in activeSkillCards)
         {
             if (card != null && card.projectilePrefab != null && !projectiles.Contains(card.projectilePrefab))
-                projectiles.Add(card.projectilePrefab);
+            {
+                int level = ProjectileLevelTracker.Instance.GetLevel(card.projectileData);
+                var upgrade = card.projectileData.projectileUpgrade;
+                projectiles.Add(card.projectileData.projectileUpgrade.tiers[level].projectilePrefab);
+            }
         }
         return projectiles;
     }
@@ -748,5 +753,16 @@ public class PlayerStats : MonoBehaviour
         return val;
     }
 
-
+    public int GetOrbitalProjectileNum()
+    {
+        int val = OrbitalProjectileNum;
+        foreach (var effect in GetActiveSpecialEffects())
+        {
+            if (effect.effectType == SpecialEffectType.OrbitalProjectileAdd)
+            {
+                val += (int)effect.value;
+            }
+        }
+        return val;
+    }
 }

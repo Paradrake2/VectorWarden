@@ -2,6 +2,7 @@ using UnityEngine;
 
 public struct ComputedProjectileStats
 {
+    public GameObject projectilePrefab;
     public float speed;
     public float damage;
     public float size;
@@ -22,6 +23,7 @@ public static class ProjectileStatComposer
     {
         var outStats = new ComputedProjectileStats
         {
+            projectilePrefab = baseData.prefab,
             speed = baseData.baseSpeed * baseData.speedMultiplier,
             damage = baseData.baseDamage * baseData.damageMultiplier,
             size = baseData.projectileSize,
@@ -38,6 +40,7 @@ public static class ProjectileStatComposer
         var tier = ProjectileLevelTracker.Instance.GetTier(baseData);
         if (tier != null)
         {
+            if (tier.projectilePrefab != null) outStats.projectilePrefab = tier.projectilePrefab;
             outStats.speed *= tier.speedMultiplier;
             outStats.damage *= tier.damageMultiplier;
             outStats.size *= tier.sizeMult;

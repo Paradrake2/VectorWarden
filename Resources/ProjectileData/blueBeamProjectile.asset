@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9d9038d9ac8ce4d880ff2cfd462884, type: 3}
+  m_Name: blueBeamProjectile
+  m_EditorClassIdentifier: 
+  projectileName: blueBeamProjectile
+  prefab: {fileID: 5389440308061985170, guid: 57f7f9849eac0e24398aa8cb521c80ab, type: 3}
+  baseSpeed: 0
+  baseDamage: 0
+  icon: {fileID: 3217576509525920045, guid: e11a91617dab0d34a90cab88fe8b65a3, type: 3}
+  projectileType: 4
+  spriteRotationOffset: -90
+  lifetime: 1e+9
+  speedMultiplier: 1
+  damageMultiplier: 1
+  attackSpeedModifier: 0
+  isHoming: 0
+  isExplosive: 0
+  shotgunStyle: 0
+  homingSpeed: 0
+  homingRange: 0
+  explosionRadius: 0
+  pierceAmount: 99999
+  knockbackForce: 0
+  projectileSize: 1
+  projectileAdd: 0
+  float1: 12.5
+  float2: 0
+  float3: 0
+  float4: 0
+  int1: 0
+  int2: 0
+  int3: 0
+  int4: 0
+  projectileUpgrade: {fileID: 11400000, guid: 619bd5d39f80abb4599eb6ee525fcf67, type: 2}
+  projectileOrigin: 1

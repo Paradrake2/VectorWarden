@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a37561cda0b8a4f9a7ce972ba191ed, type: 3}
+  m_Name: expandingProjectileCardUnlock
+  m_EditorClassIdentifier: 
+  unlockID: 
+  cardUnlockname: 
+  icon: {fileID: 5775867643271336467, guid: d74f3adf9fd67d54ba1de61b0818e8dc, type: 3}
+  prerequisites:
+  - {fileID: 11400000, guid: 99475596cb04bdf42a9fad78339a6e8b, type: 2}
+  requirements: []
+  requiredXP: 0
+  isUnlocked: 0
+  unlockedCards: []
+  disabledCards: []

@@ -17,7 +17,7 @@ public class InventorySystem : MonoBehaviour
     public List<InventoryItem> itemStacks = new List<InventoryItem>();
     public List<InventoryItem> acquiredItems = new List<InventoryItem>(); // Stuff the player has gotten during the run
     public List<Items> acquiredItemsList = new List<Items>();
-     public List<DebugItem> debugItems = new List<DebugItem>(); // For testing purposes, to quickly add items
+    public List<DebugItem> debugItems = new List<DebugItem>(); // For testing purposes, to quickly add items
     public static InventorySystem Instance;
     //public Log log;
     public void ResetForNewRun()
@@ -60,8 +60,23 @@ public class InventorySystem : MonoBehaviour
             Debug.LogWarning($"Tried to remove more items with tag {tag} than were available");
         }
     }
+    public void AddDebugItems()
+    {
+        foreach (var debugItem in debugItems)
+        {
+            if (debugItem.item != null)
+            {
+                AddItem(debugItem.item.ID, debugItem.quantity);
+            }
+            else
+            {
+                Debug.LogWarning("Debug item has no item assigned.");
+            }
+        }
+    }
     void Start()
     {
+        /*
         if (SceneManager.GetActiveScene().name == "Dungeon")
         {
             //log = FindFirstObjectByType<Log>();
@@ -77,6 +92,7 @@ public class InventorySystem : MonoBehaviour
                 }
             }
         }
+        */
     }
     void Awake()
     {

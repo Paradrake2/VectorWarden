@@ -35,9 +35,42 @@ MonoBehaviour:
   - waveName: starterWave
     enemyGroups:
     - enemyName: starterEnemy
-      enemyCount: 100
+      enemyCount: 40
       spawnCount: 0
       enemyPrefab: {fileID: 7942617858057425736, guid: 345383ac70840684cb5e648cfc1a2ebe, type: 3}
-    enemiesInWave: 100
-    spawnInterval: 6
+    - enemyName: tank
+      enemyCount: 40
+      spawnCount: 0
+      enemyPrefab: {fileID: 46461337758655470, guid: b4dd994d730df654ab3f6a5f71531057, type: 3}
+    - enemyName: rangedEnemy
+      enemyCount: 10
+      spawnCount: 0
+      enemyPrefab: {fileID: 6601349067111442630, guid: 9129db58e82faa440a734bf6bfed5e95, type: 3}
+    - enemyName: smallEnemy
+      enemyCount: 50
+      spawnCount: 0
+      enemyPrefab: {fileID: 7050455963606643714, guid: dd99fa64cb33b724e8292016dbbbb94a, type: 3}
+    enemiesInWave: 50
+    spawnInterval: 3
+    spawnedEnemiesCount: 0
+  - waveName: wave2
+    enemyGroups:
+    - enemyName: basicEnemy
+      enemyCount: 60
+      spawnCount: 0
+      enemyPrefab: {fileID: 8132072419529745950, guid: 70409d76e4d73614bbb00715fc3783a3, type: 3}
+    - enemyName: healer
+      enemyCount: 10
+      spawnCount: 0
+      enemyPrefab: {fileID: 8880569679963795529, guid: 810f1a508fcc75e4aaa36cfa2b26ac6f, type: 3}
+    - enemyName: rangedEnemy
+      enemyCount: 20
+      spawnCount: 0
+      enemyPrefab: {fileID: 6601349067111442630, guid: 9129db58e82faa440a734bf6bfed5e95, type: 3}
+    - enemyName: tank
+      enemyCount: 30
+      spawnCount: 0
+      enemyPrefab: {fileID: 46461337758655470, guid: b4dd994d730df654ab3f6a5f71531057, type: 3}
+    enemiesInWave: 120
+    spawnInterval: 2
     spawnedEnemiesCount: 0
