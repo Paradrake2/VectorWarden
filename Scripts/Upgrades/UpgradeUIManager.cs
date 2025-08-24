@@ -94,6 +94,7 @@ public class UpgradeUIManager : MonoBehaviour
     public void HideGoldConversionPanel()
     {
         GoldConversionPanel.gameObject.SetActive(false);
+        CardUnlockUIManager.Instance.UpdateSkillUpgradeButtons(); // Should update the shaders
     }
     // Update is called once per frame
     void Update()

@@ -50,7 +50,7 @@ public class UpgradeManager : MonoBehaviour
     }
     public void UpdateXPText()
     {
-        xpText.text = NumberFormatUtil.FormatWithSciThreshold(UpgradeXPAmount, 20);
+        xpText.text = UpgradeXPAmount.ToString();
     }
     // Update is called once per frame
     void Update()

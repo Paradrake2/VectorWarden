@@ -40,6 +40,7 @@ public class CardUnlockUIManager : MonoBehaviour
         RemoveRequirements();
         UpgradeMaterialInventoryManager.Instance.PopulateInventory();
         UpdateSkillUpgradeButtons();
+        UpgradeManager.Instance.UpdateXPText();
         node = null;
         ClearConfirmPanel();
     }
@@ -110,7 +111,7 @@ public class CardUnlockUIManager : MonoBehaviour
     {
         requirementsPanel.SetActive(false);
     }
-    private void UpdateSkillUpgradeButtons()
+    public void UpdateSkillUpgradeButtons()
     {
         SkillUpgradeButton[] buttons = FindObjectsByType<SkillUpgradeButton>(FindObjectsSortMode.None);
         foreach (var button in buttons)

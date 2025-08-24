@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -279,7 +280,14 @@ public class PlayerStats : MonoBehaviour
             {
                 int level = ProjectileLevelTracker.Instance.GetLevel(card.projectileData);
                 var upgrade = card.projectileData.projectileUpgrade;
-                projectiles.Add(card.projectileData.projectileUpgrade.tiers[level].projectilePrefab);
+                try
+                {
+                    projectiles.Add(card.projectileData.projectileUpgrade.tiers[level].projectilePrefab);
+                }
+                catch (NullReferenceException)
+                {
+                    
+                }
             }
         }
         return projectiles;
