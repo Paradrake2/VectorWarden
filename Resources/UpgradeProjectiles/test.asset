@@ -15,7 +15,8 @@ MonoBehaviour:
   projectileData: {fileID: 11400000, guid: e71050960cf29bc4cbe29133c4a00d02, type: 2}
   maxLevel: 7
   tiers:
-  - damageMultiplier: 1.1
+  - projectilePrefab: {fileID: 6670500428637364174, guid: ec667e87d38669a49b5d1f060ab1587e, type: 3}
+    damageMultiplier: 1.1
     speedMultiplier: 1
     sizeMult: 1
     flatDamage: 0
@@ -26,9 +27,16 @@ MonoBehaviour:
     projectileAdd: 0
     homingRange: 0
     attackSpeedModifier: 0
-    bounceNum: 0
     unlockExplosive: 0
     unlockHoming: 0
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
+    float1: 0
+    float2: 0
+    float3: 0
+    float4: 0
+    int1: 0
+    int2: 0
+    int3: 0
+    int4: 0

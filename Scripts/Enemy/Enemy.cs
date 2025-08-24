@@ -56,10 +56,10 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         OnDeath?.Invoke();
-        List<Items> drops = stats.getDrop();
+        List<GameObject> drops = stats.getDrop();
         foreach (var item in drops)
         {
-            InventorySystem.Instance.AddItemToSpoils(item.ID, 1);
+            Instantiate(item, transform.position, Quaternion.identity);
         }
         playerStats.GainXP(UnityEngine.Random.Range(stats.minXP, stats.maxXP));
         playerStats.GainGold(Mathf.CeilToInt(UnityEngine.Random.Range(stats.minGold, stats.maxGold)));

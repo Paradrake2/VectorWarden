@@ -15,7 +15,7 @@ public class BossDrops
 public class DropPool
 {
     public ItemRarity rarity;
-    public List<Items> items;
+    public List<GameObject> items;
 }
 public enum EnemyType
 {
@@ -158,10 +158,10 @@ public class EnemyStats : MonoBehaviour
     {
         return UnityEngine.Random.Range(minGold, maxGold);
     }
-    public List<Items> getDrop()
+    public List<GameObject> getDrop()
     {
         // float roll = UnityEngine.Random.value + PlayerStats.Instance.GetStat(StatType.DropRate);
-        List<Items> finalDrops = new();
+        List<GameObject> finalDrops = new();
 
         //float dropRate = Mathf.Clamp01(playerStats.CurrentDropRate);
         float dropRate = 0.5f; // Placeholder for drop rate, can be adjusted or fetched from player stats

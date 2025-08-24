@@ -15,7 +15,8 @@ MonoBehaviour:
   projectileData: {fileID: 11400000, guid: 4f58de10ed57e664fa3195112b75e355, type: 2}
   maxLevel: 7
   tiers:
-  - damageMultiplier: 1.2
+  - projectilePrefab: {fileID: 6025584721492761981, guid: bd23475e53c71b446a7b54aaf2603146, type: 3}
+    damageMultiplier: 1.2
     speedMultiplier: 1
     sizeMult: 1
     flatDamage: 5
@@ -39,7 +40,8 @@ MonoBehaviour:
     int2: 0
     int3: 0
     int4: 0
-  - damageMultiplier: 2
+  - projectilePrefab: {fileID: 6025584721492761981, guid: bd23475e53c71b446a7b54aaf2603146, type: 3}
+    damageMultiplier: 2
     speedMultiplier: 1.25
     sizeMult: 1.25
     flatDamage: 10
@@ -63,7 +65,8 @@ MonoBehaviour:
     int2: 0
     int3: 0
     int4: 0
-  - damageMultiplier: 2.25
+  - projectilePrefab: {fileID: 6025584721492761981, guid: bd23475e53c71b446a7b54aaf2603146, type: 3}
+    damageMultiplier: 2.25
     speedMultiplier: 1.25
     sizeMult: 1.5
     flatDamage: 15
@@ -87,7 +90,8 @@ MonoBehaviour:
     int2: 0
     int3: 0
     int4: 0
-  - damageMultiplier: 2.75
+  - projectilePrefab: {fileID: 6025584721492761981, guid: bd23475e53c71b446a7b54aaf2603146, type: 3}
+    damageMultiplier: 2.75
     speedMultiplier: 1.5
     sizeMult: 1.75
     flatDamage: 15
@@ -111,7 +115,8 @@ MonoBehaviour:
     int2: 0
     int3: 0
     int4: 0
-  - damageMultiplier: 3.25
+  - projectilePrefab: {fileID: 6025584721492761981, guid: bd23475e53c71b446a7b54aaf2603146, type: 3}
+    damageMultiplier: 3.25
     speedMultiplier: 1.5
     sizeMult: 1.75
     flatDamage: 15
@@ -135,7 +140,8 @@ MonoBehaviour:
     int2: 0
     int3: 0
     int4: 0
-  - damageMultiplier: 4
+  - projectilePrefab: {fileID: 6025584721492761981, guid: bd23475e53c71b446a7b54aaf2603146, type: 3}
+    damageMultiplier: 4
     speedMultiplier: 2
     sizeMult: 2
     flatDamage: 15
@@ -159,7 +165,8 @@ MonoBehaviour:
     int2: 0
     int3: 0
     int4: 0
-  - damageMultiplier: 5
+  - projectilePrefab: {fileID: 6025584721492761981, guid: bd23475e53c71b446a7b54aaf2603146, type: 3}
+    damageMultiplier: 5
     speedMultiplier: 2.25
     sizeMult: 2.5
     flatDamage: 50

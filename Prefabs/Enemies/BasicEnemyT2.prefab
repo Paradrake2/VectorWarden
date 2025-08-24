@@ -132,21 +132,31 @@ MonoBehaviour:
   dropPool:
   - rarity: 0
     items:
-    - {fileID: 11400000, guid: caacd75e526c222488eb8178202584bf, type: 2}
-    - {fileID: 11400000, guid: d1265f38431876048a8972fcc1120f42, type: 2}
+    - {fileID: 1669931996782403821, guid: 24a24cd9e92e0f241b0e54caf33197bb, type: 3}
+    - {fileID: 7326685179808808107, guid: 1b7e76cc88b2cf0489d705835e877bf8, type: 3}
   - rarity: 3
     items:
-    - {fileID: 11400000, guid: 056db2adf6b1a9c40b432ae476387c7e, type: 2}
-    - {fileID: 11400000, guid: a75a1c2430e5e644184452e21ba11925, type: 2}
-    - {fileID: 11400000, guid: 83c7a29c696d0964da7b13ec691d7cb9, type: 2}
-    - {fileID: 11400000, guid: 377b0a85d719e8242aad405f9825c44d, type: 2}
+    - {fileID: 2660801830465664198, guid: 0c8880cc243419343abeb834d8dc1fc1, type: 3}
+    - {fileID: 7026996214885763782, guid: b3c9202510205364d9af47119c787e14, type: 3}
+    - {fileID: 5600053030578436922, guid: ae17161723dce704a88b19f2d9f50188, type: 3}
+    - {fileID: 2134678781997280831, guid: f0a326c7e68a4564cbcafa60cd015f05, type: 3}
   eliteDropPool:
   - rarity: 0
     items:
-    - {fileID: 11400000, guid: de26043be739cb4468c8aac0ac31a729, type: 2}
-    - {fileID: 11400000, guid: af2aa0f87ad166f429de6b9e7312e838, type: 2}
-    - {fileID: 11400000, guid: 22b45c2cf436ebf439ac29a73600cd67, type: 2}
+    - {fileID: 8314945933169660785, guid: 9d1fb132f94a75e4d891808f38969de1, type: 3}
+    - {fileID: 5459334150884365000, guid: 28c7462af45f2394385af103da9cc4d1, type: 3}
+    - {fileID: 2134678781997280831, guid: f0a326c7e68a4564cbcafa60cd015f05, type: 3}
+  - rarity: 2
+    items:
+    - {fileID: 3480166392432081803, guid: 3a6549e55c5cdf14796cb615ae4603de, type: 3}
   playerStats: {fileID: 0}
+  healRadius: 5
+  healAmount: 10
+  healCooldown: 2.5
+  bufferRadius: 5
+  hpMult: 1.5
+  damageMult: 1.5
+  defenseMult: 1.5
   id: 
 --- !u!114 &3961940763479960242
 MonoBehaviour:

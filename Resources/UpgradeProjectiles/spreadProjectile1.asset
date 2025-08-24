@@ -15,7 +15,8 @@ MonoBehaviour:
   projectileData: {fileID: 11400000, guid: b64213b5bcd01a84c8fc2f832d4fd5ff, type: 2}
   maxLevel: 7
   tiers:
-  - damageMultiplier: 1
+  - projectilePrefab: {fileID: 2371359704672042746, guid: 85642b9f5fd40024dab049f4976a4e19, type: 3}
+    damageMultiplier: 1
     speedMultiplier: 1
     sizeMult: 1
     flatDamage: 0
@@ -31,7 +32,16 @@ MonoBehaviour:
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
-  - damageMultiplier: 1
+    float1: 0
+    float2: 0
+    float3: 0
+    float4: 0
+    int1: 0
+    int2: 0
+    int3: 0
+    int4: 0
+  - projectilePrefab: {fileID: 2371359704672042746, guid: 85642b9f5fd40024dab049f4976a4e19, type: 3}
+    damageMultiplier: 1
     speedMultiplier: 1.25
     sizeMult: 1
     flatDamage: 5
@@ -47,7 +57,16 @@ MonoBehaviour:
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
-  - damageMultiplier: 1.5
+    float1: 0
+    float2: 0
+    float3: 0
+    float4: 0
+    int1: 0
+    int2: 0
+    int3: 0
+    int4: 0
+  - projectilePrefab: {fileID: 2371359704672042746, guid: 85642b9f5fd40024dab049f4976a4e19, type: 3}
+    damageMultiplier: 1.5
     speedMultiplier: 1.25
     sizeMult: 1
     flatDamage: 8
@@ -63,7 +82,16 @@ MonoBehaviour:
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
-  - damageMultiplier: 2
+    float1: 0
+    float2: 0
+    float3: 0
+    float4: 0
+    int1: 0
+    int2: 0
+    int3: 0
+    int4: 0
+  - projectilePrefab: {fileID: 2371359704672042746, guid: 85642b9f5fd40024dab049f4976a4e19, type: 3}
+    damageMultiplier: 2
     speedMultiplier: 1.25
     sizeMult: 1.25
     flatDamage: 12
@@ -79,7 +107,16 @@ MonoBehaviour:
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
-  - damageMultiplier: 2.25
+    float1: 0
+    float2: 0
+    float3: 0
+    float4: 0
+    int1: 0
+    int2: 0
+    int3: 0
+    int4: 0
+  - projectilePrefab: {fileID: 2371359704672042746, guid: 85642b9f5fd40024dab049f4976a4e19, type: 3}
+    damageMultiplier: 2.25
     speedMultiplier: 1.5
     sizeMult: 1.5
     flatDamage: 15
@@ -95,7 +132,16 @@ MonoBehaviour:
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
-  - damageMultiplier: 2.75
+    float1: 0
+    float2: 0
+    float3: 0
+    float4: 0
+    int1: 0
+    int2: 0
+    int3: 0
+    int4: 0
+  - projectilePrefab: {fileID: 2371359704672042746, guid: 85642b9f5fd40024dab049f4976a4e19, type: 3}
+    damageMultiplier: 2.75
     speedMultiplier: 1.5
     sizeMult: 1.75
     flatDamage: 20
@@ -111,7 +157,16 @@ MonoBehaviour:
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
-  - damageMultiplier: 3
+    float1: 0
+    float2: 0
+    float3: 0
+    float4: 0
+    int1: 0
+    int2: 0
+    int3: 0
+    int4: 0
+  - projectilePrefab: {fileID: 2371359704672042746, guid: 85642b9f5fd40024dab049f4976a4e19, type: 3}
+    damageMultiplier: 3
     speedMultiplier: 2
     sizeMult: 1.75
     flatDamage: 20
@@ -127,3 +182,11 @@ MonoBehaviour:
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
+    float1: 0
+    float2: 0
+    float3: 0
+    float4: 0
+    int1: 0
+    int2: 0
+    int3: 0
+    int4: 0

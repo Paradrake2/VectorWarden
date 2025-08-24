@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: rareComponent
   m_EditorClassIdentifier: 
   itemName: rareComponent
-  icon: {fileID: 7727907974290785159, guid: 2b0ce97aafe7acc488a48294b6c6ce1b, type: 3}
+  icon: {fileID: -3259085840525308792, guid: 266eef7e0b3211d4091ba4dcd7a0de1b, type: 3}
   description: 
   color: {r: 0, g: 0, b: 0, a: 0}
   maxStackSize: 999

@@ -15,7 +15,8 @@ MonoBehaviour:
   projectileData: {fileID: 11400000, guid: 60c7968c85256344781bf6c6c1e0f9c1, type: 2}
   maxLevel: 3
   tiers:
-  - damageMultiplier: 1
+  - projectilePrefab: {fileID: 372286614326809169, guid: 17968ebb8303bf54baf8a79188166e40, type: 3}
+    damageMultiplier: 1
     speedMultiplier: 0
     sizeMult: 1
     flatDamage: 5
@@ -31,7 +32,16 @@ MonoBehaviour:
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
-  - damageMultiplier: 2
+    float1: 0
+    float2: 0
+    float3: 0
+    float4: 0
+    int1: 0
+    int2: 0
+    int3: 0
+    int4: 0
+  - projectilePrefab: {fileID: 372286614326809169, guid: 17968ebb8303bf54baf8a79188166e40, type: 3}
+    damageMultiplier: 2
     speedMultiplier: 0
     sizeMult: 3
     flatDamage: 5
@@ -47,7 +57,16 @@ MonoBehaviour:
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
-  - damageMultiplier: 3
+    float1: 0
+    float2: 0
+    float3: 0
+    float4: 0
+    int1: 0
+    int2: 0
+    int3: 0
+    int4: 0
+  - projectilePrefab: {fileID: 372286614326809169, guid: 17968ebb8303bf54baf8a79188166e40, type: 3}
+    damageMultiplier: 3
     speedMultiplier: 0
     sizeMult: 5
     flatDamage: 5
@@ -63,3 +82,11 @@ MonoBehaviour:
     shotgunStyle: 0
     onHitVFX: {fileID: 0}
     onHitSFX: {fileID: 0}
+    float1: 0
+    float2: 0
+    float3: 0
+    float4: 0
+    int1: 0
+    int2: 0
+    int3: 0
+    int4: 0
