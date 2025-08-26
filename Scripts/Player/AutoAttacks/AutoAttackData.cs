@@ -9,7 +9,7 @@ public enum AutoAttackType
     Spread,
     Shotgun,
     Orbital,
-    Area
+    Area,
 }
 
 [CreateAssetMenu(fileName = "AutoAttackData", menuName = "Scriptable Objects/AutoAttackData")]

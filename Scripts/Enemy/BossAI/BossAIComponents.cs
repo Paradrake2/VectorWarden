@@ -100,6 +100,35 @@ public class BossAIComponents : MonoBehaviour
             if (rb) rb.linearVelocity = Vector2.zero; // static
         }
     }
+    public IEnumerator TrailAttack(float amount, EnemyProjectile projectile, GameObject player)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            Vector3 spawnPos = player.transform.position;
+            yield return new WaitForSeconds(0.25f);
+            GameObject proj = Instantiate(projectile.projectilePrefab, spawnPos, Quaternion.identity);
+            Destroy(proj, 2f);
+        }
+        
+    }
+
+    public void ToggleEnemySummon(bool var)
+    {
+        EnemySpawn.Instance.canSpawnEnemies = var;
+    }
+
+    // Basic summon enemies function, randomly chooses enemies and their positions based off of a given list
+    public IEnumerator SummonEnemies(List<GameObject> enemyPrefabs, int amount, List<Vector3> spawnPoints, float delay)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
+            Vector3 spawnPos = spawnPoints[Random.Range(0, spawnPoints.Count)];
+            Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+            yield return new WaitForSeconds(delay);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -153,7 +153,7 @@ public class OrbitalAttack : MonoBehaviour
             Vector3 offset = new Vector3(Mathf.Cos(ang * Mathf.Deg2Rad), Mathf.Sin(ang * Mathf.Deg2Rad), 0) * radius;
             Transform t = activeProjectiles[i].transform;
             t.localPosition = playerPos + offset;
-            t.rotation = Quaternion.Euler(0, 0, ang);
+            t.rotation = Quaternion.Euler(0, 0, ang + orbitalPrefabs[0].GetComponent<PlayerProjectile>().projectileData.spriteRotationOffset);
         }
     }
     public void RefreshOrbitals()

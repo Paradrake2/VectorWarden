@@ -90,7 +90,7 @@ MonoBehaviour:
     int2: 0
     int3: 0
     int4: 0
-  - projectilePrefab: {fileID: 5389440308061985170, guid: 57f7f9849eac0e24398aa8cb521c80ab, type: 3}
+  - projectilePrefab: {fileID: 6500834975995083649, guid: 4140a58981a76864599509e10e66293a, type: 3}
     damageMultiplier: 2.75
     speedMultiplier: 1
     sizeMult: 2.5

@@ -133,11 +133,11 @@ MonoBehaviour:
   dropPool:
   - rarity: 4
     items:
-    - {fileID: 11400000, guid: 391c67b7dea63f44886ade7e7f5984fa, type: 2}
+    - {fileID: 3264992767941181033, guid: 714bbe6d19b88044d9e22b46b0740e9f, type: 3}
   eliteDropPool:
   - rarity: 6
     items:
-    - {fileID: 11400000, guid: 391c67b7dea63f44886ade7e7f5984fa, type: 2}
+    - {fileID: 3264992767941181033, guid: 714bbe6d19b88044d9e22b46b0740e9f, type: 3}
   playerStats: {fileID: 0}
   healRadius: 5
   healAmount: 10
@@ -166,6 +166,8 @@ MonoBehaviour:
   - {fileID: 3615279631910130068, guid: b0b695a7425888949b50673e2e884213, type: 3}
   projectileListTwo:
   - {fileID: 4216807312999735215, guid: 98ce733c070f35a4da52c80dcf408fb4, type: 3}
+  projectileListThree:
+  - {fileID: 9019943017461466382, guid: 547c924fe3f1e70449d0e7ebc1082f66, type: 3}
   previewPrefab: {fileID: 6371842183072096162, guid: fd5aa9608d9d9e94193a2c41ee903737, type: 3}
   player: {fileID: 0}
   health: 999999

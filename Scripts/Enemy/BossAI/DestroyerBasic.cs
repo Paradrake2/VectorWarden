@@ -9,6 +9,7 @@ public class DestroyerBasic : MonoBehaviour
     public BossAIComponents bossAIComponents;
     public List<EnemyProjectile> projectileListOne;
     public List<EnemyProjectile> projectileListTwo;
+    public List<EnemyProjectile> projectileListThree;
     public GameObject previewPrefab;
 
     public Player player;
@@ -67,6 +68,7 @@ public class DestroyerBasic : MonoBehaviour
                 StartCoroutine(bossAIComponents.PerformGridAttack(transform.position, 70f, 70f, 3f, projectileListTwo[Random.Range(0, projectileListTwo.Count)], previewPrefab));
                 Debug.LogWarning("Rapid Fire Attack Triggered!");
                 attackCounter = 0; // Reset counter after rapid fire
+                StartCoroutine(bossAIComponents.TrailAttack(10, projectileListThree[Random.Range(0, projectileListOne.Count)], player.gameObject));
             }
             // Find a random projectile to use
             EnemyProjectile projectile = projectileListOne[Random.Range(0, projectileListOne.Count)];

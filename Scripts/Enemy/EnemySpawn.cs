@@ -57,7 +57,7 @@ public class EnemySpawn : MonoBehaviour
     public bool maxEnemiesReached;
     public List<GameObject> activeEnemies = new List<GameObject>();
     public float EnemyScaleFactor = 1.2f; // How much the enemies scale in strength. Eventually the player will be able to adjust this to increase the amount of rewards they gain
-
+    public bool canSpawnEnemies = true;
     Transform player;
 
     float spawnTimer;
@@ -166,8 +166,8 @@ public class EnemySpawn : MonoBehaviour
 
     void SpawnEnemies()
     {
-        if (maxEnemiesReached) return;
-
+        if (maxEnemiesReached || !canSpawnEnemies) return;
+    
         int capacity = maxEnemiesAllowed - enemiesAlive;
         if (capacity <= 0) { maxEnemiesReached = true; return; }// No capacity to spawn more enemies
 

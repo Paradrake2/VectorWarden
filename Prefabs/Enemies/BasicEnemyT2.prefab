@@ -125,8 +125,8 @@ MonoBehaviour:
   damageMultiplier: 4
   xpMultiplier: 4
   movementSpeedMultiplier: 1
-  minXP: 0
-  maxXP: 0
+  minXP: 100
+  maxXP: 150
   minGold: 0
   maxGold: 0
   dropPool:
