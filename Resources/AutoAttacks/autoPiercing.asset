@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb48ce9f3a66aaf478912bb88fdfde0d, type: 3}
-  m_Name: autoExplosiveT1
+  m_Script: {fileID: 11500000, guid: 427e8ce2e5ae023429e56e431bc426d7, type: 3}
+  m_Name: autoPiercing
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 4556626976445569952, guid: a8e79d26396bbaf4f896fd808e6889cc, type: 3}
+  projectilePrefab: {fileID: 6025584721492761981, guid: bd23475e53c71b446a7b54aaf2603146, type: 3}
   baseAttackCooldown: 5
-  projectileCount: 1
-  attackType: 0
-  auraRadius: 0
+  startProjCount: 1
+  delayBetweenProjectiles: 0.08

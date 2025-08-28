@@ -1,0 +1,47 @@
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+public class AutoAttackContext
+{
+    public Transform Origin { get; }
+    public PlayerStats PlayerStats { get; }
+    public MonoBehaviour Runner { get; }
+    public IEnemyQuery EnemyQuery { get; }
+    public AutoAttackData attackData { get; }
+    public AutoAttackContext(Transform origin, PlayerStats playerStats, MonoBehaviour runner, IEnemyQuery enemyQuery, AutoAttackData attackData)
+    {
+        Origin = origin;
+        PlayerStats = playerStats;
+        Runner = runner;
+        EnemyQuery = enemyQuery;
+        this.attackData = attackData;
+    }
+
+    // Helpers
+    public GameObject FireProjectile(Vector3 direction, GameObject prefab, Vector3 position)
+    {
+        var go = Object.Instantiate(prefab, position, Quaternion.identity);
+        var proj = go.GetComponent<PlayerProjectile>();
+        proj?.InitializeProjectile(direction, PlayerStats.GetProjectileSpeed(), PlayerStats.GetAutoAttackDamage(), proj.projectileType, proj.projectileData, PlayerStats);
+        return go;
+    }
+    public Transform GetNearestEnemy(Vector3 from)
+    {
+        Transform nearest = null;
+        float minDistance = float.MaxValue;
+
+        foreach (var enemy in EnemyQuery.GetAllEnemies())
+        {
+            float distance = Vector3.Distance(from, enemy.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                nearest = enemy;
+            }
+        }
+
+        return nearest;
+    }
+    public List<Transform> EnemiesInRadius(Vector3 center, float radius) => EnemyQuery.GetAllEnemies().Where(t => (t.position - center).sqrMagnitude <= radius*radius).ToList();
+}

@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileName: autoExplosiveProjectile
   prefab: {fileID: 4556626976445569952, guid: c7bdd5b62afdba64b98deb2d7ac28938, type: 3}
-  baseSpeed: 0
+  baseSpeed: 10
   baseDamage: 10
   icon: {fileID: 4077489352653642963, guid: 812c0823c5f59d3438930f0cba628736, type: 3}
   projectileType: 1
   spriteRotationOffset: -90
   lifetime: 5
-  speedMultiplier: 0
+  speedMultiplier: 1
   damageMultiplier: 0.5
   attackSpeedModifier: -0.5
   isHoming: 0
@@ -33,5 +33,13 @@ MonoBehaviour:
   knockbackForce: 1.5
   projectileSize: 1
   projectileAdd: 0
-  projectileUpgrade: {fileID: 0}
+  float1: 0
+  float2: 0
+  float3: 0
+  float4: 0
+  int1: 0
+  int2: 0
+  int3: 0
+  int4: 0
+  projectileUpgrade: {fileID: 11400000, guid: 0792319ef16a1074890d607fd6134e18, type: 2}
   projectileOrigin: 1

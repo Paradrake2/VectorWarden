@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb48ce9f3a66aaf478912bb88fdfde0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 427e8ce2e5ae023429e56e431bc426d7, type: 3}
   m_Name: autoHoming
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 1351455713899765974, guid: f3f5e5f2b8721064c90f62658eb3a9bf, type: 3}
+  projectilePrefab: {fileID: 1351455713899765974, guid: 93daffda68a46c44bbf4b31661624652, type: 3}
   baseAttackCooldown: 5
-  projectileCount: 1
-  attackType: 0
-  auraRadius: 0
+  startProjCount: 1
+  delayBetweenProjectiles: 0.08

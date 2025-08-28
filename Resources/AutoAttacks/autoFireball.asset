@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb48ce9f3a66aaf478912bb88fdfde0d, type: 3}
-  m_Name: spreadData
+  m_Script: {fileID: 11500000, guid: 427e8ce2e5ae023429e56e431bc426d7, type: 3}
+  m_Name: autoFireball
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 2371359704672042746, guid: 85642b9f5fd40024dab049f4976a4e19, type: 3}
+  projectilePrefab: {fileID: 6670500428637364174, guid: 8e232199633041845b38f544fdada857, type: 3}
   baseAttackCooldown: 5
-  projectileCount: 4
-  projectileCount2: 2
-  shotInterval: 0.1
-  attackType: 2
-  auraRadius: 0
+  startProjCount: 1
+  delayBetweenProjectiles: 0.08

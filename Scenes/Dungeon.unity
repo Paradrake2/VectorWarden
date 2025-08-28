@@ -1183,7 +1183,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 34c4081776bf9bc43a6c1e26a73ee723, type: 2}
   - {fileID: 11400000, guid: 34c4081776bf9bc43a6c1e26a73ee723, type: 2}
   - {fileID: 11400000, guid: 34c4081776bf9bc43a6c1e26a73ee723, type: 2}
-  - {fileID: 11400000, guid: 6c585b2fd2ba784489ff8f7db6dfddca, type: 2}
+  - {fileID: 11400000, guid: aaa178b933c4ee54b84aae4b5057428f, type: 2}
   activeSpecialEffects: 
   ownedSkillCards: []
   autoAttackDataList: []
@@ -7049,6 +7049,7 @@ MonoBehaviour:
   maxEnemiesReached: 0
   activeEnemies: []
   EnemyScaleFactor: 1.2
+  canSpawnEnemies: 1
 --- !u!4 &1713605547
 Transform:
   m_ObjectHideFlags: 0

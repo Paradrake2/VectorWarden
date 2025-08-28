@@ -286,7 +286,7 @@ public class PlayerStats : MonoBehaviour
                 }
                 catch (NullReferenceException)
                 {
-                    
+
                 }
             }
         }
@@ -588,6 +588,7 @@ public class PlayerStats : MonoBehaviour
         }
         return cooldown;
     }
+    /*
     public int GetAutoAttackProjectileCount(AutoAttackData aad)
     {
         int count = aad.projectileCount; // Default to 1 projectile
@@ -600,6 +601,7 @@ public class PlayerStats : MonoBehaviour
         }
         return count;
     }
+    */
     public bool HasAutoAttack()
     {
         foreach (var card in activeSkillCards)
@@ -772,5 +774,11 @@ public class PlayerStats : MonoBehaviour
             }
         }
         return val;
+    }
+    // Generic auto attack damage calculation
+    public float GetAutoAttackDamage()
+    {
+        float baseDamage = CurrentDamage * GetAutoAttackDamageMultiplier();
+        return baseDamage;
     }
 }

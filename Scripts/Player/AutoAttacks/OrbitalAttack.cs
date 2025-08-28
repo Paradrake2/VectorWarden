@@ -1,6 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+
+
+
+// ------------ THIS IS DEPRECATED ----------------
 public class OrbitalAttack : MonoBehaviour
 {
     public static OrbitalAttack Instance { get; private set; }
@@ -74,9 +78,9 @@ public class OrbitalAttack : MonoBehaviour
     {
         foreach (var autoAttack in playerStats.autoAttackDataList)
         {
-            if (autoAttack.attackType != AutoAttackType.Orbital) continue;
-            int level = ProjectileLevelTracker.Instance.GetLevel(autoAttack.projectilePrefab.GetComponent<PlayerProjectile>().projectileData) + playerStats.GetOrbitalProjectileNum();
-            maxProjectiles = autoAttack.projectileCount + (autoAttack.projectilePrefab.GetComponent<PlayerProjectile>().projectileData.projectileUpgrade?.tiers[level].projectileAdd ?? 0);
+            //if (autoAttack.attackType != AutoAttackType.Orbital) continue;
+            //int level = ProjectileLevelTracker.Instance.GetLevel(autoAttack.projectilePrefab.GetComponent<PlayerProjectile>().projectileData) + playerStats.GetOrbitalProjectileNum();
+            //maxProjectiles = autoAttack.projectileCount + (autoAttack.projectilePrefab.GetComponent<PlayerProjectile>().projectileData.projectileUpgrade?.tiers[level].projectileAdd ?? 0);
         }
     }
     void SpawnOne(GameObject orbitalPrefab)
@@ -106,9 +110,9 @@ public class OrbitalAttack : MonoBehaviour
     {
         foreach (var autoAttack in playerStats.autoAttackDataList)
         {
-            if (autoAttack.attackType != AutoAttackType.Orbital) continue;
+            // if (autoAttack.attackType != AutoAttackType.Orbital) continue;
 
-            maxProjectiles = autoAttack.projectileCount;
+            //maxProjectiles = autoAttack.projectileCount;
             hasOrbitals = true;
 
             var projData = autoAttack.projectilePrefab.GetComponent<PlayerProjectile>().projectileData;
@@ -134,7 +138,7 @@ public class OrbitalAttack : MonoBehaviour
     }
     void Update()
     {
-        GetPrefabs();
+        //GetPrefabs();
         activeProjectiles.RemoveAll(item => item == null);
         if (orbitalPrefabs.Count == 0) return;
         baseAngle += rotationSpeed * Time.deltaTime;

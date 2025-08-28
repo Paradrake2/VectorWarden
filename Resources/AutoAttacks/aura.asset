@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb48ce9f3a66aaf478912bb88fdfde0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 2468e752514df3649a4b3eb0fe5063bb, type: 3}
   m_Name: aura
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 372286614326809169, guid: 17968ebb8303bf54baf8a79188166e40, type: 3}
   baseAttackCooldown: 5
-  projectileCount: 0
-  projectileCount2: 0
-  shotInterval: 0.1
-  attackType: 1
-  auraRadius: 2
+  radius: 3
+  auraVisualDuration: 0.2

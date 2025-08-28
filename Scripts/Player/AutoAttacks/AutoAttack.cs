@@ -11,15 +11,34 @@ public class AutoAttack : MonoBehaviour
     public List<PlayerProjectile> projectiles;
     public PlayerStats playerStats;
     public float attackCooldown = 1f; // Default cooldown
-
-    Dictionary<AutoAttackData, float> attackTimers = new Dictionary<AutoAttackData, float>();
+    private IEnemyQuery enemyQuery;
+    Dictionary<AutoAttackData, float> attackTimers = new Dictionary<AutoAttackData, float>(); // per attack cooldown trackers
     void Start()
     {
         playerStats = PlayerStats.Instance;
         //attackCooldown = Mathf.Max(0.1f, 5f - playerStats.GetAutoAttackCooldown());
+        enemyQuery = new SceneEnemyQuery();
     }
 
+    void Update()
+    {
+        foreach (var autoAttack in playerStats.autoAttackDataList)
+        {
+            if (!attackTimers.ContainsKey(autoAttack))
+            {
+                attackTimers[autoAttack] = 0f;
+            }
+            attackTimers[autoAttack] -= Time.deltaTime;
+            if (attackTimers[autoAttack] <= 0f)
+            {
+                StartCoroutine(autoAttack.Execute(new AutoAttackContext(transform, playerStats, this, enemyQuery, autoAttack)));
+                float cd = Mathf.Max(0.1f, playerStats.GetAutoAttackCooldown(autoAttack));
+                attackTimers[autoAttack] = cd; // Reset the timer
+            }
+        }
+    }
 
+    /*
     // Update is called once per frame
     void Update()
     {
@@ -38,7 +57,7 @@ public class AutoAttack : MonoBehaviour
             }
         }
     }
-    IEnumerator FireAutoAttack(AutoAttackData autoAttack)
+    public IEnumerator FireAutoAttack(AutoAttackData autoAttack)
     {
         int level = ProjectileLevelTracker.Instance.GetLevel(autoAttack.projectilePrefab.GetComponent<PlayerProjectile>().projectileData);
         var pp = autoAttack.projectilePrefab.GetComponent<PlayerProjectile>();
@@ -47,7 +66,7 @@ public class AutoAttack : MonoBehaviour
 
 
         int projectileCount = playerStats.GetAutoAttackProjectileCount(autoAttack) + (projUp?.tiers[level].projectileAdd ?? 0) + 1; // +1 for the base projectile
-        Debug.Log($"Firing AutoAttack: {autoAttack.attackType} with {projectileCount} projectiles");
+        //Debug.Log($"Firing AutoAttack: {autoAttack.attackType} with {projectileCount} projectiles");
         switch (autoAttack.attackType)
         {
             case AutoAttackType.Projectile: // Basic auto attack, fires a projectile at the closest enemy
@@ -230,4 +249,5 @@ public class AutoAttack : MonoBehaviour
         projectile.transform.localScale = new Vector3(projectileSize, projectileSize, 1f);
     }
     */
+
 }
