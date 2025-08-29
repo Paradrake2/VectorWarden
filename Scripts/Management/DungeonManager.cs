@@ -25,7 +25,7 @@ public class DungeonManager : MonoBehaviour
     {
         if (scene.name == "Dungeon")
         {
-            
+
             GameObject player = Instantiate(playerPrefab, mapGenerator.playerSpawnPosition, Quaternion.identity);
             Camera.main.GetComponent<CameraFollow>().target = player.transform;
             UIManager.Instance?.BindPlayer(player.GetComponent<Player>());
@@ -37,6 +37,7 @@ public class DungeonManager : MonoBehaviour
             xpuiManager.UpdateXPText();
             xpuiManager.UpdateXPBarFill();
             xpuiManager.UpdateLevelText();
+            ProjectileLevelTracker.Instance.ResetLevels();
         }
     }
     public int getFloor()

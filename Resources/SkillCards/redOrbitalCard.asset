@@ -28,4 +28,4 @@ MonoBehaviour:
   minValue: 0
   prerequisites: []
   autoAttackDataList:
-  - {fileID: 11400000, guid: 099f5397231f08b4394d288ea3022742, type: 2}
+  - {fileID: 11400000, guid: 1e4016df1e40012488c478deef7123eb, type: 2}

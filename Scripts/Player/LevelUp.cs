@@ -105,7 +105,7 @@ public class LevelUp : MonoBehaviour
         {
             if (playerLevel >= card.minimumLevelRequired && (card.unlocked || (UnlockState.Instance != null && UnlockState.Instance.IsCardUnlocked(card))))
             {
-                bool prerequisitesMet = card.prerequisites == null || card.prerequisites.All(prereq => playerStats.activeSkillCards.Contains(prereq));
+                bool prerequisitesMet = card.prerequisites == null || card.prerequisites.Count == 0 || card.prerequisites.Any(prereq => playerStats.activeSkillCards.Contains(prereq));
 
                 // Filter out projectile cards at max level
                 bool notMaxProjectile = true;

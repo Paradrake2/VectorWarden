@@ -781,4 +781,5 @@ public class PlayerStats : MonoBehaviour
         float baseDamage = CurrentDamage * GetAutoAttackDamageMultiplier();
         return baseDamage;
     }
+    
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "AutoAttack/Area")]
 public class AreaSO : AutoAttackData
 {
     public float attackRadius = 3f;
@@ -27,7 +28,7 @@ public class AreaSO : AutoAttackData
             ctx.FireProjectile(Vector3.zero, projectilePrefab, pos);
             yield return new WaitForSeconds(cooldown);
         }
-        Debug.LogError("AreaSO Execute not implemented yet.");
+        //Debug.LogError("AreaSO Execute not implemented yet.");
         yield break;
     }
 }

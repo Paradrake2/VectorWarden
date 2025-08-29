@@ -31,6 +31,10 @@ public class ProjectileLevelTracker : MonoBehaviour
             }
         }
     }
+    public void ResetLevels()
+    {
+        projectileLevels.Clear();
+    }
 
     public int GetLevel(ProjectileData proj)
     {
