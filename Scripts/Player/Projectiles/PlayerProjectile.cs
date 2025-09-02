@@ -13,6 +13,7 @@ public enum ProjectileType
     Orbital,
     Area,
     Expanding,
+    Static,
     None
 }
 

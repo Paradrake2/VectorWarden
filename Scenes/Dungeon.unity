@@ -1177,13 +1177,6 @@ MonoBehaviour:
     modifiers: []
   activeSkillCards:
   - {fileID: 11400000, guid: 34c4081776bf9bc43a6c1e26a73ee723, type: 2}
-  - {fileID: 11400000, guid: 34c4081776bf9bc43a6c1e26a73ee723, type: 2}
-  - {fileID: 11400000, guid: 34c4081776bf9bc43a6c1e26a73ee723, type: 2}
-  - {fileID: 11400000, guid: 34c4081776bf9bc43a6c1e26a73ee723, type: 2}
-  - {fileID: 11400000, guid: 34c4081776bf9bc43a6c1e26a73ee723, type: 2}
-  - {fileID: 11400000, guid: 34c4081776bf9bc43a6c1e26a73ee723, type: 2}
-  - {fileID: 11400000, guid: 34c4081776bf9bc43a6c1e26a73ee723, type: 2}
-  - {fileID: 11400000, guid: 40fd1681cbe973649b3e26a7c7fa2b46, type: 2}
   - {fileID: 11400000, guid: aaa178b933c4ee54b84aae4b5057428f, type: 2}
   - {fileID: 11400000, guid: db73509338b15e2488255c088e0acf37, type: 2}
   activeSpecialEffects: 

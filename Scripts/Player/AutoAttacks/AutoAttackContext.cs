@@ -43,5 +43,26 @@ public class AutoAttackContext
 
         return nearest;
     }
-    public List<Transform> EnemiesInRadius(Vector3 center, float radius) => EnemyQuery.GetAllEnemies().Where(t => (t.position - center).sqrMagnitude <= radius*radius).ToList();
+    public void DamageEnemy(Transform enemy, float damage)
+    {
+        enemy.GetComponent<EnemyStats>()?.TakeDamage(damage);
+    }
+
+    // Probably wont be used
+    public void HealPlayer(float amount)
+    {
+        PlayerStats.GainHealth(amount);
+    }
+
+    public GameObject SpawnStationaryProjectile(Vector3 direction, GameObject prefab, Vector3 position, float time,Vector3 offset = default, float rotation = 0f)
+    {
+        var go = Object.Instantiate(prefab, position, Quaternion.identity);
+        var proj = go.GetComponent<PlayerProjectile>();
+        proj?.InitializeProjectile(direction, 0, PlayerStats.GetAutoAttackDamage(), proj.projectileType, proj.projectileData, proj.playerStats);
+        go.transform.position += offset;
+        go.transform.rotation = Quaternion.Euler(0, 0, rotation);
+        return go;
+    }
+
+    public List<Transform> EnemiesInRadius(Vector3 center, float radius) => EnemyQuery.GetAllEnemies().Where(t => (t.position - center).sqrMagnitude <= radius * radius).ToList();
 }
