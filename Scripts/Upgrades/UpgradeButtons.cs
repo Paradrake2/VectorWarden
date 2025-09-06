@@ -9,14 +9,9 @@ public class UpgradeButtons : MonoBehaviour
         SceneManager.LoadScene("Dungeon");
         UpgradeXPHolder.Instance.SetUpgradeXPAmount(UpgradeManager.Instance.GetUpgradeXPAmount());
     }
-    void Start()
+    public void BackToMenu()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        PlayerStats.Instance.ClearTempStats();
+        SceneManager.LoadScene("StartMenu");
     }
 }

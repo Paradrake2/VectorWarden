@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Player has died");
         PlayerStats.Instance.ResetCards();
+        PlayerStats.Instance.ClearTempStats();
         Time.timeScale = 0;
         PostDeathUIScreen.Instance.ShowPostDeathScreen(name);
     }

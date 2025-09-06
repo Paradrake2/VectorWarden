@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -7,7 +8,14 @@ public class CameraFollow : MonoBehaviour
     public Vector3 offset;
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        if (SceneManager.GetActiveScene().name == "Dungeon")
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+        else
+        {
+            target = null;
+        }
     }
 
     void Update()

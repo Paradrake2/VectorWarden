@@ -9,7 +9,7 @@ public class ProjectileAttackSO : AutoAttackData
     public override IEnumerator Execute(AutoAttackContext ctx)
     {
         // Implementation for the projectile attack
-        var ps = ctx.PlayerStats;
+        //var ps = ctx.PlayerStats;
         int level = ProjectileLevelTracker.Instance.GetLevel(projectilePrefab.GetComponent<PlayerProjectile>().projectileData);
         var data = projectilePrefab.GetComponent<PlayerProjectile>().projectileData;
         var projUp = data?.projectileUpgrade;

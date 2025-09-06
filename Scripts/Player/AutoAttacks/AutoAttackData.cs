@@ -1,4 +1,5 @@
 using System.Collections;
+using Mono.Cecil.Cil;
 using UnityEngine;
 
 /*
@@ -21,6 +22,7 @@ public abstract class AutoAttackData : ScriptableObject
     public float baseAttackCooldown = 5f;
     // public AutoAttackType attackType;
     //public float auraRadius = 0f;
+    public ProjectileData data => projectilePrefab.GetComponent<PlayerProjectile>().projectileData;
     public abstract IEnumerator Execute(AutoAttackContext ctx);
     
 }

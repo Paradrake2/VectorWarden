@@ -52,8 +52,9 @@ MonoBehaviour:
   dashNumber: 0
   tags:
   - basicXPItem
-  ID: basicXPItemSmall
+  ID: basicXPItem
   coreTier: 0
   coreSize: 0
   enhancedNum: 0
   xpValue: 5
+  goldCost: 0

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 public class UnlockState : MonoBehaviour
 {
     public static UnlockState Instance { get; private set; }
-    private readonly HashSet<string> unlockedNodes = new();
+
+    [SerializeField]public readonly HashSet<string> unlockedNodes = new();
     public readonly HashSet<SkillCard> unlockedCards = new();
     void Awake()
     {
@@ -21,6 +22,10 @@ public class UnlockState : MonoBehaviour
     }
 
     public bool IsNodeUnlocked(CardUnlockNode node) => unlockedNodes.Contains(node.unlockID);
+    public void SaveUnlockedStates()
+    {
+        // Placeholder for saving logic
+    }
     public void NodeUnlock(CardUnlockNode node)
     {
         if (node == null) return;

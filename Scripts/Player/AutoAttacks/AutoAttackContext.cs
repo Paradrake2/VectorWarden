@@ -43,6 +43,8 @@ public class AutoAttackContext
 
         return nearest;
     }
+
+    public Camera MainCamera => Camera.main; // for screen scrolling attacks
     public void DamageEnemy(Transform enemy, float damage)
     {
         enemy.GetComponent<EnemyStats>()?.TakeDamage(damage);
@@ -59,7 +61,8 @@ public class AutoAttackContext
         var go = Object.Instantiate(prefab, position, Quaternion.identity);
         var proj = go.GetComponent<PlayerProjectile>();
         proj?.InitializeProjectile(direction, 0, PlayerStats.GetAutoAttackDamage(), proj.projectileType, proj.projectileData, proj.playerStats);
-        go.transform.position += offset;
+        Vector3 rotatedOffset = Quaternion.Euler(0, 0, rotation) * offset;
+        go.transform.position += rotatedOffset;
         go.transform.rotation = Quaternion.Euler(0, 0, rotation);
         return go;
     }

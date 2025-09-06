@@ -781,5 +781,51 @@ public class PlayerStats : MonoBehaviour
         float baseDamage = CurrentDamage * GetAutoAttackDamageMultiplier();
         return baseDamage;
     }
+
+    public float GetMaxHealth()
+    {
+        return CurrentMaxHealth;
+    }
+    public float GetDamage()
+    {
+        return CurrentDamage;
+    }
+    public float GetDefense()
+    {
+        return CurrentDefense;
+    }
+    public float GetAttackSpeed()
+    {
+        return CurrentAttackSpeed;
+    }
+    public float GetAttackCooldown()
+    {
+        return CurrentAttackCooldown;
+    }
+    public float GetKnockback()
+    {
+        return CurrentKnockback;
+    }
+    public float GetMana()
+    {
+        return CurrentMaxMana;
+    }
+    public float GetManaRegeneration()
+    {
+        return CurrentManaRegeneration;
+    }
+    public float GetHealthRegeneration()
+    {
+        return CurrentRegeneration;
+    }
+    public float GetShield()
+    {
+        return CalculateMaxShield;
+    }
+    public float GetXPGain()
+    {
+        return CurrentXPGain;
+    }
+
     
 }

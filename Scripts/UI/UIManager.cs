@@ -132,6 +132,6 @@ public class UIManager : MonoBehaviour
     }
     public void KillPlayer()
     {
-        player.TakeDamage(999999999999999, "command");
+        player.TakeDamage(playerStats.CurrentMaxHealth, "command");
     }
 }
