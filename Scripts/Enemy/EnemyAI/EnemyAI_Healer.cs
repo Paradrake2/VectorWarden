@@ -1,52 +1,87 @@
-using System.Collections;
 using UnityEngine;
 
+
+// -------- CAUSES IMMENSE LAG --------
 public class EnemyAI_Healer : MonoBehaviour
 {
+    [Header("Healing")]
     public EnemyStats enemyStats;
-    public GameObject healEffectPrefab;
     public float healPrefabLifetime = 0.5f;
-    private float healTimer = 0;
-    void Start()
+    public GameObject healEffectPrefab;
+
+    [Header("Query")]
+    public LayerMask enemyLayer;          // set to your Enemy layer in Inspector
+    public int maxHits = 64;              // cap for results buffer
+
+    // --- internals ---
+    private Collider2D[] _hits;           // reused buffer (no GC)
+    private ContactFilter2D _filter;      // reused filter (no GC)
+    private float _healTimer;
+
+    // (optional) small de-sync so many healers don't all fire same frame
+    [SerializeField] private bool desyncStart = true;
+
+    void Awake()
     {
-        enemyStats = GetComponent<EnemyStats>();
+        if (!enemyStats) enemyStats = GetComponent<EnemyStats>();
+
+        _hits = new Collider2D[maxHits];
+
+        _filter = new ContactFilter2D
+        {
+            useLayerMask = true,
+            layerMask = enemyLayer,
+            useTriggers = false
+        };
+
+        _healTimer = desyncStart ? Random.value * enemyStats.healCooldown : 0f;
     }
 
     void Update()
     {
-        if (healTimer <= 0)
+        _healTimer -= Time.deltaTime;
+        if (_healTimer <= 0f)
         {
-            HealEnemies();
-            healTimer = enemyStats.healCooldown; // Reset the timer
-        }
-        else
-        {
-            healTimer -= Time.deltaTime;
+            HealEnemies_NoAlloc();
+            _healTimer = enemyStats.healCooldown;
         }
     }
 
-    void HealEnemies()
+    private void HealEnemies_NoAlloc()
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, enemyStats.healRadius);
-        StartCoroutine(HealEffect());
-        foreach (var hitCollider in hitColliders)
+        // NonAlloc query: writes into _hits; returns count
+        int count = Physics2D.OverlapCircle(transform.position, enemyStats.healRadius, _filter, _hits);
+
+        // Visual without coroutine/GC: use a timed helper (or pool; see below)
+        SpawnHealEffect();
+
+        for (int i = 0; i < count; i++)
         {
-            if (hitCollider.CompareTag("Enemy"))
+            var c = _hits[i];
+            // Fast tag / component checks; TryGetComponent avoids exceptions
+            if (c.CompareTag("Enemy") && c.TryGetComponent(out EnemyStats target)
+                && target != enemyStats && target.type != EnemyType.Healer)
             {
-                EnemyStats targetStats = hitCollider.GetComponent<EnemyStats>();
-                if (targetStats != null && targetStats != enemyStats && targetStats.type != EnemyType.Healer)
-                {
-                    targetStats.AddHealth(enemyStats.healAmount);
-                }
+                target.AddHealth(enemyStats.healAmount);
             }
         }
     }
-    IEnumerator HealEffect()
+
+    private void SpawnHealEffect()
     {
-        GameObject healEffect = Instantiate(healEffectPrefab, transform.position, Quaternion.identity);
-        healEffect.transform.localScale = new Vector3(enemyStats.healRadius, enemyStats.healRadius, 1);
-        healEffect.GetComponent<EnemyProjectileDestroy>().lifetime = healPrefabLifetime; // This makes sure the heal prefab is destroyed even if the enemy is killed first
-        yield return new WaitForSeconds(healPrefabLifetime);
-        Destroy(healEffect);
+        if (!healEffectPrefab) return;
+
+        // OPTION A: reuse one effect object (no coroutine, no destroy)
+        // If your effect is a particle system, you can play & let it auto-stop.
+        var fx = HealEffectPool.Get(healEffectPrefab, transform.position);
+        fx.transform.localScale = new Vector3(enemyStats.healRadius, enemyStats.healRadius, 1f);
+        TimedReturn.ToPool(fx, healPrefabLifetime); // see helper below
+    }
+
+    // (Optional) quick debug gizmo
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(0f, 1f, 0.6f, 0.35f);
+        if (enemyStats) Gizmos.DrawWireSphere(transform.position, enemyStats.healRadius);
     }
 }

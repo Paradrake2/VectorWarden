@@ -171,8 +171,18 @@ MonoBehaviour:
   damage: 0
   projectileType: 1
   spriteRotationOffset: -90
+  onHitSFX: {fileID: 8300000, guid: c219e71f4c8678241b3162f961070c5a, type: 3}
   pierceAmount: 0
   explosionRadius: 0
   homingRange: 0
   projectileSize: 1
+  damageMultiplier: 1
   lifetime: 5
+  shotgunStyle: 0
+  homingTimer: 0
+  OnBegin:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDone:
+    m_PersistentCalls:
+      m_Calls: []

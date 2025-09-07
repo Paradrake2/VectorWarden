@@ -12,6 +12,6 @@ public class SaveData
     public int cardOptions;
     public float gold;
     public float xp;
-    public List<string> unlockedCards; // list of CardUnlockNode ids that are unlocked
+    public List<string> unlockedCardNodes; // list of CardUnlockNode ids that are unlocked
     public List<InventoryItem> inventoryItems; // list of InventoryItems in the player's inventory
 }

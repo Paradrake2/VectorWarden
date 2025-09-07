@@ -34,11 +34,12 @@ public static class DataManager
         PlayerStats.Instance.BaseHealth = data.maxHealth;
         PlayerStats.Instance.BaseDefense = data.defense;
         PlayerStats.Instance.BaseDamage = data.damage;
-        PlayerStats.Instance.BaseGoldGain = data.gold;
+        PlayerStats.Instance.goldAmount = data.gold;
         PlayerStats.Instance.BaseXPGain = data.xp;
+        PlayerStats.Instance.BonusCardOptions = data.cardOptions;
         try
         {
-            foreach (string id in data.unlockedCards)
+            foreach (string id in data.unlockedCardNodes)
             {
                 CardUnlockNode node = Resources.LoadAll<CardUnlockNode>("CardUnlockNodes").FirstOrDefault(n => n.unlockID == id);
                 if (node != null)

@@ -36,7 +36,6 @@ public class ProjectileUpgrade : ScriptableObject
 
         [Header("Custom Hooks")]
         public GameObject onHitVFX;
-        public AudioClip onHitSFX;
         [Header("Misc Stats")]
         public float float1;
         public float float2;

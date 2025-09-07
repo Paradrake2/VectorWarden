@@ -1,8 +1,11 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject SaveSuccessful;
+    public GameObject LoadSuccessful;
     void Start()
     {
 
@@ -24,15 +27,31 @@ public class MainMenu : MonoBehaviour
             maxHealth = PlayerStats.Instance.CurrentMaxHealth,
             damage = PlayerStats.Instance.CurrentDamage,
             defense = PlayerStats.Instance.CurrentDefense,
-            unlockedCards = UnlockState.Instance.unlockedNodes.ToList(),
+            gold = PlayerStats.Instance.goldAmount,
+            xp = PlayerStats.Instance.CurrentXPGain,
+            unlockedCardNodes = UnlockState.Instance.unlockedNodes.ToList(),
             inventoryItems = InventorySystem.Instance.itemStacks.ToList(),
         };
         DataManager.Save(data);
+        StartCoroutine(ShowSaveMessage());
         Debug.Log("Game Saved");
+    }
+    IEnumerator ShowSaveMessage()
+    {
+        SaveSuccessful.SetActive(true);
+        yield return new WaitForSeconds(2);
+        SaveSuccessful.SetActive(false);
+    }
+    IEnumerator ShowLoadMessage()
+    {
+        LoadSuccessful.SetActive(true);
+        yield return new WaitForSeconds(2);
+        LoadSuccessful.SetActive(false);
     }
     public void LoadData()
     {
         DataManager.Load();
+        StartCoroutine(ShowLoadMessage());
     }
 
     public void LoadUpgradeScene()

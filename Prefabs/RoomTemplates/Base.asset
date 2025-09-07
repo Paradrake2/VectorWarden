@@ -59,10 +59,6 @@ MonoBehaviour:
       enemyCount: 60
       spawnCount: 0
       enemyPrefab: {fileID: 8132072419529745950, guid: 70409d76e4d73614bbb00715fc3783a3, type: 3}
-    - enemyName: healer
-      enemyCount: 10
-      spawnCount: 0
-      enemyPrefab: {fileID: 8880569679963795529, guid: 810f1a508fcc75e4aaa36cfa2b26ac6f, type: 3}
     - enemyName: rangedEnemy
       enemyCount: 20
       spawnCount: 0
@@ -71,6 +67,6 @@ MonoBehaviour:
       enemyCount: 30
       spawnCount: 0
       enemyPrefab: {fileID: 46461337758655470, guid: b4dd994d730df654ab3f6a5f71531057, type: 3}
-    enemiesInWave: 120
-    spawnInterval: 2
+    enemiesInWave: 110
+    spawnInterval: 5
     spawnedEnemiesCount: 0

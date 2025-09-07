@@ -31,7 +31,6 @@ MonoBehaviour:
     unlockHoming: 0
     shotgunStyle: 1
     onHitVFX: {fileID: 0}
-    onHitSFX: {fileID: 0}
     float1: 0
     float2: 0
     float3: 0
@@ -56,7 +55,6 @@ MonoBehaviour:
     unlockHoming: 0
     shotgunStyle: 1
     onHitVFX: {fileID: 0}
-    onHitSFX: {fileID: 0}
     float1: 0
     float2: 0
     float3: 0
@@ -81,7 +79,6 @@ MonoBehaviour:
     unlockHoming: 0
     shotgunStyle: 1
     onHitVFX: {fileID: 0}
-    onHitSFX: {fileID: 0}
     float1: 0
     float2: 0
     float3: 0
@@ -106,7 +103,6 @@ MonoBehaviour:
     unlockHoming: 0
     shotgunStyle: 1
     onHitVFX: {fileID: 0}
-    onHitSFX: {fileID: 0}
     float1: 0
     float2: 0
     float3: 0
@@ -131,7 +127,6 @@ MonoBehaviour:
     unlockHoming: 0
     shotgunStyle: 1
     onHitVFX: {fileID: 0}
-    onHitSFX: {fileID: 0}
     float1: 0
     float2: 0
     float3: 0
@@ -156,7 +151,6 @@ MonoBehaviour:
     unlockHoming: 0
     shotgunStyle: 1
     onHitVFX: {fileID: 0}
-    onHitSFX: {fileID: 0}
     float1: 0
     float2: 0
     float3: 0
@@ -181,7 +175,6 @@ MonoBehaviour:
     unlockHoming: 0
     shotgunStyle: 1
     onHitVFX: {fileID: 0}
-    onHitSFX: {fileID: 0}
     float1: 0
     float2: 0
     float3: 0

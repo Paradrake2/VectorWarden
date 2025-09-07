@@ -25,9 +25,8 @@ public class PlayerProjectile : MonoBehaviour
     public float damage;
     public ProjectileType projectileType;
     public float spriteRotationOffset = 0f; // Offset to align the sprite correctly
-
     private Vector2 moveDirection;
-
+    public AudioClip onHitSFX;
     public int pierceAmount;
     public float explosionRadius;
     public float homingRange;
@@ -233,6 +232,10 @@ public class PlayerProjectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            if (onHitSFX != null)
+            {
+                AudioSource.PlayClipAtPoint(onHitSFX, transform.position);
+            }
             EnemyStats enemyStats = collision.gameObject.GetComponent<EnemyStats>();
             collision.GetComponent<Enemy>()?.ApplyKnockback(-inverseDirection, knockbackForce * (1 - enemyStats.getKnockbackResistance()));
             if (enemyStats != null && explosionRadius <= 0f)
@@ -252,8 +255,8 @@ public class PlayerProjectile : MonoBehaviour
             if (playerStats.GetExplosionRadius() + explosionRadius > 0f && projectileType == ProjectileType.Explosive)
             {
                 Explode();
-                Vector3 popupPosition = transform.position;
-                ExplosionRadiusManager.Instance.SpawnRadiusIndicator(popupPosition, explosionRadius);
+                //Vector3 popupPosition = transform.position;
+                //ExplosionRadiusManager.Instance.SpawnRadiusIndicator(popupPosition, explosionRadius);
             }
             if (pierceAmount < 0) DestroyGameobject();
         }
