@@ -39,8 +39,6 @@ public class Items : ScriptableObject
 
     [Header("Rarity")]
     public ItemRarity Rarity;
-    [Header("ComponentSlot")]
-    public ComponentSlot componentSlot;
     [Header("ItemType")]
     public ItemType itemType;
     [Header("ProjectileType")]

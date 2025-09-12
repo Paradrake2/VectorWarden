@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ProjectileUpgrade", menuName = "Scriptable Objects/ProjectileUpgrade")]

@@ -51,7 +51,7 @@ MonoBehaviour:
       spawnCount: 0
       enemyPrefab: {fileID: 7050455963606643714, guid: dd99fa64cb33b724e8292016dbbbb94a, type: 3}
     enemiesInWave: 50
-    spawnInterval: 99999
+    spawnInterval: 5
     spawnedEnemiesCount: 0
   - waveName: wave2
     enemyGroups:

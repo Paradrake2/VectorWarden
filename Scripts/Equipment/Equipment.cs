@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using NUnit.Framework.Constraints;
 using UnityEngine;
 
+// -------------------------------- DEPRECATED --------------------------
 public enum EquipmentSlot
 {
     Weapon,
@@ -48,17 +49,17 @@ public class Equipment
     // Additional properties can be added as needed
     public float GetDamage()
     {
-        return baseDamage; // This can be modified to include player stats or other factors
+        return baseDamage;
     }
 
     public float GetDefense()
     {
-        return baseDefense; // This can be modified to include player stats or other factors
+        return baseDefense;
     }
 
     public float GetProjectileSpeed()
     {
-        return baseProjectileSpeed; // This can be modified to include player stats or other factors
+        return baseProjectileSpeed;
     }
     public string GetID()
     {
