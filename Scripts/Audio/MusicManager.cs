@@ -13,7 +13,7 @@ public class MusicManager : MonoBehaviour
     private AudioSource _b;
     private AudioSource _active;    // currently audible source
     private Coroutine _xFadeCo;
-
+    
     void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
@@ -121,4 +121,5 @@ public class MusicManager : MonoBehaviour
         src.clip = null;
         src.volume = 0f;
     }
+
 }

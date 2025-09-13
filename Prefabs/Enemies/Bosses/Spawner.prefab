@@ -187,8 +187,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rarity: 0
   type: 3
-  maxHealth: 25000
-  currentHealth: 25000
+  maxHealth: 10000
+  currentHealth: 10000
   damage: 1
   defense: 25
   knockback: 0
@@ -206,10 +206,16 @@ MonoBehaviour:
   movementSpeedMultiplier: 1.2
   minXP: 10000
   maxXP: 14000
-  minGold: 1000
-  maxGold: 2000
-  dropPool: []
-  eliteDropPool: []
+  minGold: 4000
+  maxGold: 5000
+  dropPool:
+  - rarity: 4
+    items:
+    - {fileID: 3264992767941181033, guid: 714bbe6d19b88044d9e22b46b0740e9f, type: 3}
+  eliteDropPool:
+  - rarity: 6
+    items:
+    - {fileID: 3264992767941181033, guid: 714bbe6d19b88044d9e22b46b0740e9f, type: 3}
   playerStats: {fileID: 0}
   healRadius: 5
   healAmount: 10
@@ -247,6 +253,9 @@ MonoBehaviour:
   - item:
     - {fileID: 11400000, guid: a75a1c2430e5e644184452e21ba11925, type: 2}
     amount: 10
+  - item:
+    - {fileID: 11400000, guid: 311054172197f8f43845484d3e71c7ad, type: 2}
+    amount: 1
   healthBar: {fileID: 0}
 --- !u!114 &4579318544865226552
 MonoBehaviour:
