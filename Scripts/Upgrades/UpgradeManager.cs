@@ -47,6 +47,7 @@ public class UpgradeManager : MonoBehaviour
     public void AddXP(float amount)
     {
         UpgradeXPAmount += amount;
+        uxh.SetUpgradeXPAmount(UpgradeXPAmount);
     }
     public void UpdateXPText()
     {

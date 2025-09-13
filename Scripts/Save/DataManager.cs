@@ -61,8 +61,12 @@ public static class DataManager
                 }
             }
         }
-        catch (NullReferenceException) {
+        catch (NullReferenceException)
+        {
         }
+        MusicManager.Instance.SetVolume(data.musicVolume);
+        UpgradeManager.Instance.UpgradeXPAmount = data.currentUpgradeXP;
+        PlayerStats.Instance.BonusCardOptions = data.cardOptions;
         //PlayerStats.Instance.UnlockedCards = data.unlockedCards;
         //PlayerStats.Instance.InventoryItems = data.inventoryItems;
     }

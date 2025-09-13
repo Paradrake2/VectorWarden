@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public int maxEnemies = 100;
     public int enemyLevel = 1;
     private float elapsedTime = 0f;
-
+    public bool hasOpenedScene = false;
 
     void Awake()
     {
@@ -46,6 +46,4 @@ public class GameManager : MonoBehaviour
         enemyLevel++;
         maxEnemies += 5;
     }
-    
-    
 }
