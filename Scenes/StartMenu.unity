@@ -350,6 +350,7 @@ MonoBehaviour:
   timerText: {fileID: 0}
   maxEnemies: 300
   enemyLevel: 1
+  hasOpenedScene: 0
 --- !u!114 &279793368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2698,8 +2699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SaveSuccessful: {fileID: 1439700618}
   LoadSuccessful: {fileID: 1908246661}
-  CannotSaveObject: {fileID: 0}
-  hasOpenedScene: 0
+  CannotSaveObject: {fileID: 958003696}
 --- !u!114 &1579878391
 MonoBehaviour:
   m_ObjectHideFlags: 0

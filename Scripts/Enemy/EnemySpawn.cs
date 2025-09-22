@@ -92,7 +92,6 @@ public class EnemySpawn : MonoBehaviour
 
         CalculateWaveQuota();
         initialized = true;
-        Debug.Log(initialized + "  " + enemyWaves.Count + "  " + enemyWaves);
         if (player == null) player = FindFirstObjectByType<Player>().transform;
         SpawnEnemies();
     }

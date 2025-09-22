@@ -38,6 +38,8 @@ public class DungeonManager : MonoBehaviour
             xpuiManager.UpdateXPBarFill();
             xpuiManager.UpdateLevelText();
             ProjectileLevelTracker.Instance.ResetLevels();
+            PlayerStats.Instance.ReloadAutoAttackList();
+
         }
     }
     public int getFloor()
