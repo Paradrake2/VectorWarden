@@ -7,6 +7,7 @@ public class DestroyerBasic : MonoBehaviour
     public EnemyStats stats;
     public Boss boss;
     public BossAIComponents bossAIComponents;
+    public BossProjectileFactory bp;
     public List<EnemyProjectile> projectileListOne;
     public List<EnemyProjectile> projectileListTwo;
     public List<EnemyProjectile> projectileListThree;
@@ -73,7 +74,7 @@ public class DestroyerBasic : MonoBehaviour
             // Find a random projectile to use
             EnemyProjectile projectile = projectileListOne[Random.Range(0, projectileListOne.Count)];
 
-            bossAIComponents.FireProjectile(projectile, transform.position, player.transform.position, player.GetComponent<PlayerMovement>().SmoothedVelocity);
+            bp.FireProjectile(projectile, transform.position, player.transform.position, player.GetComponent<PlayerMovement>().SmoothedVelocity);
             lastAttackTime = Time.time;
             attackCounter++;
         }
@@ -89,7 +90,7 @@ public class DestroyerBasic : MonoBehaviour
         {
 //            Debug.LogWarning("Rapid Fire Attack: " + i);
             // Find a random projectile to use
-            bossAIComponents.FireProjectile(projectile, transform.position, player.transform.position, player.GetComponent<PlayerMovement>().SmoothedVelocity);
+            bp.FireProjectile(projectile, transform.position, player.transform.position, player.GetComponent<PlayerMovement>().SmoothedVelocity);
             yield return new WaitForSeconds(0.16f);
         }
     }
