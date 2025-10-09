@@ -1619,7 +1619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b529296a2fceb46a09835f7b893f9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterVolume: 0.8
+  masterVolume: 0.291
   defaultFadeSeconds: 1.5
 --- !u!4 &783102767
 Transform:

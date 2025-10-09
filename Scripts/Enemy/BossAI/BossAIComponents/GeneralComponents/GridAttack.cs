@@ -13,6 +13,7 @@ public class GridAttack : BossAttackComponent
     public Vector3 center;
     public float projectileLifetime = 2.4f;
     public float previewDuration = 1.0f;
+    public float damage;
     public void SetVar(EnemyProjectile proj, float w, float h, float sp, Vector3 cen, GameObject pr)
     {
         projectilePrefab = proj;
@@ -59,8 +60,7 @@ public class GridAttack : BossAttackComponent
         {
             GameObject projGO = Object.Instantiate(projectilePrefab.gameObject, spawnPos, Quaternion.identity);
             var projData = projGO.GetComponent<EnemyProjectile>();
-            projData.speed = 0; // static object
-            projData.damage = projectilePrefab.damage;
+            projData.Initialize(damage, 0f, projectileLifetime);
 
             var rb = projGO.GetComponent<Rigidbody2D>();
             if (rb) rb.linearVelocity = Vector2.zero; // static

@@ -52,7 +52,7 @@ MonoBehaviour:
   rotationOffset: -90
   projectileType: 0
   damage: 60
-  speed: 10
+  speed: 20
   explosionRadius: 0
   homingStrength: 0
   homingRange: 0

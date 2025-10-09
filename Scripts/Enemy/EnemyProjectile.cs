@@ -28,6 +28,13 @@ public class EnemyProjectile : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
+    public void Initialize(float damage, float speed, float lifetime = 5f)
+    {
+        this.damage = damage;
+        this.speed = speed;
+        this.lifetime = lifetime;
+    }
+
     // Update is called once per frame
     void Update()
     {

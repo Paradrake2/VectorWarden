@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35aebb413917098439ffba19ae0f8bd4, type: 3}
+  m_Name: DestroyerGridAttack
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  boss: {fileID: 0}
+  projectilePrefab: {fileID: 4216807312999735215, guid: 98ce733c070f35a4da52c80dcf408fb4, type: 3}
+  previewPrefab: {fileID: 6371842183072096162, guid: fd5aa9608d9d9e94193a2c41ee903737, type: 3}
+  width: 70
+  height: 70
+  spacing: 3
+  center: {x: 0, y: 0, z: 0}
+  projectileLifetime: 2.4
+  previewDuration: 1
+  damage: 80

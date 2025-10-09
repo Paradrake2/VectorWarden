@@ -11,6 +11,9 @@ public class DestroyerBasic : MonoBehaviour
     public List<EnemyProjectile> projectileListOne;
     public List<EnemyProjectile> projectileListTwo;
     public List<EnemyProjectile> projectileListThree;
+    public BossAttackComponent fireProjectileComponent1;
+    public BossAttackComponent gridAttackComponent;
+    public BossAttackComponent trailAttackComponent;
     public GameObject previewPrefab;
 
     public Player player;
@@ -63,18 +66,23 @@ public class DestroyerBasic : MonoBehaviour
     {
         if (Time.time - lastAttackTime >= attackCooldown)
         {
-            if (attackCounter >= 5)
+            if (attackCounter == 50)
             {
                 StartCoroutine(RapidFireAttack());
-                StartCoroutine(bossAIComponents.PerformGridAttack(transform.position, 70f, 70f, 3f, projectileListTwo[Random.Range(0, projectileListTwo.Count)], previewPrefab));
-                Debug.LogWarning("Rapid Fire Attack Triggered!");
-                attackCounter = 0; // Reset counter after rapid fire
-                StartCoroutine(bossAIComponents.TrailAttack(10, projectileListThree[Random.Range(0, projectileListOne.Count)], player.gameObject));
+                StartCoroutine(gridAttackComponent.ExecuteAttack(bp));
+                //Debug.LogWarning("Rapid Fire Attack Triggered!");
+                //StartCoroutine(bossAIComponents.TrailAttack(10, projectileListThree[Random.Range(0, projectileListOne.Count)], player.gameObject));
+            }
+            if (attackCounter >= 100)
+            {
+                attackCounter = 0;
+                StartCoroutine(trailAttackComponent.ExecuteAttack(bp));
             }
             // Find a random projectile to use
-            EnemyProjectile projectile = projectileListOne[Random.Range(0, projectileListOne.Count)];
+            //EnemyProjectile projectile = projectileListOne[Random.Range(0, projectileListOne.Count)];
 
-            bp.FireProjectile(projectile, transform.position, player.transform.position, player.GetComponent<PlayerMovement>().SmoothedVelocity);
+            //bp.FireProjectile(projectile, transform.position, player.transform.position, player.GetComponent<PlayerMovement>().SmoothedVelocity);
+            StartCoroutine(fireProjectileComponent1.ExecuteAttack(bp));
             lastAttackTime = Time.time;
             attackCounter++;
         }

@@ -242,6 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 26922013}
   - component: {fileID: 26922012}
+  - component: {fileID: 26922014}
   m_Layer: 0
   m_Name: FloormasterManager
   m_TagString: Untagged
@@ -268,6 +269,8 @@ MonoBehaviour:
     floormasters:
     - {fileID: 3475650395302570904, guid: 4ae146b6ce0d92542889a2b730bdf089, type: 3}
   floormasterTimerText: {fileID: 540042298}
+  spawnTimer: 5
+  pauseDuration: 30
 --- !u!4 &26922013
 Transform:
   m_ObjectHideFlags: 0
@@ -283,6 +286,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &26922014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26922011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3246d2efa14329942ba77c4689174362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &38848848
 GameObject:
   m_ObjectHideFlags: 0

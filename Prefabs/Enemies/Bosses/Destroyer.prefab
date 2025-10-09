@@ -162,12 +162,16 @@ MonoBehaviour:
   stats: {fileID: 2659257618325411791}
   boss: {fileID: 2504809439447683730}
   bossAIComponents: {fileID: -3605561591465643749}
+  bp: {fileID: 0}
   projectileListOne:
   - {fileID: 3615279631910130068, guid: b0b695a7425888949b50673e2e884213, type: 3}
   projectileListTwo:
   - {fileID: 4216807312999735215, guid: 98ce733c070f35a4da52c80dcf408fb4, type: 3}
   projectileListThree:
   - {fileID: 9019943017461466382, guid: 547c924fe3f1e70449d0e7ebc1082f66, type: 3}
+  fireProjectileComponent1: {fileID: 11400000, guid: b6ea3f73aaec66f43a6324ee22b61149, type: 2}
+  gridAttackComponent: {fileID: 11400000, guid: 1c641e2f12a1de0418f67d6252faaf2c, type: 2}
+  trailAttackComponent: {fileID: 11400000, guid: 259abdfaf1a5b014cb690edfbaa90a7b, type: 2}
   previewPrefab: {fileID: 6371842183072096162, guid: fd5aa9608d9d9e94193a2c41ee903737, type: 3}
   player: {fileID: 0}
   health: 999999
