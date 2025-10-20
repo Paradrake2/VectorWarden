@@ -39,7 +39,8 @@ public class DungeonManager : MonoBehaviour
             xpuiManager.UpdateLevelText();
             ProjectileLevelTracker.Instance.ResetLevels();
             PlayerStats.Instance.ReloadAutoAttackList();
-
+            OrbitalAttack.Instance.ClearOrbitals();
+            enemiesKilled = 0;
         }
     }
     public int getFloor()

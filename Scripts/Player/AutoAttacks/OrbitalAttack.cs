@@ -192,4 +192,16 @@ public class OrbitalAttack : MonoBehaviour
         activeProjectiles.Clear();
         orbitalPrefabs.Clear();
     }
+    
+    public void ClearOrbitals()
+    {
+        foreach (var orb in activeProjectiles)
+        {
+            if (orb) Destroy(orb);
+        }
+        activeProjectiles.Clear();
+        orbitalPrefabs.Clear();
+        hasOrbitals = false;
+        regenRunning = false;
+    }
 }

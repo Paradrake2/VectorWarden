@@ -46,6 +46,8 @@ public class SpawnEnemyAttack : BossAttackComponent
             int index = Random.Range(0, enemyPrefabs.Count);
             GameObject enemyPrefab = enemyPrefabs[index];
             GameObject enemy = Instantiate(enemyPrefab, pos, Quaternion.identity);
+            // the enemy prefab already shouldn't have any loot attached to it, but just in case this makes sure no loot/xp is dropped when killed
+            enemy.GetComponent<EnemyStats>().bossSpawned = true; // prevent this enemy from dropping loot
             yield return new WaitForSeconds(spawnInterval);
         }
     }

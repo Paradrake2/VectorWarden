@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class PlayerMovement : MonoBehaviour
 {
     public PlayerStats playerStats;
-    public float moveSpeed;
+    private float moveSpeed;
     [SerializeField] private Rigidbody2D rb;
     private Vector2 movement;
     public Vector2 CurrentVelocity { get; private set; }
@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
         moveSpeed = playerStats.CurrentPlayerMoveSpeed;
     }
 
-    // Update is called once per frame
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");

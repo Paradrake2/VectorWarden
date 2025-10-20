@@ -67,7 +67,7 @@ public class EnemyStats : MonoBehaviour
     public float hpMult = 1.5f;
     public float damageMult = 1.5f;
     public float defenseMult = 1.5f;
-
+    public bool bossSpawned = false;
     public string id;
     void Awake()
     {
@@ -160,6 +160,7 @@ public class EnemyStats : MonoBehaviour
     }
     public List<GameObject> getDrop()
     {
+        if (bossSpawned) return null;
         // float roll = UnityEngine.Random.value + PlayerStats.Instance.GetStat(StatType.DropRate);
         List<GameObject> finalDrops = new();
 

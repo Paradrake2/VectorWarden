@@ -166,7 +166,7 @@ SpriteRenderer:
   m_Color: {r: 0.13223863, g: 0, b: 0.41509432, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
+  m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -189,7 +189,7 @@ MonoBehaviour:
   type: 3
   maxHealth: 10000
   currentHealth: 10000
-  damage: 1
+  damage: 500
   defense: 25
   knockback: 0
   knockbackResistance: 0
@@ -224,6 +224,7 @@ MonoBehaviour:
   hpMult: 1.5
   damageMult: 1.5
   defenseMult: 1.5
+  bossSpawned: 0
   id: 
 --- !u!114 &4518248173219171256
 MonoBehaviour:
@@ -292,10 +293,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 3614914218155518758}
   boss: {fileID: 4518248173219171256}
-  bossAIComponents: {fileID: 1486187959710275728}
-  enemyPrefabs1: []
-  spawnInterval: 5
+  spawnerAttackComponent: {fileID: 11400000, guid: 7c7b346e9aca5a84aadacb77f758aa27, type: 2}
+  fireProjectileComponent: {fileID: 11400000, guid: 65ed208db846b714ab1a7e1e4951df07, type: 2}
+  attackInterval: 3
   enemySpawnAmount: 10
+  spawnAttackInterval: 3
 --- !u!114 &1486187959710275728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,7 +378,7 @@ BoxCollider2D:
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
-    drawMode: 2
+    drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}

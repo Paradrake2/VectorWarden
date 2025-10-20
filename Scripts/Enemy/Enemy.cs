@@ -56,13 +56,16 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         OnDeath?.Invoke();
-        List<GameObject> drops = stats.getDrop();
-        foreach (var item in drops)
+        if (!stats.bossSpawned)
         {
-            Instantiate(item, transform.position, Quaternion.identity);
+            List<GameObject> drops = stats.getDrop();
+            foreach (var item in drops)
+            {
+                Instantiate(item, transform.position, Quaternion.identity);
+            }
+            playerStats.GainXP(UnityEngine.Random.Range(stats.minXP, stats.maxXP));
+            playerStats.GainGold(Mathf.CeilToInt(UnityEngine.Random.Range(stats.minGold, stats.maxGold)));
         }
-        playerStats.GainXP(UnityEngine.Random.Range(stats.minXP, stats.maxXP));
-        playerStats.GainGold(Mathf.CeilToInt(UnityEngine.Random.Range(stats.minGold, stats.maxGold)));
         EnemySpawn.Instance.EnemyDied();
         Destroy(gameObject);
         FindFirstObjectByType<DungeonManager>().EnemyKilled();

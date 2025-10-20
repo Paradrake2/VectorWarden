@@ -5,14 +5,14 @@ public class Spawner : MonoBehaviour
 {
     public EnemyStats enemyStats;
     public Boss boss;
-    public BossAIComponents bossAIComponents;
 
-    public List<GameObject> enemyPrefabs1;
-    public float spawnInterval = 5f;
+    public BossAttackComponent spawnerAttackComponent;
+    public BossAttackComponent fireProjectileComponent;
+    public float attackInterval = 10f;
     public int enemySpawnAmount = 10;
+    public int spawnAttackInterval = 3;
     private float lastSpawnTime;
-    private List<Vector3> spawnPos;
-
+    private int attackCounter = 0;
     void Start()
     {
         lastSpawnTime = Time.time;
@@ -21,16 +21,18 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - lastSpawnTime >= spawnInterval)
+        if (Time.time - lastSpawnTime >= attackInterval)
         {
             lastSpawnTime = Time.time;
-            SpawnEnemy();
+            Attack();
         }
     }
-
-    void SpawnEnemy()
+    void Attack()
     {
-        StartCoroutine(bossAIComponents.SummonEnemies(enemyPrefabs1, enemySpawnAmount, spawnPos,0));
+        if (attackCounter % spawnAttackInterval == 0) StartCoroutine(spawnerAttackComponent.ExecuteAttack(null));
+        
+        StartCoroutine(fireProjectileComponent.ExecuteAttack(null));
+        attackCounter++;
     }
 
 }

@@ -267,10 +267,11 @@ MonoBehaviour:
   - minFloor: 0
     maxFloor: 5
     floormasters:
-    - {fileID: 3475650395302570904, guid: 4ae146b6ce0d92542889a2b730bdf089, type: 3}
+    - {fileID: 8394435277191435711, guid: 516d1ec3248824b48b05e8d029780dde, type: 3}
   floormasterTimerText: {fileID: 540042298}
   spawnTimer: 5
   pauseDuration: 30
+  isFloormasterAlive: 0
 --- !u!4 &26922013
 Transform:
   m_ObjectHideFlags: 0

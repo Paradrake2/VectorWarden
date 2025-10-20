@@ -22,7 +22,7 @@ public class Floormaster : MonoBehaviour
 
     [SerializeField] private float spawnTimer = 20f;
     [SerializeField] private float pauseDuration = 30f;
-    private bool isFloormasterAlive = false;
+    [SerializeField] private bool isFloormasterAlive = false;
     private GameObject currentFloormaster;
     private Coroutine floormasterCoroutine;
 
@@ -60,11 +60,14 @@ public class Floormaster : MonoBehaviour
     public void SpawnFloormaster()
     {
         int floor = DungeonManager.Instance.floor;
+        Debug.Log("Called spawnFloormaster");
         FloormasterSpawner spawner = floormasters.FirstOrDefault(s => floor >= s.minFloor && floor <= s.maxFloor);
-        if (spawner != null && isFloormasterAlive)
+        if (spawner != null && !isFloormasterAlive)
         {
+            Debug.Log("test");
             GameObject floormaster = spawner.floormasters[Random.Range(0, spawner.floormasters.Count)];
             currentFloormaster = Instantiate(floormaster, GetSpawnPosition(), Quaternion.identity);
+            Debug.LogWarning("Floormaster Spawned: " + currentFloormaster.name);
             isFloormasterAlive = true;
         }
     }

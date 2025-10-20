@@ -10,7 +10,6 @@ public class DestroyerBasic : MonoBehaviour
     public BossProjectileFactory bp;
     public List<EnemyProjectile> projectileListOne;
     public List<EnemyProjectile> projectileListTwo;
-    public List<EnemyProjectile> projectileListThree;
     public BossAttackComponent fireProjectileComponent1;
     public BossAttackComponent gridAttackComponent;
     public BossAttackComponent trailAttackComponent;
@@ -90,7 +89,6 @@ public class DestroyerBasic : MonoBehaviour
     IEnumerator RapidFireAttack()
     {
         Debug.Log("Rapid Fire Attack!");
-        EnemyProjectile projectile = projectileListOne[Random.Range(0, projectileListOne.Count)];
 
         // Stop moving while attacking
         int attackCount = Random.Range(10, 15); // Random number of attacks
@@ -98,7 +96,7 @@ public class DestroyerBasic : MonoBehaviour
         {
 //            Debug.LogWarning("Rapid Fire Attack: " + i);
             // Find a random projectile to use
-            bp.FireProjectile(projectile, transform.position, player.transform.position, player.GetComponent<PlayerMovement>().SmoothedVelocity);
+            StartCoroutine(fireProjectileComponent1.ExecuteAttack(bp));
             yield return new WaitForSeconds(0.16f);
         }
     }
