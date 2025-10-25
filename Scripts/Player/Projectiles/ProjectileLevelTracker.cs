@@ -5,10 +5,10 @@ public class ProjectileLevelTracker : MonoBehaviour
 {
     public static ProjectileLevelTracker Instance { get; private set; }
 
-    [SerializeField] private readonly Dictionary<ProjectileData, int> projectileLevels = new();
+    [SerializeField] private Dictionary<ProjectileData, int> projectileLevels = new();
 
     public List<ProjectileUpgrade> upgradeAssets;
-    private readonly Dictionary<ProjectileData, ProjectileUpgrade> _projectileUpgrades = new();
+    [SerializeField] private Dictionary<ProjectileData, ProjectileUpgrade> _projectileUpgrades = new();
 
     void Awake()
     {
@@ -22,6 +22,7 @@ public class ProjectileLevelTracker : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        
 
         foreach (var upgrade in upgradeAssets)
         {
@@ -33,7 +34,13 @@ public class ProjectileLevelTracker : MonoBehaviour
     }
     public void ResetLevels()
     {
-        projectileLevels.Clear();
+        // Create a copy of the keys to avoid modifying dictionary while iterating
+        var keys = new List<ProjectileData>(projectileLevels.Keys);
+        
+        foreach (var key in keys)
+        {
+            projectileLevels[key] = 0;
+        }
     }
 
     public int GetLevel(ProjectileData proj)

@@ -60,6 +60,7 @@ public class EnemySpawn : MonoBehaviour
     public bool canSpawnEnemies = true;
     Transform player;
 
+    [Header("Spawn Timing")]
     float spawnTimer;
     bool initialized = false;
 

@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0}
   m_SizeDelta: {x: 0, y: 48.919}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &21502207
@@ -268,6 +268,7 @@ MonoBehaviour:
     maxFloor: 5
     floormasters:
     - {fileID: 8394435277191435711, guid: 516d1ec3248824b48b05e8d029780dde, type: 3}
+    - {fileID: 3475650395302570904, guid: 4ae146b6ce0d92542889a2b730bdf089, type: 3}
   floormasterTimerText: {fileID: 540042298}
   spawnTimer: 5
   pauseDuration: 30
@@ -1546,7 +1547,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00003170967}
+  m_AnchoredPosition: {x: 0, y: -0.000030615214}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &372863199
@@ -6526,7 +6527,7 @@ MonoBehaviour:
   currentWaveIndex: 0
   enemyStrengthIndex: 0
   enemiesAlive: 0
-  maxEnemiesAllowed: 500
+  maxEnemiesAllowed: 300
   maxEnemiesReached: 0
   activeEnemies: []
   EnemyScaleFactor: 1.2
@@ -7042,7 +7043,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1107550545}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7758,9 +7759,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 619394802}
   - {fileID: 979341451}
+  - {fileID: 1940517537}
   - {fileID: 243432404}
   - {fileID: 364458570}
-  - {fileID: 1940517537}
   - {fileID: 804067427}
   - {fileID: 1307608574}
   - {fileID: 441360064}

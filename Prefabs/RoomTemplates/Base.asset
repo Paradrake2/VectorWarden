@@ -51,7 +51,7 @@ MonoBehaviour:
       spawnCount: 0
       enemyPrefab: {fileID: 7050455963606643714, guid: dd99fa64cb33b724e8292016dbbbb94a, type: 3}
     enemiesInWave: 50
-    spawnInterval: 5
+    spawnInterval: 20
     spawnedEnemiesCount: 0
   - waveName: wave2
     enemyGroups:
@@ -68,5 +68,39 @@ MonoBehaviour:
       spawnCount: 0
       enemyPrefab: {fileID: 46461337758655470, guid: b4dd994d730df654ab3f6a5f71531057, type: 3}
     enemiesInWave: 110
-    spawnInterval: 5
+    spawnInterval: 15
+    spawnedEnemiesCount: 0
+  - waveName: wave3
+    enemyGroups:
+    - enemyName: basicEnemy
+      enemyCount: 60
+      spawnCount: 0
+      enemyPrefab: {fileID: 2959879245279993818, guid: bd554e0ff40844e4e8ca35cedb7dad1b, type: 3}
+    - enemyName: rangedEnemy
+      enemyCount: 20
+      spawnCount: 0
+      enemyPrefab: {fileID: 2362829798281253994, guid: fe123b860c3c9f04896e9522f37227c6, type: 3}
+    - enemyName: tank
+      enemyCount: 30
+      spawnCount: 0
+      enemyPrefab: {fileID: 1891704840734517162, guid: da756e24d09972c4a893209cf1ca359e, type: 3}
+    enemiesInWave: 110
+    spawnInterval: 12
+    spawnedEnemiesCount: 0
+  - waveName: wave3
+    enemyGroups:
+    - enemyName: basicEnemy
+      enemyCount: 60
+      spawnCount: 0
+      enemyPrefab: {fileID: 8556420640491760914, guid: f0773939a3c6a8546afb7f0517f3d907, type: 3}
+    - enemyName: rangedEnemy
+      enemyCount: 20
+      spawnCount: 0
+      enemyPrefab: {fileID: 2362829798281253994, guid: fe123b860c3c9f04896e9522f37227c6, type: 3}
+    - enemyName: tank
+      enemyCount: 30
+      spawnCount: 0
+      enemyPrefab: {fileID: 4548758637996484524, guid: 79427762526ab3e48ae0c1a9e038d406, type: 3}
+    enemiesInWave: 110
+    spawnInterval: 9
     spawnedEnemiesCount: 0

@@ -13,6 +13,7 @@ public class DungeonManager : MonoBehaviour
     public int floormasterThreshold = 30;
     public TextMeshProUGUI killCountText;
     public int floor;
+    private bool yes = true;
 
     private void Awake()
     {
@@ -21,10 +22,20 @@ public class DungeonManager : MonoBehaviour
 
 
     }
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public int getFloor()
     {
-        if (scene.name == "Dungeon")
+        return floor;
+    }
+    public void EnemyKilled()
+    {
+        enemiesKilled++;
+        killCountText.text = "Enemies Killed: " + enemiesKilled;
+    }
+    void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "Dungeon")
         {
+            
 
             GameObject player = Instantiate(playerPrefab, mapGenerator.playerSpawnPosition, Quaternion.identity);
             Camera.main.GetComponent<CameraFollow>().target = player.transform;
@@ -37,32 +48,15 @@ public class DungeonManager : MonoBehaviour
             xpuiManager.UpdateXPText();
             xpuiManager.UpdateXPBarFill();
             xpuiManager.UpdateLevelText();
-            ProjectileLevelTracker.Instance.ResetLevels();
+            if (yes)
+            {
+                Debug.Log("Resetting projectile levels at start of dungeon.");
+                ProjectileLevelTracker.Instance.ResetLevels();
+            }
             PlayerStats.Instance.ReloadAutoAttackList();
             OrbitalAttack.Instance.ClearOrbitals();
             enemiesKilled = 0;
         }
-    }
-    public int getFloor()
-    {
-        return floor;
-    }
-    public void EnemyKilled()
-    {
-        enemiesKilled++;
-        killCountText.text = "Enemies Killed: " + enemiesKilled;
-    }
-    void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-    void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame

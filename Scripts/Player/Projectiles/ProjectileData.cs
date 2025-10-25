@@ -9,6 +9,7 @@ public enum ProjectileOrigin
     Any
 }
 
+
 [CreateAssetMenu(menuName = "Scriptable Objects/ProjectileData")]
 public class ProjectileData : ScriptableObject
 {

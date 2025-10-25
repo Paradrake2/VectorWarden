@@ -29,6 +29,10 @@ public class XPUIManager : MonoBehaviour
     }
     public void UpdateXPText()
     {
-        xpText.text = $"{stats.XP}/{stats.XpToNextLevel}";
+        try {
+            xpText.text = $"{stats.XP}/{stats.XpToNextLevel}";
+        } catch (System.Exception e) {
+            Debug.LogError("Error updating XP text: " + e.Message);
+        }
     }
 }
